@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    
+    <style name="DarkCaption" parent="@android:style/TextAppearance.Material">
+        <item name="android:textColor">@color/textGray</item>
+        <item name="android:textSize">@dimen/textCaption</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="DarkBody1" parent="@android:style/TextAppearance.Material">
+        <item name="android:textColor">@color/textDarkerGray</item>
+        <item name="android:textSize">@dimen/textBody1</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="DarkSubhead" parent="@android:style/TextAppearance.Material">
+        <item name="android:textColor">@color/textDarkestGray</item>
+        <item name="android:textSize">@dimen/textSubhead</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="DarkHeadline" parent="@android:style/TextAppearance.Material">
+        <item name="android:textColor">@color/textDarkestGray</item>
+        <item name="android:textSize">@dimen/textHeadline</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="LightLabelTextAppearance" parent="@android:style/TextAppearance.Material">
+        <item name="android:textColor">@color/textWhite</item>
+        <item name="android:textSize">@dimen/textCaption</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="LightContentTextAppearance" parent="@android:style/TextAppearance.Material">
+        <item name="android:textColor">@color/textWhite</item>
+        <item name="android:textSize">@dimen/textBody1</item>
+    </style>
+    <style name="LightTitleTextAppearance" parent="@android:style/TextAppearance.Material">
+        <item name="android:textColor">@color/textWhite</item>
+        <item name="android:textSize">@dimen/textSubhead</item>
+    </style>
+    <style name="LightBigTitleTextAppearance" parent="@android:style/TextAppearance.Material">
+        <item name="android:textColor">@color/textWhite</item>
+        <item name="android:textSize">@dimen/textHeadline</item>
+    </style>
+
+</resources>

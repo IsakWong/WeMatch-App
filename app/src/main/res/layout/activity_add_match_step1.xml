@@ -1,0 +1,112 @@
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="-8dp"
+    android:background="@color/colorWhiteBackgournd"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/next_btn"
+        style="@style/TransButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="16dp"
+        android:text="下一步"
+        android:textAppearance="@style/DarkSubhead"
+        android:textColor="@color/colorAccent5" />
+
+    <ScrollView
+
+        android:id="@+id/add_match_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/next_btn"
+        android:layout_below="@+id/top_bar"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/top_bar"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="false"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            app:layout_widthPercent="70%">
+
+            <ImageView
+                android:id="@+id/add_match_img"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_below="@+id/top_bar"
+                android:layout_centerInParent="false"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="32dp"
+                android:layout_weight="0"
+                app:srcCompat="@drawable/ic_app" />
+
+            <EditText
+                android:id="@+id/add_match_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:layout_weight="0"
+                android:ems="10"
+                android:hint="填写比赛名称（2~20个字）"
+                android:inputType="textPersonName"
+                android:textAppearance="@style/DarkBody1" />
+
+            <EditText
+                android:id="@+id/add_match_short_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_weight="0"
+                android:ems="10"
+                android:hint="比赛一句话简介"
+                android:inputType="textPersonName"
+                android:textAppearance="@style/DarkBody1" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/status_bar"
+            layout="@layout/status_bar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="@color/colorAccent5"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/navigation_icon"
+                style="@style/myImageButtonStyle"
+                android:layout_width="@dimen/iconSize"
+                android:layout_height="@dimen/iconSize"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_back" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.percent.PercentRelativeLayout>

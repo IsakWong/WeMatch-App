@@ -1,0 +1,110 @@
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:background="@color/textWhite"
+    android:fitsSystemWindows="false"
+    android:orientation="vertical"
+    android:weightSum="4"
+    tools:context="nullref.dlut.wematch.business.login.LogInActivity">
+
+    <FrameLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@+id/top_bar">
+
+        <ImageView
+            android:id="@+id/top"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/bg_title" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="选择喜欢的标签"
+            android:textAlignment="center"
+            android:textAppearance="@style/LightBigTitleTextAppearance" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_widthPercent="100%">
+
+        <include
+            android:id="@+id/status_bar"
+            layout="@layout/status_bar"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_weight="0" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/top"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0"
+        android:orientation="vertical"
+        app:layout_widthPercent="80%">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/reg_hint_choose_label"
+            android:textAlignment="center"
+            android:textAppearance="@style/DarkBody1" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/labels_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp">
+
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/reg_btn"
+            style="@style/TransButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentRight="false"
+            android:layout_centerHorizontal="false"
+            android:layout_centerVertical="false"
+            android:layout_gravity="right"
+            android:layout_marginBottom="32dp"
+            android:layout_weight="0"
+            android:minWidth="0dp"
+            android:text="完成注册"
+            android:textColor="@color/colorAccent8"
+            android:textSize="@dimen/textBody1" />
+
+    </LinearLayout>
+
+</android.support.percent.PercentRelativeLayout>

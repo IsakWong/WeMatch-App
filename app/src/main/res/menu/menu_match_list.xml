@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/exit"
+        android:title="退出"/>
+    <item android:id="@+id/set"
+        android:title="设置"/>
+    <item android:id="@+id/account"
+        android:title="账号"/>
+</menu>

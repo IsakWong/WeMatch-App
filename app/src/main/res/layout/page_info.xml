@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/colorAccent5"
+            app:cardElevation="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp">
+
+                <ImageView
+                    android:id="@+id/info_avatar_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:scaleType="centerCrop" />
+
+
+                <ImageView
+                    android:id="@+id/overlay"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:alpha="0.4"
+                    android:background="@color/textDarkerGray" />
+
+                <nullref.dlut.wematch.widgets.RoundImageView
+                    android:id="@+id/info_avatar"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bg_blue" />
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/info_avatar"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:textAppearance="@style/LightTitleTextAppearance" />
+
+                <ImageView
+                    android:id="@+id/sex"
+                    android:layout_width="@dimen/textHeadline"
+                    android:layout_height="@dimen/textHeadline"
+                    android:layout_below="@+id/info_avatar"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_toRightOf="@+id/user_name"
+                    app:srcCompat="@drawable/ic_sex_male" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <include
+                        android:id="@+id/status_bar"
+                        layout="@layout/transparent_status_bar" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <ImageButton
+                            android:id="@+id/info_update"
+                            style="@style/myImageButtonStyle"
+                            android:layout_width="@dimen/iconSize"
+                            android:layout_height="@dimen/iconSize"
+                            android:layout_gravity="top|right|center_vertical"
+                            android:layout_weight="0"
+                            android:background="@color/colorTransparent"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/ic_lead_pencil_white_24dp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_columnSpan="1"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_row="1"
+                    android:layout_rowSpan="1"
+                    android:layout_weight="0"
+                    android:gravity="center_vertical"
+                    android:text="个人资料  &amp;  比赛"
+                    android:textAppearance="@style/DarkBody1"
+                    android:textColor="@color/colorAccent5" />
+
+                <GridLayout
+                    android:id="@+id/my_subscribe_users"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_weight="0"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    android:rowCount="2">
+
+                    <ImageView
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="16dp"
+                        android:layout_row="0"
+                        android:layout_rowSpan="2"
+                        android:layout_weight="0"
+                        android:paddingBottom="16dp"
+                        android:paddingTop="16dp"
+                        app:srcCompat="@drawable/ic_user_blue" />
+
+                    <TextView
+                        android:id="@+id/match_info_loc"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_columnSpan="1"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="16dp"
+                        android:layout_row="1"
+                        android:layout_rowSpan="1"
+                        android:layout_weight="0"
+                        android:gravity="center_vertical"
+                        android:text="关注的用户"
+                        android:textAppearance="@style/DarkBody1" />
+
+                </GridLayout>
+
+                <GridLayout
+                    android:id="@+id/my_subscribe_matches"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_weight="0"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    android:rowCount="2">
+
+                    <ImageView
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="16dp"
+                        android:layout_row="0"
+                        android:layout_rowSpan="2"
+                        android:layout_weight="0"
+                        android:paddingBottom="16dp"
+                        android:paddingTop="16dp"
+                        app:srcCompat="@drawable/ic_list_blue" />
+
+                    <TextView
+                        android:id="@+id/match_info_loc2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_columnSpan="1"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="16dp"
+                        android:layout_row="1"
+                        android:layout_rowSpan="1"
+                        android:layout_weight="0"
+                        android:gravity="center_vertical"
+                        android:text="关注的比赛"
+                        android:textAppearance="@style/DarkBody1" />
+
+                </GridLayout>
+
+                <GridLayout
+                    android:id="@+id/my_teams"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_weight="0"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    android:rowCount="2">
+
+                    <ImageView
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="16dp"
+                        android:layout_row="0"
+                        android:layout_rowSpan="2"
+                        android:layout_weight="0"
+                        android:paddingBottom="16dp"
+                        android:paddingTop="16dp"
+                        app:srcCompat="@drawable/ic_people_blue" />
+
+                    <TextView
+                        android:id="@+id/match_info_loc3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_columnSpan="1"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="16dp"
+                        android:layout_row="1"
+                        android:layout_rowSpan="1"
+                        android:layout_weight="0"
+                        android:gravity="center_vertical"
+                        android:text="我的小队"
+                        android:textAppearance="@style/DarkBody1" />
+
+                </GridLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"></LinearLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="设置  &amp;  账户"
+                    android:textAppearance="@style/DarkBody1"
+                    android:textColor="@color/colorAccent5" />
+
+                <GridLayout
+                    android:id="@+id/match_logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="0dp"
+                    android:layout_weight="0"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    android:rowCount="2">
+
+                    <ImageView
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="16dp"
+                        android:layout_row="0"
+                        android:layout_rowSpan="2"
+                        android:layout_weight="0"
+                        android:paddingBottom="16dp"
+                        android:paddingTop="16dp"
+                        app:srcCompat="@drawable/ic_exit_gray" />
+
+                    <TextView
+                        android:id="@+id/match_info_loc4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_columnSpan="1"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="16dp"
+                        android:layout_row="1"
+                        android:layout_rowSpan="1"
+                        android:layout_weight="0"
+                        android:gravity="center_vertical"
+                        android:text="退出当前登陆账号"
+                        android:textAppearance="@style/DarkBody1" />
+
+                </GridLayout>
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</FrameLayout>

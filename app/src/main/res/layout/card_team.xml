@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="0dp"
+    android:layout_marginTop="8dp"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:transitionName="share_match_card"
+    app:cardBackgroundColor="#0b7edb"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="7dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0"
+            android:paddingBottom="32dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="32dp"
+            android:text="（1/3）"
+            android:textAppearance="@style/LightBigTitleTextAppearance"
+            android:textSize="18sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0">
+
+            <TextView
+                android:id="@+id/team_card_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:elevation="1dp"
+                android:text="team_name"
+                android:textAppearance="@style/LightBigTitleTextAppearance"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/team_card_short_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/team_card_title"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:text="team_info_team_info_team_info_team_info_team_info_"
+                android:textAppearance="@style/LightContentTextAppearance" />
+
+            <Button
+                android:id="@+id/team_join"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/team_card_short_info"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorTransparent"
+                android:paddingBottom="8dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="16dp"
+                android:paddingTop="8dp"
+                android:text="加入小队"
+                android:textAppearance="@style/LightContentTextAppearance" />
+
+            <ImageView
+                android:id="@+id/team_card_avatar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/team_join"
+                app:srcCompat="@drawable/bg_blue" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

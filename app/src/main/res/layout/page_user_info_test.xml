@@ -1,0 +1,443 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhiteBackgournd">
+
+    <com.github.ksoichiro.android.observablescrollview.ObservableScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhiteBackgournd"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/scroll_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="@color/colorWhiteBackgournd"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/topbarSize">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="82dp"
+                android:layout_weight="0"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="-8dp"
+                    android:layout_toStartOf="@+id/match_info_short_info"
+                    android:alpha="0.6"
+                    android:text="“"
+                    android:textAppearance="@style/LightTitleTextAppearance"
+                    android:textColor="@color/textDarkerGray"
+                    android:textSize="40sp" />
+
+                <TextView
+                    android:id="@+id/match_info_short_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="0dp"
+                    android:alpha="0.9"
+                    android:text="我是一个人"
+                    android:textAppearance="@style/LightContentTextAppearance"
+                    android:textColor="@color/textDarkerGray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@+id/match_info_short_info"
+                    android:alpha="0.6"
+                    android:text="”"
+                    android:textAppearance="@style/LightTitleTextAppearance"
+                    android:textColor="@color/textDarkerGray"
+                    android:textSize="40sp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/match_info_short_info"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_weight="0"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/match_info_community"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="0dp"
+                        android:layout_row="0"
+                        android:layout_rowSpan="2"
+                        android:layout_weight="0"
+                        android:paddingBottom="16dp"
+                        android:paddingTop="16dp"
+                        app:srcCompat="@drawable/ic_community_blue" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_columnSpan="1"
+                        android:layout_gravity="center"
+                        android:layout_row="1"
+                        android:layout_rowSpan="1"
+                        android:layout_weight="0"
+                        android:gravity="center_vertical"
+                        android:text="订阅的标签"
+                        android:textAppearance="@style/DarkBody1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/match_info_website"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="0dp"
+                        android:layout_row="0"
+                        android:layout_rowSpan="2"
+                        android:layout_weight="0"
+                        android:paddingBottom="16dp"
+                        android:paddingTop="16dp"
+                        app:srcCompat="@drawable/ic_web_blue" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_columnSpan="1"
+                        android:layout_gravity="center"
+                        android:layout_row="1"
+                        android:layout_rowSpan="1"
+                        android:layout_weight="0"
+                        android:gravity="center_vertical"
+                        android:text="社区文章"
+                        android:textAppearance="@style/DarkBody1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/match_info_concern"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="0dp"
+                        android:layout_row="0"
+                        android:layout_rowSpan="2"
+                        android:layout_weight="0"
+                        android:paddingBottom="16dp"
+                        android:paddingTop="16dp"
+                        app:srcCompat="@drawable/ic_people_blue" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_columnSpan="1"
+                        android:layout_gravity="center"
+                        android:layout_row="1"
+                        android:layout_rowSpan="1"
+                        android:layout_weight="0"
+                        android:gravity="center_vertical"
+                        android:text="私信他"
+                        android:textAppearance="@style/DarkBody1" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/hint"
+                android:layout_marginTop="16dp"
+                android:layout_weight="0"
+                android:columnCount="2"
+                android:orientation="horizontal"
+                android:rowCount="2">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:layout_row="0"
+                    android:layout_rowSpan="2"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="16dp"
+                    app:srcCompat="@drawable/ic_loc_gray" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:layout_columnSpan="1"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_row="0"
+                    android:layout_rowSpan="1"
+                    android:gravity="center_vertical"
+                    android:text="姓名:"
+                    android:textAppearance="@style/DarkCaption" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:layout_columnSpan="1"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:layout_row="1"
+                    android:layout_rowSpan="1"
+                    android:gravity="center_vertical"
+                    android:text="isakWong"
+                    android:textAppearance="@style/DarkBody1" />
+
+            </GridLayout>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/hint"
+                android:layout_marginTop="16dp"
+                android:layout_weight="0"
+                android:columnCount="2"
+                android:orientation="horizontal"
+                android:rowCount="2">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:layout_row="0"
+                    android:layout_rowSpan="2"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="16dp"
+                    app:srcCompat="@drawable/ic_loc_gray" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:layout_columnSpan="1"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_row="0"
+                    android:layout_rowSpan="1"
+                    android:gravity="center_vertical"
+                    android:text="地点:     "
+                    android:textAppearance="@style/DarkCaption" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:layout_columnSpan="1"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:layout_row="1"
+                    android:layout_rowSpan="1"
+                    android:gravity="center_vertical"
+                    android:text="大连理工大学"
+                    android:textAppearance="@style/DarkBody1" />
+
+            </GridLayout>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/hint"
+                android:layout_marginTop="16dp"
+                android:layout_weight="0"
+                android:columnCount="2"
+                android:orientation="horizontal"
+                android:rowCount="2">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:layout_row="0"
+                    android:layout_rowSpan="2"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="16dp"
+                    app:srcCompat="@drawable/ic_loc_gray" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:layout_columnSpan="1"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_row="0"
+                    android:layout_rowSpan="1"
+                    android:gravity="center_vertical"
+                    android:text="地点:     "
+                    android:textAppearance="@style/DarkCaption" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:layout_columnSpan="1"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:layout_row="1"
+                    android:layout_rowSpan="1"
+                    android:gravity="center_vertical"
+                    android:text="大连理工大学"
+                    android:textAppearance="@style/DarkBody1" />
+
+            </GridLayout>
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/appCompatImageView2"
+                android:layout_width="match_parent"
+                android:layout_height="270dp"
+                android:layout_weight="0" />
+
+
+        </LinearLayout>
+    </com.github.ksoichiro.android.observablescrollview.ObservableScrollView>
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/overlay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/topbarSize"
+        android:scaleType="centerCrop"
+        app:srcCompat="@color/colorAccent5" />
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/fab_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:padding="3dp"
+        app:fab_icon="@drawable/fab_add"
+        app:fab_labelStyle="@style/menu_labels_style"
+        app:fab_addButtonColorNormal="@color/colorAccent"
+        app:fab_labelsPosition="left">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_icon="@drawable/ic_like_small"
+            app:fab_title="关注比赛"
+            app:fab_colorNormal="@color/colorAccent"
+            app:fab_size="mini" />
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/user_card_pic"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/topbarSize"
+        android:scaleType="centerCrop"
+        android:transitionName="share_img"
+        app:srcCompat="@drawable/bg_bop2017" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/status_bar"
+            layout="@layout/status_bar" />
+
+        <LinearLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/navigation_icon"
+                style="@style/myImageButtonStyle"
+                android:layout_width="@dimen/iconSize"
+                android:layout_height="@dimen/iconSize"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="16dp"
+                android:layout_weight="0"
+                android:background="@color/colorTransparent"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/ic_back" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/share_icon"
+                style="@style/myImageButtonStyle"
+                android:layout_width="@dimen/iconSize"
+                android:layout_height="@dimen/iconSize"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0"
+                android:background="@color/colorTransparent"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_share_white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <nullref.dlut.wematch.widgets.RoundImageView
+        android:id="@+id/user_info_avatar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="250dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_baidustar" />
+
+</FrameLayout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textDisplay1"> 34sp </dimen>
+    <dimen name="textHeadline"> 24sp </dimen>
+    <dimen name="textTitle"> 20sp </dimen>
+    <dimen name="textSubhead"> 18sp </dimen>
+    <dimen name="textBody1"> 14sp </dimen>
+    <dimen name="textBody2"> 14sp </dimen>
+    <dimen name="textCaption">12sp</dimen>
+    <dimen name="textButton"> 14sp </dimen>
+    <dimen name="imageMatchSize">200dp</dimen>
+    <dimen name="topbarSize">300dp</dimen>
+    <dimen name="iconSize">56dp</dimen>
+
+    <dimen name="cardStickSize">-50dp</dimen>
+</resources>

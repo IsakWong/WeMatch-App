@@ -1,0 +1,100 @@
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhiteBackgournd"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/status_bar"
+            layout="@layout/status_bar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="@color/colorAccent5"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/navigation_icon"
+                style="@style/myImageButtonStyle"
+                android:layout_width="@dimen/iconSize"
+                android:layout_height="@dimen/iconSize"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_close_white" />
+
+            <TextView
+                android:id="@+id/edit_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textAppearance="@style/LightTitleTextAppearance" />
+
+            <Button
+                android:id="@+id/save_btn"
+                style="@style/TransButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0"
+                android:text="保存"
+                android:textAppearance="@style/LightTitleTextAppearance" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="false"
+        android:layout_marginTop="4dp"
+        android:background="@color/textWhite"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_toStartOf="@+id/close"
+            android:background="@null"
+            android:hint="填写"
+            android:imeOptions="actionDone"
+            android:textAppearance="@style/DarkSubhead" />
+
+        <ImageButton
+            android:id="@+id/close"
+            style="@style/myImageButtonStyle"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="0"
+            android:background="@color/colorTransparent"
+            android:padding="0dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_close_gray" />
+
+    </RelativeLayout>
+
+</android.support.percent.PercentRelativeLayout>

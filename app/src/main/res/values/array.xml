@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ctype">
+        <item>大连理工大学</item>
+        <item>大连理工大学（开发区）</item>
+        <item>大连海事大学</item>
+        <item>大连东软信息学院</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="gender">
+        <item>女</item>
+        <item>男</item>
+        <item>保密</item>
+    </string-array>
+
+    <string-array name="match_online_or_offline">
+        <item>线上</item>
+        <item>线下</item>
+        <item>混合</item>
+    </string-array>
+
+</resources>

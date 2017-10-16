@@ -1,0 +1,672 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhiteBackgournd">
+
+    <com.github.ksoichiro.android.observablescrollview.ObservableScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhiteBackgournd"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/scroll_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/topbarSize"
+            android:layout_weight="0"
+            android:background="@color/colorWhiteBackgournd"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                app:cardBackgroundColor="@color/textWhite">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:orientation="vertical"
+                    android:paddingTop="32dp">
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="-8dp"
+                        android:layout_toStartOf="@+id/match_info_short_info"
+                        android:alpha="0.6"
+                        android:text="“"
+                        android:textAppearance="@style/LightTitleTextAppearance"
+                        android:textColor="@color/textDarkerGray"
+                        android:textSize="40sp" />
+
+                    <TextView
+                        android:id="@+id/match_info_short_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="0dp"
+                        android:alpha="0.9"
+                        android:text="大工规模最大的科创比赛!"
+                        android:textAppearance="@style/LightContentTextAppearance"
+                        android:textColor="@color/textDarkerGray" />
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_toEndOf="@+id/match_info_short_info"
+                        android:alpha="0.6"
+                        android:text="”"
+                        android:textAppearance="@style/LightTitleTextAppearance"
+                        android:textColor="@color/textDarkerGray"
+                        android:textSize="40sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/match_info_short_info"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="0"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/match_info_community"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="56dp"
+                                android:layout_height="56dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="0dp"
+                                android:layout_row="0"
+                                android:layout_rowSpan="2"
+                                android:layout_weight="0"
+                                android:paddingBottom="16dp"
+                                android:paddingTop="16dp"
+                                app:srcCompat="@drawable/ic_community_blue" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_columnSpan="1"
+                                android:layout_gravity="center"
+                                android:layout_row="1"
+                                android:layout_rowSpan="1"
+                                android:layout_weight="0"
+                                android:gravity="center_vertical"
+                                android:text="小队社区"
+                                android:textAppearance="@style/DarkBody1" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/match_info_website"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="56dp"
+                                android:layout_height="56dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="0dp"
+                                android:layout_row="0"
+                                android:layout_rowSpan="2"
+                                android:layout_weight="0"
+                                android:paddingBottom="16dp"
+                                android:paddingTop="16dp"
+                                app:srcCompat="@drawable/ic_web_blue" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_columnSpan="1"
+                                android:layout_gravity="center"
+                                android:layout_row="1"
+                                android:layout_rowSpan="1"
+                                android:layout_weight="0"
+                                android:gravity="center_vertical"
+                                android:text="进入官网"
+                                android:textAppearance="@style/DarkBody1" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/match_info_concern"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="56dp"
+                                android:layout_height="56dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="0dp"
+                                android:layout_row="0"
+                                android:layout_rowSpan="2"
+                                android:layout_weight="0"
+                                android:paddingBottom="16dp"
+                                android:paddingTop="16dp"
+                                app:srcCompat="@drawable/ic_people_blue" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_columnSpan="1"
+                                android:layout_gravity="center"
+                                android:layout_row="1"
+                                android:layout_rowSpan="1"
+                                android:layout_weight="0"
+                                android:gravity="center_vertical"
+                                android:text="关注者"
+                                android:textAppearance="@style/DarkBody1" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1.12">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:orientation="vertical"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="16dp">
+
+                    <TextView
+                        android:id="@+id/info_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="16dp"
+                        android:text="比赛信息"
+                        android:textAppearance="@style/DarkSubhead" />
+
+                    <TextView
+                        android:id="@+id/hint"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/info_title"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="比赛时间，地点以及参加人数限制等·"
+                        android:textAppearance="@style/DarkCaption" />
+
+                    <GridLayout
+                        android:id="@+id/grid1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/hint"
+                        android:layout_marginTop="16dp"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        android:rowCount="2">
+
+                        <ImageView
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="16dp"
+                            android:layout_row="0"
+                            android:layout_rowSpan="2"
+                            android:paddingBottom="16dp"
+                            android:paddingTop="16dp"
+                            app:srcCompat="@drawable/ic_loc_gray" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_column="1"
+                            android:layout_columnSpan="1"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_row="0"
+                            android:layout_rowSpan="1"
+                            android:gravity="center_vertical"
+                            android:text="地点:     "
+                            android:textAppearance="@style/DarkCaption" />
+
+                        <TextView
+                            android:id="@+id/match_info_loc"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_column="1"
+                            android:layout_columnSpan="1"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="16dp"
+                            android:layout_row="1"
+                            android:layout_rowSpan="1"
+                            android:gravity="center_vertical"
+                            android:text="大连理工大学"
+                            android:textAppearance="@style/DarkBody1" />
+
+                    </GridLayout>
+
+                    <GridLayout
+                        android:id="@+id/grid2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/grid1"
+                        android:layout_marginLeft="0dp"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        android:rowCount="2">
+
+                        <ImageView
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="16dp"
+                            android:layout_row="0"
+                            android:layout_rowSpan="2"
+                            android:paddingBottom="16dp"
+                            android:paddingTop="16dp"
+                            app:srcCompat="@drawable/ic_time_gray" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_column="1"
+                            android:layout_columnSpan="1"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_row="0"
+                            android:layout_rowSpan="1"
+                            android:gravity="center_vertical"
+                            android:text="开始:"
+                            android:textAppearance="@style/DarkCaption" />
+
+                        <TextView
+                            android:id="@+id/match_info_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_column="1"
+                            android:layout_columnSpan="1"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="16dp"
+                            android:layout_row="1"
+                            android:layout_rowSpan="1"
+                            android:gravity="center_vertical"
+                            android:text="2017-02 至 2018-03"
+                            android:textAppearance="@style/DarkBody1" />
+
+                    </GridLayout>
+
+                    <GridLayout
+                        android:id="@+id/grid3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/grid2"
+                        android:layout_marginLeft="0dp"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        android:rowCount="2">
+
+                        <ImageView
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="16dp"
+                            android:layout_row="0"
+                            android:layout_rowSpan="2"
+                            android:paddingBottom="16dp"
+                            android:paddingTop="16dp"
+                            app:srcCompat="@drawable/ic_person_gray" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_column="1"
+                            android:layout_columnSpan="1"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_row="0"
+                            android:layout_rowSpan="1"
+                            android:gravity="center_vertical"
+                            android:text="举办方"
+                            android:textAppearance="@style/DarkCaption" />
+
+                        <TextView
+                            android:id="@+id/match_info_host"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_column="1"
+                            android:layout_columnSpan="1"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="16dp"
+                            android:layout_row="1"
+                            android:layout_rowSpan="1"
+                            android:gravity="center_vertical"
+                            android:text="大连理工大学计算机学院"
+                            android:textAppearance="@style/DarkBody1" />
+
+                    </GridLayout>
+
+                    <GridLayout
+                        android:id="@+id/grid4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/grid3"
+                        android:layout_marginLeft="0dp"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        android:rowCount="2">
+
+                        <ImageView
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="16dp"
+                            android:layout_row="0"
+                            android:layout_rowSpan="2"
+                            android:paddingBottom="16dp"
+                            android:paddingTop="16dp"
+                            app:srcCompat="@drawable/ic_people_gray" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_column="1"
+                            android:layout_columnSpan="1"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_row="0"
+                            android:layout_rowSpan="1"
+                            android:gravity="center_vertical"
+                            android:text="人数"
+                            android:textAppearance="@style/DarkCaption" />
+
+                        <TextView
+                            android:id="@+id/match_info_people"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_column="1"
+                            android:layout_columnSpan="1"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="16dp"
+                            android:layout_row="1"
+                            android:layout_rowSpan="1"
+                            android:layout_weight="0"
+                            android:gravity="center_vertical"
+                            android:text="1-2"
+                            android:textAppearance="@style/DarkBody1" />
+
+                    </GridLayout>
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_weight="0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="1"
+                        android:text="社区文章"
+                        android:textAppearance="@style/DarkSubhead" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:text="比赛相关标签的文章"
+                        android:textAppearance="@style/DarkCaption" />
+
+                    <WebView
+                        android:id="@+id/web_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_weight="0" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_weight="0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="1.12"
+                        android:baselineAligned="false"
+                        android:orientation="vertical"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:paddingTop="8dp"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="比赛内容"
+                            android:textAppearance="@style/DarkSubhead" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginTop="8dp"
+                            android:text="比赛详细要求及比赛具体内容"
+                            android:textAppearance="@style/DarkCaption" />
+
+                        <TextView
+                            android:id="@+id/match_info_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginTop="24dp"
+                            android:layout_weight="1.12"
+                            android:ellipsize="end"
+                            android:maxLines="6"
+                            android:text="\t内容 "
+                            android:textAppearance="@style/DarkBody1" />
+
+                        <Button
+                            android:id="@+id/match_info_content_more"
+                            style="@style/ButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorAccent5"
+                            android:text="展开更多"
+                            android:textAppearance="@style/LightLabelTextAppearance" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="270dp" />
+
+
+        </LinearLayout>
+    </com.github.ksoichiro.android.observablescrollview.ObservableScrollView>
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/overlay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/topbarSize"
+        android:scaleType="centerCrop"
+        app:srcCompat="@color/colorAccent5" />
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/fab_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:padding="3dp"
+        app:fab_icon="@drawable/fab_add"
+        app:fab_labelStyle="@style/menu_labels_style"
+        app:fab_addButtonColorNormal="@color/colorAccent"
+        app:fab_labelsPosition="left">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_icon="@drawable/ic_like_small"
+            app:fab_title="关注比赛"
+            app:fab_colorNormal="@color/colorAccent"
+            app:fab_size="mini" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_create_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_icon="@drawable/ic_team_white"
+            app:fab_title="组建小队"
+            app:fab_colorNormal="@color/colorAccent"
+            app:fab_size="mini" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/colorAccent"
+            app:fab_icon="@drawable/ic_time_white"
+            app:fab_size="mini"
+            app:fab_title="设置提醒" />
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/match_card_pic"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/topbarSize"
+        android:scaleType="centerCrop"
+        android:transitionName="share_img" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/status_bar"
+            layout="@layout/status_bar" />
+
+        <LinearLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/navigation_icon"
+                style="@style/myImageButtonStyle"
+                android:layout_width="@dimen/iconSize"
+                android:layout_height="@dimen/iconSize"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="16dp"
+                android:layout_weight="0"
+                android:background="@color/colorTransparent"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/ic_back" />
+
+            <TextView
+                android:id="@+id/match_info_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:lines="1"
+                android:text="大连理工大学攀登杯"
+                android:textColor="@color/textWhite"
+                android:textSize="@dimen/textSubhead" />
+
+            <ImageButton
+                android:id="@+id/share_icon"
+                style="@style/myImageButtonStyle"
+                android:layout_width="@dimen/iconSize"
+                android:layout_height="@dimen/iconSize"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0"
+                android:background="@color/colorTransparent"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_share_white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

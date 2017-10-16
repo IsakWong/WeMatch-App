@@ -1,0 +1,56 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+
+        <item name="colorButtonNormal">@color/colorAccent5</item><!--正常状态下的颜色  -->
+        <item name="colorControlHighlight">#46000000</item><!--覆盖色，按下的颜色  -->
+        <item name="colorPrimary">@color/colorAccent5</item>
+        <item name="colorPrimaryDark">@color/colorAccent9</item>
+        <item name="colorAccent">@color/colorAccent1</item>
+        <item name="android:windowActivityTransitions">@android:transition/fade</item>
+        <item name="android:windowBackground">@color/colorWhiteBackgournd</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:textColorPrimary">@color/textDarkerGray</item>
+        <item name="android:textColorSecondary">@color/textDarkestGray</item>
+        <item name="android:buttonStyle">@style/ButtonStyle</item>
+        <item name="android:popupMenuStyle">@style/ContextMenuStyle</item>
+    </style>
+
+    <style name="menu_labels_style">
+        <item name="android:background">@drawable/fab_label_bg</item>
+        <item name="android:textColor">@color/textWhite</item>
+    </style>
+
+
+    <style name="LightInputEditStyle" parent="AppTheme">
+        <item name="colorControlHighlight">@color/textWhite</item>
+        <item name="colorAccent">@color/textWhite</item>
+        <item name="android:colorControlActivated">@color/textWhite</item>
+        <item name="colorControlNormal">@color/colorWhiteBackgournd</item>
+        <item name="hintTextAppearance">@style/AppTheme.TextFloatLabelAppearance</item>
+        <item name="errorTextAppearance">@style/AppTheme.TextErrorAppearance</item>
+        <item name="counterTextAppearance">@style/AppTheme.TextFloatLabelAppearance</item>
+        <item name="counterOverflowTextAppearance">@style/AppTheme.TextErrorAppearance</item>
+    </style>
+    <style name="DarkInputEditStyle" parent="AppTheme">
+        <item name="colorControlNormal">@color/textGray</item>>
+    </style>
+
+    <style name="AppTheme.TextFloatLabelAppearance" parent="TextAppearance.Design.Hint">
+        <!-- Floating label appearance here -->
+        <item name="android:textColor">@color/textWhite</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="AppTheme.TextErrorAppearance" parent="TextAppearance.Design.Error">
+        <!-- Error message appearance here -->
+        <item name="android:textColor">#ff0000</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+
+
+</resources>
