@@ -1,6 +1,6 @@
 # WeMatch App for Android
 
-![WeMatch](https://github.com/IsakWong/WeMatch-App/pic/all-view.png)
+![WeMatch](https://github.com/IsakWong/WeMatch-App/blob/master/pic/all-view.png)
 
 WeMatch 是一个基于 Android 的应用，现在暂未有正式版放出。最低的 Android 版本要求是 6.0
 
