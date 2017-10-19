@@ -2,7 +2,7 @@ package nullref.dlut.wematch.layout.userlist;
 
 import nullref.dlut.wematch.base.BasePresenter;
 import nullref.dlut.wematch.base.BaseView;
-import nullref.dlut.wematch.bean.User;
+import nullref.dlut.wematch.bean.UserListInfo;
 
 /**
  * Created by isakwong on 2017/7/17.
@@ -12,7 +12,7 @@ public interface UserListContract {
     interface View extends BaseView<Presenter>{
 
         void onGetUserListError(String cause);
-        void onGetUserList(User[] user);
+        void onGetUserList(UserListInfo[] userListInfo);
         void onFollowUser(int position);
         void onFollowUserError(String cause);
 

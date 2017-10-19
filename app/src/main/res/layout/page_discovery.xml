@@ -457,40 +457,22 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <HorizontalScrollView
+                android:id="@+id/discovery_user_scroll"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
-                android:layout_weight="1.52"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:layout_weight="0">
 
-                <View
-                    android:layout_width="10dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0"
-                    android:background="@color/colorAccent5">
-
-                </View>
-
-                <TextView
+                <LinearLayout
+                    android:id="@+id/discvoeru_user_layout"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_weight="0"
-                    android:text="优秀成员"
-                    android:textAppearance="@style/DarkSubhead"
-                    android:textColor="@color/colorAccent5" />
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_weight="0"
-                    app:srcCompat="@drawable/ic_enter_gray" />
-
-            </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
 
         </LinearLayout>
     </ScrollView>

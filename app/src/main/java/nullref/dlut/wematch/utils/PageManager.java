@@ -95,7 +95,7 @@ public class PageManager {
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
         fragment.setSharedElementEnterTransition(new DetailTransition());
         fragment.setSharedElementReturnTransition(new DetailTransition());
-
+        fragments.add(fragment);
         curFragment.setExitTransition(new Fade());
         fragment.setEnterTransition(new Fade());
         transaction

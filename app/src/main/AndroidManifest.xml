@@ -73,7 +73,6 @@
 
         <activity
             android:name=".business.commit.CommitMatchStep1Activity"
-            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
         </activity>

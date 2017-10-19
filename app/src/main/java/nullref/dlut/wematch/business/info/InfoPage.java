@@ -1,8 +1,6 @@
 package nullref.dlut.wematch.business.info;
 
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +14,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.j256.ormlite.android.apptools.OpenHelperManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,7 +21,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.ColorStatusPage;
-import nullref.dlut.wematch.bean.User;
+import nullref.dlut.wematch.bean.UserListInfo;
 import nullref.dlut.wematch.business.subscribe.SubscribeMatchListPresenter;
 import nullref.dlut.wematch.business.infoset.UserInfoSetActivity;
 import nullref.dlut.wematch.business.login.LogInActivity;
@@ -33,7 +30,6 @@ import nullref.dlut.wematch.business.subscribe.SubscribeUserListPresenter;
 import nullref.dlut.wematch.layout.matchlist.MatchListPage;
 import nullref.dlut.wematch.layout.teamlist.TeamListPage;
 import nullref.dlut.wematch.layout.userlist.UserListPage;
-import nullref.dlut.wematch.utils.Utils;
 import nullref.dlut.wematch.utils.database.ConfigDbHelper;
 import nullref.dlut.wematch.widgets.AvatarImageTarget;
 
@@ -76,7 +72,7 @@ public class InfoPage extends ColorStatusPage implements InfoPageContract.View {
     @BindView(R.id.sex)
     ImageView sex;
 
-    private User user;
+    private UserListInfo userListInfo;
     private String avatarUrlPath;
     InfoPageContract.Presenter presenter;
 
@@ -97,10 +93,6 @@ public class InfoPage extends ColorStatusPage implements InfoPageContract.View {
         super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.page_info, container, false);
         unbinder = ButterKnife.bind(this, view);
-        infoAvatar.setDrawingCacheEnabled(true);
-        Bitmap bm = ((BitmapDrawable) ((ImageView) infoAvatar).getDrawable()).getBitmap();
-        Bitmap outBitmap = Utils.blurBitmap(getContext(), bm, 20f);
-        infoAvatarBg.setImageBitmap(outBitmap);
         ConfigDbHelper configDbHelper = ConfigDbHelper.getInstance();
         if(configDbHelper.query("need_update").equals("true"))
         {
@@ -111,10 +103,9 @@ public class InfoPage extends ColorStatusPage implements InfoPageContract.View {
             RequestOptions options2 = new RequestOptions()
                     .placeholder(R.drawable.bg_blue)
                     .priority(Priority.HIGH)
-                    .diskCacheStrategy( DiskCacheStrategy.AUTOMATIC)
-                    .skipMemoryCache(false);
+                    .diskCacheStrategy( DiskCacheStrategy.AUTOMATIC);
             Glide
-                    .with(getContext())
+                    .with(infoAvatar)
                     .asBitmap()
                     .load(avatarUrlPath)
                     .apply(options2)
@@ -135,11 +126,11 @@ public class InfoPage extends ColorStatusPage implements InfoPageContract.View {
     }
 
     @Override
-    public void onGetUserInfo(User userInfo) {
-        this.user = userInfo;
-        userName.setText(user.name);
+    public void onGetUserInfo(UserListInfo userListInfoInfo) {
+        this.userListInfo = userListInfoInfo;
+        userName.setText(userListInfo.name);
         /*
-        switch (user.gender) {
+        switch (userListInfo.gender) {
             case 0:
                 sex.setImageResource(R.drawable.ic_sex_female);
                 break;
@@ -149,14 +140,14 @@ public class InfoPage extends ColorStatusPage implements InfoPageContract.View {
             case 2:
                 break;
         }*/
-        avatarUrlPath= "https://wematch.oss-cn-shanghai.aliyuncs.com/"+ user.avatarUrl;
+        avatarUrlPath= "https://wematch.oss-cn-shanghai.aliyuncs.com/"+ userListInfo.avatarUrl;
         RequestOptions options2 = new RequestOptions()
                 .placeholder(R.drawable.bg_blue)
                 .priority(Priority.HIGH)
                 .diskCacheStrategy( DiskCacheStrategy.NONE )
                 .skipMemoryCache(true);
         Glide
-                .with(getContext())
+                .with(infoAvatar)
                 .asBitmap()
                 .load(avatarUrlPath)
                 .apply(options2)
@@ -190,14 +181,14 @@ public class InfoPage extends ColorStatusPage implements InfoPageContract.View {
                 jumpPage(teamListPage);
                 break;
             case R.id.match_logout:
-                ConfigDbHelper dbHelper = OpenHelperManager.getHelper(this.getContext(),ConfigDbHelper.class);
+                ConfigDbHelper dbHelper = ConfigDbHelper.getInstance();
                 dbHelper.update("auto_login","false");
                 getBaseActivity().jumpTo(LogInActivity.class, false);
                 break;
             case R.id.info_update:
-                if(user!=null){
+                if(userListInfo !=null){
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("user",user);
+                    bundle.putSerializable("userListInfo", userListInfo);
                     getBaseActivity().jumpTo(UserInfoSetActivity.class,true,bundle);
                 }
                 break;

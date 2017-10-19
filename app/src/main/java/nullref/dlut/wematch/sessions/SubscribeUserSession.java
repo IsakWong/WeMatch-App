@@ -27,7 +27,7 @@ public class SubscribeUserSession extends Session<SubscribeUserSession.Request, 
             listener.onFollowUser();
         if (response.result == false)
         {
-            if (response.description.equals("user already subscribed"))
+            if (response.description.equals("userListInfo already subscribed"))
                 listener.onFollowUserError("您已订阅该用户。");
         }
     }

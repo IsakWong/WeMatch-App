@@ -1,6 +1,6 @@
 package nullref.dlut.wematch.business.info;
 
-import nullref.dlut.wematch.bean.User;
+import nullref.dlut.wematch.bean.UserListInfo;
 import nullref.dlut.wematch.sessions.GetUserInfoSession;
 import nullref.dlut.wematch.utils.database.ConfigDbHelper;
 
@@ -19,10 +19,10 @@ public class InfoPagePresenter implements InfoPageContract.Presenter{
 
     GetUserInfoSession getUserInfoSession = new GetUserInfoSession(new GetUserInfoSession.Listener() {
         @Override
-        public void onGetUserInfo(User user) {
-            view.onGetUserInfo(user);
+        public void onGetUserInfo(UserListInfo userListInfo) {
+            view.onGetUserInfo(userListInfo);
             ConfigDbHelper config = ConfigDbHelper.getInstance();
-            config.update("avatar_url",user.avatarUrl);
+            config.update("avatar_url", userListInfo.avatarUrl);
             config.update("need_update","false");
         }
 

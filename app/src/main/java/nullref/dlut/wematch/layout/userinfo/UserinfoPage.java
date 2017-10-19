@@ -1,10 +1,8 @@
 package nullref.dlut.wematch.layout.userinfo;
 
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.widget.AppCompatImageView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +13,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
@@ -29,6 +31,9 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.ColorStatusPage;
+import nullref.dlut.wematch.bean.UserInfo;
+import nullref.dlut.wematch.bean.UserListInfo;
+import nullref.dlut.wematch.widgets.AvatarImageTarget;
 import nullref.dlut.wematch.widgets.RoundImageView;
 
 
@@ -73,6 +78,7 @@ public class UserinfoPage extends ColorStatusPage implements UserinfoContract.Vi
     @BindView(R.id.container)
     FrameLayout container;
 
+    UserInfo userInfo;
     Unbinder unbinder;
 
     private int mActionBarSize;
@@ -102,11 +108,7 @@ public class UserinfoPage extends ColorStatusPage implements UserinfoContract.Vi
         unbinder = ButterKnife.bind(this, view);
         mFlexibleSpaceImageHeight = getResources().getDimensionPixelSize(R.dimen.topbarSize);
         mActionBarSize = findViewById(R.id.status_bar).getLayoutParams().height + findViewById(R.id.toolbar).getLayoutParams().height;
-
-
         scroll.setScrollViewCallbacks(this);
-
-
         ScrollUtils.addOnGlobalLayoutListener(scroll, new Runnable() {
             @Override
             public void run() {
@@ -114,7 +116,32 @@ public class UserinfoPage extends ColorStatusPage implements UserinfoContract.Vi
 
             }
         });
+        String avatarUrlPath= "https://wematch.oss-cn-shanghai.aliyuncs.com/"+ userInfo.avatarUrl;
+        RequestOptions options2 = new RequestOptions()
+                .placeholder(R.drawable.bg_blue)
+                .priority(Priority.HIGH)
+                .diskCacheStrategy( DiskCacheStrategy.NONE )
+                .skipMemoryCache(true);
+        Glide
+                .with(userInfoAvatar)
+                .asBitmap()
+                .load(avatarUrlPath)
+                .apply(options2)
+                .into(new AvatarImageTarget(userInfoAvatar,userCardPic));
         return view;
+    }
+
+    public void setUserInfo(UserInfo userInfo){this.userInfo = userInfo;}
+
+    @Override
+    public void onGetUser(UserInfo user) {
+        userInfo = user;
+
+    }
+
+    @Override
+    public void onError() {
+
     }
 
     @Override

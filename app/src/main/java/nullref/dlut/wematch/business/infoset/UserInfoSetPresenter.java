@@ -1,7 +1,5 @@
 package nullref.dlut.wematch.business.infoset;
 
-import nullref.dlut.wematch.bean.User;
-import nullref.dlut.wematch.sessions.GetUserInfoSession;
 import nullref.dlut.wematch.sessions.UpdateUserInfoSession;
 import nullref.dlut.wematch.sessions.UploadImgSession;
 

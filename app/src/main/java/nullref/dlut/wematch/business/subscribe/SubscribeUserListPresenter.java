@@ -1,6 +1,6 @@
 package nullref.dlut.wematch.business.subscribe;
 
-import nullref.dlut.wematch.bean.User;
+import nullref.dlut.wematch.bean.UserListInfo;
 import nullref.dlut.wematch.layout.userlist.UserListContract;
 import nullref.dlut.wematch.sessions.GetSubscribeUserSession;
 
@@ -14,8 +14,8 @@ public class SubscribeUserListPresenter implements UserListContract.Presenter{
 
     GetSubscribeUserSession refreshUserListSession = new GetSubscribeUserSession(new GetSubscribeUserSession.Listener() {
         @Override
-        public void onGetFollowUsers(User[] user) {
-            view.onGetUserList(user);
+        public void onGetFollowUsers(UserListInfo[] userListInfo) {
+            view.onGetUserList(userListInfo);
         }
 
         @Override

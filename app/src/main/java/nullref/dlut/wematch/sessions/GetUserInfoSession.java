@@ -1,6 +1,7 @@
 package nullref.dlut.wematch.sessions;
 
-import nullref.dlut.wematch.bean.User;
+import nullref.dlut.wematch.bean.UserInfo;
+import nullref.dlut.wematch.bean.UserListInfo;
 
 /**
  *
@@ -14,7 +15,7 @@ public class GetUserInfoSession extends Session<GetUserInfoSession.Request, GetU
 
 
     public interface Listener {
-        void onGetUserInfo(User user);
+        void onGetUserInfo(UserInfo user);
         void onGetUserInfoError(String cause);
     }
 
@@ -34,10 +35,7 @@ public class GetUserInfoSession extends Session<GetUserInfoSession.Request, GetU
     }
 
     public class Response extends Session.Response{
-
-        public User user;
-
-
+        public UserInfo user;
     }
 
     public class Request extends Session.Request{

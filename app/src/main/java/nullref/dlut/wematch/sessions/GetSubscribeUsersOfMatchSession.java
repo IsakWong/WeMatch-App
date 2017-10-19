@@ -1,6 +1,6 @@
 package nullref.dlut.wematch.sessions;
 
-import nullref.dlut.wematch.bean.User;
+import nullref.dlut.wematch.bean.UserListInfo;
 
 /**
  * Created by isakwong on 2017/7/16.
@@ -12,7 +12,7 @@ public class GetSubscribeUsersOfMatchSession extends Session<GetSubscribeUsersOf
 
 
     public interface Listener {
-        void onGetFollowUsers(User[] user);
+        void onGetFollowUsers(UserListInfo[] userListInfo);
         void onGetFollowUsersError(String cause);
     }
 
@@ -26,13 +26,13 @@ public class GetSubscribeUsersOfMatchSession extends Session<GetSubscribeUsersOf
     public void success(Response response) {
         super.success(response);
         if (response.result == true)
-            listener.onGetFollowUsers(response.users);
+            listener.onGetFollowUsers(response.userListInfos);
         if (response.result == false)
             listener.onGetFollowUsersError(response.description);
     }
 
     public class Response extends Session.Response {
-        public User[] users;
+        public UserListInfo[] userListInfos;
     }
 
     public class Request extends Session.Request{

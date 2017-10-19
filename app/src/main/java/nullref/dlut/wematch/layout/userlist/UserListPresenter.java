@@ -1,7 +1,7 @@
 package nullref.dlut.wematch.layout.userlist;
 
 import nullref.dlut.wematch.bean.Match;
-import nullref.dlut.wematch.bean.User;
+import nullref.dlut.wematch.bean.UserListInfo;
 import nullref.dlut.wematch.sessions.GetSubscribeUsersOfMatchSession;
 
 /**
@@ -34,8 +34,8 @@ public class UserListPresenter implements UserListContract.Presenter{
 
     GetSubscribeUsersOfMatchSession refreshMatchUserSession = new GetSubscribeUsersOfMatchSession(new GetSubscribeUsersOfMatchSession.Listener() {
         @Override
-        public void onGetFollowUsers(User[] user) {
-            view.onGetUserList(user);
+        public void onGetFollowUsers(UserListInfo[] userListInfo) {
+            view.onGetUserList(userListInfo);
         }
 
         @Override

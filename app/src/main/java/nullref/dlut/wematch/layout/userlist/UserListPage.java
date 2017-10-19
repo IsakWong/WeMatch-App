@@ -16,8 +16,9 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.ColorStatusPage;
-import nullref.dlut.wematch.bean.User;
+import nullref.dlut.wematch.bean.UserListInfo;
 import nullref.dlut.wematch.layout.userinfo.UserinfoPage;
+import nullref.dlut.wematch.layout.userinfo.UserinfoPresenter;
 import nullref.dlut.wematch.widgets.adapter.UserListAdapter;
 
 /**
@@ -72,10 +73,11 @@ public class UserListPage extends ColorStatusPage implements UserListContract.Vi
             @Override
             public void onViewClicked(View view, int position) {
                 UserinfoPage  page = new UserinfoPage();
-                User user = adapter.getCardData(position);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("user",user);
-                page.setArguments(bundle);
+                UserListInfo userListInfo = adapter.getCardData(position);
+                UserinfoPresenter presenter = new UserinfoPresenter();
+                presenter.setView(page);
+                page.setPresenter(presenter);
+                page.setUserInfo(userListInfo);
                 jumpPage(page);
             }
 
@@ -110,9 +112,9 @@ public class UserListPage extends ColorStatusPage implements UserListContract.Vi
     }
 
     @Override
-    public void onGetUserList(User[] users) {
+    public void onGetUserList(UserListInfo[] userListInfos) {
         adapter.clearCard();
-        for (User match: users
+        for (UserListInfo match: userListInfos
                 ) {
             adapter.addCard(match);
         }

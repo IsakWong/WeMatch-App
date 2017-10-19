@@ -7,7 +7,7 @@ package nullref.dlut.wematch.bean;
  *
  */
 
-public class LocalUser extends User {
+public class LocalUser extends UserListInfo {
     String key;
 
     static LocalUser single;

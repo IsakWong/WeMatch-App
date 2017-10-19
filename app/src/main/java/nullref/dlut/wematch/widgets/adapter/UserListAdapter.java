@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import nullref.dlut.wematch.R;
-import nullref.dlut.wematch.bean.User;
+import nullref.dlut.wematch.bean.UserListInfo;
 import nullref.dlut.wematch.widgets.RoundImageView;
 
 /**
@@ -22,7 +22,7 @@ import nullref.dlut.wematch.widgets.RoundImageView;
  * 支持添加卡片，删除卡片
  */
 
-public class UserListAdapter extends BaseAdapter<UserListAdapter.UserCardViewHolder,User>  {
+public class UserListAdapter extends BaseAdapter<UserListAdapter.UserCardViewHolder,UserListInfo>  {
 
 
     CardListener listener;
@@ -48,7 +48,7 @@ public class UserListAdapter extends BaseAdapter<UserListAdapter.UserCardViewHol
 
     @Override
     public void onBindViewHolder(UserCardViewHolder holder, int position) {
-        User data = datas.get(position);
+        UserListInfo data = datas.get(position);
         holder.onBindView(data,position);
     }
 
@@ -73,7 +73,7 @@ public class UserListAdapter extends BaseAdapter<UserListAdapter.UserCardViewHol
         TextView userMajor;
         RoundImageView userAvatar;
 
-        User data;
+        UserListInfo data;
         CardListener listener;
 
         public CardListener getListener() {
@@ -125,7 +125,7 @@ public class UserListAdapter extends BaseAdapter<UserListAdapter.UserCardViewHol
 
             view.setOnTouchListener(onTouchListener);
         }
-        public void onBindView(User data, int position)
+        public void onBindView(UserListInfo data, int position)
         {
             this.data = data;
             if (data.name == "") {

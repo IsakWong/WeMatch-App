@@ -4,9 +4,6 @@ import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import nullref.dlut.wematch.bean.Team;
-import nullref.dlut.wematch.bean.User;
-
 /**
  * Created by isakwong on 2017/10/8.
  */

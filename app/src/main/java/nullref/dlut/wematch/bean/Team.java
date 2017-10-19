@@ -11,9 +11,9 @@ import java.io.Serializable;
  */
 
 public class Team implements Serializable {
-    public int matchID;//服务器分配
+    public int teamID;//服务器分配
     public String name;//昵称
     public String shortInfo;//简介
     public int number;//人数
-    public User[] members;
+    public UserListInfo[] members;
 }

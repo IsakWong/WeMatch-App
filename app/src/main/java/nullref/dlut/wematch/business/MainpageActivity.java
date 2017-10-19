@@ -23,7 +23,7 @@ import nullref.dlut.wematch.layout.website.WebPage;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with User interaction.
+ * status bar and navigation/system bar) with UserListInfo interaction.
  */
 public class MainpageActivity extends BaseActivity {
 

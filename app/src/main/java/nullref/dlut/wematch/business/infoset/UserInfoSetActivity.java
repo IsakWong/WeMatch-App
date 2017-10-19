@@ -3,10 +3,8 @@ package nullref.dlut.wematch.business.infoset;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.text.InputType;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -16,9 +14,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.ImageViewTarget;
-import com.bumptech.glide.request.target.SizeReadyCallback;
-import com.bumptech.glide.request.transition.Transition;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,15 +21,11 @@ import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.BaseActivity;
-import nullref.dlut.wematch.bean.User;
+import nullref.dlut.wematch.bean.UserListInfo;
 import nullref.dlut.wematch.business.edtior.EditorActivity;
-import nullref.dlut.wematch.business.info.InfoPage;
 import nullref.dlut.wematch.utils.LogToFile;
 import nullref.dlut.wematch.utils.Utils;
-import nullref.dlut.wematch.utils.WeMatchApplication;
 import nullref.dlut.wematch.widgets.AvatarImageTarget;
-
-import static nullref.dlut.wematch.business.infoset.UserInfoSetPresenter.AvaChanges;
 
 /**
  * Created by ICCD on 2017/9/11.
@@ -63,7 +54,7 @@ public class UserInfoSetActivity extends BaseActivity implements UserInfoSetCont
     LinearLayout infoSetQq;
 
     private UserInfoSetPresenter presenter = new UserInfoSetPresenter(UserInfoSetActivity.this);
-    private User user = null;
+    private UserListInfo userListInfo = null;
     private static final int REQUEST_EDITOR_RESULT = 0;
     private static final int REQUEST_CODE_PICK_IMAGE = 1;
     private String avatarUrlPath;
@@ -76,8 +67,8 @@ public class UserInfoSetActivity extends BaseActivity implements UserInfoSetCont
         ButterKnife.bind(UserInfoSetActivity.this);
         Bundle bundle = getIntent().getExtras();
         if(null!=bundle){
-            user = (User) bundle.getSerializable("user");
-            avatarUrlPath= "https://wematch.oss-cn-shanghai.aliyuncs.com/"+ user.avatarUrl;
+            userListInfo = (UserListInfo) bundle.getSerializable("userListInfo");
+            avatarUrlPath= "https://wematch.oss-cn-shanghai.aliyuncs.com/"+ userListInfo.avatarUrl;
             RequestOptions options2 = new RequestOptions()
                     .placeholder(R.drawable.bg_blue)
                     .priority(Priority.HIGH)
@@ -166,8 +157,8 @@ public class UserInfoSetActivity extends BaseActivity implements UserInfoSetCont
         argument.putString("title", "昵称");
         argument.putInt("input_type", InputType.TYPE_TEXT_VARIATION_NORMAL);
         argument.putString("key", "name");
-        if (user.name != null)
-            argument.putString("default_value", user.name);
+        if (userListInfo.name != null)
+            argument.putString("default_value", userListInfo.name);
         Intent intent = new Intent();
         intent.setClass(this, EditorActivity.class);
         intent.putExtras(argument);
@@ -181,8 +172,8 @@ public class UserInfoSetActivity extends BaseActivity implements UserInfoSetCont
         argument.putString("title", "个人简介");
         argument.putInt("input_type", InputType.TYPE_TEXT_VARIATION_NORMAL);
         argument.putString("key", "shortInfo");
-        if (user.shortInfo != null)
-            argument.putString("default_value", user.shortInfo);
+        if (userListInfo.shortInfo != null)
+            argument.putString("default_value", userListInfo.shortInfo);
         Intent intent = new Intent();
         intent.setClass(this, EditorActivity.class);
         intent.putExtras(argument);
@@ -198,8 +189,8 @@ public class UserInfoSetActivity extends BaseActivity implements UserInfoSetCont
         argument.putInt("input_type", InputType.TYPE_TEXT_VARIATION_NORMAL);
         argument.putString("key", "major");
 
-        if (user.major != null)
-            argument.putString("default_value", user.major);
+        if (userListInfo.major != null)
+            argument.putString("default_value", userListInfo.major);
         Intent intent = new Intent();
         intent.setClass(this, EditorActivity.class);
         intent.putExtras(argument);
@@ -214,8 +205,8 @@ public class UserInfoSetActivity extends BaseActivity implements UserInfoSetCont
         argument.putInt("input_type", InputType.TYPE_TEXT_VARIATION_NORMAL);
         argument.putString("key", "school");
 
-        if (user.school != null)
-            argument.putString("default_value", user.school);
+        if (userListInfo.school != null)
+            argument.putString("default_value", userListInfo.school);
         Intent intent = new Intent();
         intent.setClass(this, EditorActivity.class);
         intent.putExtras(argument);
@@ -238,8 +229,8 @@ public class UserInfoSetActivity extends BaseActivity implements UserInfoSetCont
         argument.putInt("input_type", InputType.TYPE_TEXT_VARIATION_NORMAL);
         argument.putString("key", "qq");
 
-        if (user.school != null)
-            argument.putString("default_value", user.qq);
+        if (userListInfo.school != null)
+            argument.putString("default_value", userListInfo.qq);
         Intent intent = new Intent();
         intent.setClass(this, EditorActivity.class);
         intent.putExtras(argument);

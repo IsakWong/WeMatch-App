@@ -60,7 +60,7 @@ public class MatchInfoPresenter implements MatchInfoContract.Presenter {
     GetMatchInfoSession getMatchInfoSession = new GetMatchInfoSession(new GetMatchInfoSession.Listener() {
         @Override
         public void onGetMatch(Match match) {
-
+            view.onMatchInfo(match);
         }
 
         @Override

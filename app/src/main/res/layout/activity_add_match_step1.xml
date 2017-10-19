@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_marginTop="-8dp"
     android:background="@color/colorWhiteBackgournd"
-    android:fitsSystemWindows="true"
+    android:fitsSystemWindows="false"
     android:orientation="vertical">
 
     <Button

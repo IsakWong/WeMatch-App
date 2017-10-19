@@ -25,7 +25,7 @@ public class UserDbHelper extends BaseDbHelper {
     protected static UserDbHelper instance;
 
     private static final int VERSION = 1;
-    private static String dbName = "user.db";
+    private static String dbName = "userListInfo.db";
     public Dao<UserPwd, Integer> userDao;
 
 
