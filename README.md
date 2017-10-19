@@ -25,13 +25,13 @@ WeMatch 参考了网易云音乐和知乎的 UI。
 
 ### Bean
 
-[WeMatch 网络通信中使用到的Bean类](https://github.com/IsakWong/WeMatch-App/blob/master/app/src/main/java/nullref/dlut/wematch/bean/BEAN.md "Bean")
+[WeMatch 网络通信中使用到的Bean类](https://github.com/IsakWong/WeMatch-App/blob/master/app/src/main/java/nullref/dlut/wematch/bean "Bean")
 
 Bean中存放的是用户，比赛，标签等数据类。
 
 ### Session
 
-[WeMatch 网络通信中使用到的Session类](https://github.com/IsakWong/WeMatch-App/blob/master/app/src/main/java/nullref/dlut/wematch/sessions/SESSION.md)
+[WeMatch 网络通信中使用到的Session类](https://github.com/IsakWong/WeMatch-App/blob/master/app/src/main/java/nullref/dlut/wematch/sessions)
 
 Session中存放的是请求登录，请求注册等会话。
 
@@ -41,7 +41,7 @@ Session中存放的是请求登录，请求注册等会话。
 
 ## WeMatch API
 
-[API](https://github.com/IsakWong/WeMatch-App/ "API")
+[API](https://github.com/IsakWong/WeMatch-App/blob/master/API.md "API")
 
 
 
