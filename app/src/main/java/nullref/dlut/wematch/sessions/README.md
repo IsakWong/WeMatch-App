@@ -5,7 +5,7 @@
 相关Bean:\
 [UserInfo](https://github.com/IsakWong/WeMatch-App/blob/master/app/src/main/java/nullref/dlut/wematch/bean/UserInfo.java " ") \
 [UserListInfo](https://github.com/IsakWong/WeMatch-App/blob/master/app/src/main/java/nullref/dlut/wematch/bean/UserListInfo.java " ") 
-2. 修改了[获取用户信息会话](https://github.com/IsakWong/WeMatch-App/blob/master/app/src/main/java/nullref/dlut/wematch/sessions/GetSubscribeUserSession.java " ")\
+2. 修改了[获取用户信息会话](https://github.com/IsakWong/WeMatch-App/blob/master/app/src/main/java/nullref/dlut/wematch/sessions/GetUserInfoSession.java " ")\
 相关Bean:\
 [UserInfo](https://github.com/IsakWong/WeMatch-App/blob/master/app/src/main/java/nullref/dlut/wematch/bean/UserInfo.java " ") \
 [UserListInfo](https://github.com/IsakWong/WeMatch-App/blob/master/app/src/main/java/nullref/dlut/wematch/bean/UserListInfo.java " ") 
