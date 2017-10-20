@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by IsakWong on 2017/7/9.
  *
  *
- * 用户列表的信息类
+ * 用户列表的信息类，具体内容仍可能修改。
  *
  */
 

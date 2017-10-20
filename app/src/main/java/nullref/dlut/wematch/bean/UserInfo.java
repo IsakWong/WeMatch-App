@@ -4,6 +4,12 @@ package nullref.dlut.wematch.bean;
  * Created by isakwong on 2017/10/19.
  */
 
+/**
+ *
+ *  用户详细信息的数据类，仍需继续添加资料。
+ *
+ */
+
 public class UserInfo {
 
     //用户的ID

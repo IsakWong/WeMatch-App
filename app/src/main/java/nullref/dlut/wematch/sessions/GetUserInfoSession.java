@@ -29,13 +29,13 @@ public class GetUserInfoSession extends Session<GetUserInfoSession.Request, GetU
     public void success(Response response) {
         super.success(response);
         if (response.result == true)
-            listener.onGetUserInfo(response.user);
+            listener.onGetUserInfo(response.userInfo);
         if (response.result == false)
             listener.onGetUserInfoError(response.description);
     }
 
     public class Response extends Session.Response{
-        public UserInfo user;
+        public UserInfo userInfo;
     }
 
     public class Request extends Session.Request{

@@ -27,13 +27,13 @@ public class GetSubscribeUserSession extends Session<GetSubscribeUserSession.Req
     public void success(Response response) {
         super.success(response);
         if (response.result == true)
-            listener.onGetFollowUsers(response.users);
+            listener.onGetFollowUsers(response.userListInfo);
         if (response.result == false)
             listener.onGetFollowUsersError(response.description);
     }
 
     public class Response extends Session.Response {
-        public UserListInfo[] users;
+        public UserListInfo[] userListInfo;
     }
 
     public class Request extends Session.Request{

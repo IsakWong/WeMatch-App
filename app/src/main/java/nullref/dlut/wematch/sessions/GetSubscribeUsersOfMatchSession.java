@@ -26,13 +26,13 @@ public class GetSubscribeUsersOfMatchSession extends Session<GetSubscribeUsersOf
     public void success(Response response) {
         super.success(response);
         if (response.result == true)
-            listener.onGetFollowUsers(response.userListInfos);
+            listener.onGetFollowUsers(response.userListInfo);
         if (response.result == false)
             listener.onGetFollowUsersError(response.description);
     }
 
     public class Response extends Session.Response {
-        public UserListInfo[] userListInfos;
+        public UserListInfo[] userListInfo;
     }
 
     public class Request extends Session.Request{

@@ -9,6 +9,9 @@
 相关Bean:\
 [UserInfo](https://github.com/IsakWong/WeMatch-App/blob/master/app/src/main/java/nullref/dlut/wematch/bean/UserInfo.java " ") \
 [UserListInfo](https://github.com/IsakWong/WeMatch-App/blob/master/app/src/main/java/nullref/dlut/wematch/bean/UserListInfo.java " ") 
+3. 增加了[获取用户订阅的标签会话](https://github.com/IsakWong/WeMatch-App/blob/master/app/src/main/java/nullref/dlut/wematch/sessions/GetSubscribeLabelsSession.java " ")\
+相关Bean:\
+[Label](https://github.com/IsakWong/WeMatch-App/blob/master/app/src/main/java/nullref/dlut/wematch/bean/Label.java " ") 
 
 #  会话
 
