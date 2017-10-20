@@ -37,7 +37,7 @@ public class GetSubscribeUserSession extends Session<GetSubscribeUserSession.Req
     }
 
     public class Request extends Session.Request{
-        public String type = "getMyFollowUser";
-        public int ID;
+        public String type = "getSubscribeUser";
+        public int userID;
     }
 }
