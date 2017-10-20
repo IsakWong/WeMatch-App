@@ -38,7 +38,7 @@ public class GetSubscribeLabelsSession extends Session<GetSubscribeLabelsSession
 
     public class Request extends Session.Request{
         public String type = "getSubscribeLabels";
-
+        public int ID;//-1表示取自己订阅的标签，其他值为获取指定ID用户订阅的标签
     }
 }
 
