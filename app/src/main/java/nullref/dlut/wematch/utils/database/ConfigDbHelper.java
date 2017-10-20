@@ -60,6 +60,18 @@ public class ConfigDbHelper extends BaseDbHelper {
     }
     private Dao<Pair, Integer> configDao =null;
 
+
+
+    public static String AvatarUrlPrefix = "avatar_prefix";
+    public static String MainServerIp = "server_ip";
+    public static String CommunityServerIp = "";
+    public static String isAutoLogin = "auto_login";
+    public static String DefaultUser = "default_user";
+    public static String isFirstRun = "first_run";
+    public static String LocalUserAvatarUrl= "avatar_url";
+    public static String needUpdateInfo = "need_update";
+    public static String WeMatchVersion = "1.0";
+
     public ConfigDbHelper() {
         super(WeMatchApplication.getInstance(), dbName,null, VERSION);
     }
@@ -105,24 +117,40 @@ public class ConfigDbHelper extends BaseDbHelper {
             configDao = getDao(Pair.class);
 
             Pair firstRun = new Pair();
-            firstRun.name = "first_run";
+            firstRun.name = isFirstRun;
             firstRun.value = "true";
             configDao.create(firstRun);
 
             Pair serverIP = new Pair();
-            serverIP.name = "server_ip";
-            serverIP.value = "http://115.159.208.191:8980/api";
+            serverIP.name = MainServerIp;
+            serverIP.value = "http://60.205.218.75:8980/api";;
             configDao.create(serverIP);
 
             Pair defaultUser = new Pair();
-            defaultUser.name = "default_user";
+            defaultUser.name = DefaultUser;
             defaultUser.value = "";
             configDao.create(defaultUser);
 
             Pair autoRun = new Pair();
-            autoRun.name = "auto_login";
+            autoRun.name = isAutoLogin;
             autoRun.value = "false";
             configDao.create(autoRun);
+
+            Pair avatarPrefix = new Pair();
+            avatarPrefix.name = AvatarUrlPrefix;
+            avatarPrefix.value = "https://wematch.oss-cn-shanghai.aliyuncs.com/";
+            configDao.create(avatarPrefix);
+
+            Pair userURL = new Pair();
+            userURL.name =LocalUserAvatarUrl;
+            userURL.value ="";
+            configDao.create(userURL);
+
+
+            Pair needUpdate = new Pair();
+            needUpdate.name = needUpdateInfo;
+            needUpdate.value = "true";
+            configDao.create(needUpdate);
             connectionSource.close();
         }
         catch (Exception exception){
@@ -145,15 +173,7 @@ public class ConfigDbHelper extends BaseDbHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource, int i, int i1) {
         try {
-            configDao = getDao(Pair.class);
-            Pair userURL = new Pair();
-            userURL.name ="avatar_url";
-            userURL.value ="";
-            configDao.create(userURL);
-            Pair needUpdate = new Pair();
-            needUpdate.name = "need_update";
-            needUpdate.value = "true";
-            configDao.create(needUpdate);
+
 
 
         }catch (Exception exception){

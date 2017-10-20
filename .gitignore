@@ -44,3 +44,4 @@ captures/
 *.jks
 .DS_Store
 
+*.lnk

@@ -5,7 +5,9 @@ package nullref.dlut.wematch.utils;
  */
 
 import android.util.Log;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
@@ -14,26 +16,34 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import nullref.dlut.wematch.sessions.Session;
+import nullref.dlut.wematch.utils.database.ConfigDbHelper;
 import okhttp3.*;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class    NetworkManager {
+public class NetworkManager {
 
-    private static OkHttpClient client = new OkHttpClient.Builder()
-            .connectTimeout(6, TimeUnit.SECONDS)
-            .retryOnConnectionFailure(true)
-            .readTimeout(3, TimeUnit.SECONDS)
-            .build();
 
-    private static String serverIp = "http://60.205.218.75:8980/api";
-    private static String userAuth = "";
-
-    public static OkHttpClient getClient() {
-        return client;
+    //NetWork 初始化代码段
+    static {
+        client = new OkHttpClient.Builder()
+                .connectTimeout(6, TimeUnit.SECONDS)
+                .retryOnConnectionFailure(true)
+                .readTimeout(3, TimeUnit.SECONDS)
+                .build();
+        avatarPrefix = ConfigDbHelper.getInstance().query(ConfigDbHelper.AvatarUrlPrefix);
+        serverIp = ConfigDbHelper.getInstance().query(ConfigDbHelper.MainServerIp);
+        userAuth = "";
     }
+
+    private static OkHttpClient client;
+
+    private static String serverIp;
+    private static String userAuth;
+    private static String avatarPrefix;
+
 
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
@@ -47,6 +57,12 @@ public class    NetworkManager {
     }
 
 
+    public static void LoadAvatar(ImageView avatarView,String avatarUrl){
+        Glide
+                .with(avatarView)
+                .load(avatarPrefix+avatarUrl)
+                .into(avatarView);
+    }
     public static <T2 extends Session.Response> void newSession(final Session session) {
 
         final Gson g = new Gson();

@@ -229,12 +229,15 @@ public class UserInfoSetActivity extends BaseActivity implements UserInfoSetCont
         argument.putInt("input_type", InputType.TYPE_TEXT_VARIATION_NORMAL);
         argument.putString("key", "qq");
 
+        //TODO
+
+        /*
         if (userListInfo.school != null)
             argument.putString("default_value", userListInfo.qq);
         Intent intent = new Intent();
         intent.setClass(this, EditorActivity.class);
         intent.putExtras(argument);
-        startActivityForResult(intent, REQUEST_EDITOR_RESULT);
+        startActivityForResult(intent, REQUEST_EDITOR_RESULT);*/
     }
 
 

@@ -21,6 +21,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.ColorStatusPage;
+import nullref.dlut.wematch.bean.UserInfo;
 import nullref.dlut.wematch.bean.UserListInfo;
 import nullref.dlut.wematch.business.subscribe.SubscribeMatchListPresenter;
 import nullref.dlut.wematch.business.infoset.UserInfoSetActivity;
@@ -72,7 +73,7 @@ public class InfoPage extends ColorStatusPage implements InfoPageContract.View {
     @BindView(R.id.sex)
     ImageView sex;
 
-    private UserListInfo userListInfo;
+    private UserInfo userListInfo;
     private String avatarUrlPath;
     InfoPageContract.Presenter presenter;
 
@@ -126,7 +127,7 @@ public class InfoPage extends ColorStatusPage implements InfoPageContract.View {
     }
 
     @Override
-    public void onGetUserInfo(UserListInfo userListInfoInfo) {
+    public void onGetUserInfo(UserInfo userListInfoInfo) {
         this.userListInfo = userListInfoInfo;
         userName.setText(userListInfo.name);
         /*
@@ -188,8 +189,9 @@ public class InfoPage extends ColorStatusPage implements InfoPageContract.View {
             case R.id.info_update:
                 if(userListInfo !=null){
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("userListInfo", userListInfo);
-                    getBaseActivity().jumpTo(UserInfoSetActivity.class,true,bundle);
+
+                    //bundle.putSerializable("userListInfo", userListInfo);
+                    //getBaseActivity().jumpTo(UserInfoSetActivity.class,true,bundle);
                 }
                 break;
         }

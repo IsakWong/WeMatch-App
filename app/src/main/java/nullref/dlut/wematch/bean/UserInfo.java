@@ -5,13 +5,25 @@ package nullref.dlut.wematch.bean;
  */
 
 public class UserInfo {
-    public int ID;//用户的ID
+
+    //用户的ID
+    public int ID;
+    //0女1男2保密
+    public int gender;
+
+    public int qq;
+    //登录邮箱（联系邮箱）
     public String email;
-    public String name;//用户昵称
-    public String major;//专业
+    //用户昵称
+    public String name;
+    //专业
+    public String major;
+    //头像路径
     public String avatarUrl;
-    public String school;//学校
-    public String shortInfo;//个人简介
-    public String location;//位置
-    public int gender;//0女1男2保密
+    //学校
+    public String school;
+    //个人简介
+    public String shortInfo;
+    //位置
+    public String location;
 }

@@ -15,6 +15,11 @@ public class UserinfoPresenter implements UserinfoContract.Presenter {
         this.view = view;
     }
 
+    @Override
+    public void getUserInfo() {
+
+    }
+
     public UserinfoPresenter(UserinfoContract.View view) {
         this.view = view;
     }
