@@ -4,9 +4,8 @@ import java.io.Serializable;
 
 /**
  * Created by isakwong on 2017/7/21.
- *
+ * <p>
  * 比赛详细信息页面的类
- *
  */
 
 public class Match implements Serializable {

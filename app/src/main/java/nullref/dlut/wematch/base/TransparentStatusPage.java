@@ -14,7 +14,7 @@ import nullref.dlut.wematch.R;
 public class TransparentStatusPage extends BasePage {
 
     public FragmentTransaction preEnterPage(FragmentTransaction transaction, BasePage targetFragment) {
-        super.preEnterPage(transaction,targetFragment);
+        super.preEnterPage(transaction, targetFragment);
         if (targetFragment.getClass() == ColorStatusPage.class) {
             View statusBar = findViewById(R.id.status_bar);
             if (statusBar != null) {

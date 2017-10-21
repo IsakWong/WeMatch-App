@@ -84,9 +84,7 @@ public class LabelinfoPage extends ColorStatusPage implements LabelinfoContract.
         try {
             String encodeurl = "http://wematchcommunity.applinzi.com/main-label.php?labelname=" + Utils.toURLEncoded(data.getName());
             labelInfoWeb.loadUrl(encodeurl);
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
 
         }
         labelTitle.setText(data.getName());

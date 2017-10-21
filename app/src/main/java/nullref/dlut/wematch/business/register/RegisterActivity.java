@@ -3,7 +3,6 @@ package nullref.dlut.wematch.business.register;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,7 +50,7 @@ public class RegisterActivity extends BaseActivity implements RegisterActivityCo
     @Override
 
     public void loginFailed(String error) {
-        jumpTo(LogInActivity.class,false);
+        jumpTo(LogInActivity.class, false);
         makeToast(error);
     }
 
@@ -71,7 +70,7 @@ public class RegisterActivity extends BaseActivity implements RegisterActivityCo
 
     @OnClick(R.id.reg_btn)
     public void onRegBtnClicked() {
-        presenter.register(emailEdit.getText().toString(), passwordEdit.getText().toString(),nameEdit.getText().toString());
+        presenter.register(emailEdit.getText().toString(), passwordEdit.getText().toString(), nameEdit.getText().toString());
     }
 
     @OnClick(R.id.back_btn)

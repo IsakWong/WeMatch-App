@@ -9,11 +9,6 @@ public class SubscribeUserSession extends Session<SubscribeUserSession.Request, 
     Listener listener;
 
 
-    public interface Listener {
-        void onFollowUser();
-        void onFollowUserError(String cause);
-    }
-
     public SubscribeUserSession(Listener listener) {
         this.listener = listener;
         request = new Request();
@@ -25,18 +20,23 @@ public class SubscribeUserSession extends Session<SubscribeUserSession.Request, 
         super.success(response);
         if (response.result == true)
             listener.onFollowUser();
-        if (response.result == false)
-        {
+        if (response.result == false) {
             if (response.description.equals("userListInfo already subscribed"))
                 listener.onFollowUserError("您已订阅该用户。");
         }
     }
 
-    public class Response extends Session.Response{
+    public interface Listener {
+        void onFollowUser();
+
+        void onFollowUserError(String cause);
+    }
+
+    public class Response extends Session.Response {
 
     }
 
-    public class Request extends Session.Request{
+    public class Request extends Session.Request {
         public String type = "followUsers";
         public int[] userID;
 

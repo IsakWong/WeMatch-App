@@ -11,11 +11,6 @@ public class GetMatchListSession extends Session<GetMatchListSession.Request, Ge
     Listener listener;
 
 
-    public interface Listener {
-        void onGetMatchList(MatchListInfo[] matches,int matchID);
-        void onGetMatchListError(String cause,int matchID);
-    }
-
     public GetMatchListSession(Listener listener) {
         this.listener = listener;
         request = new Request();
@@ -26,15 +21,20 @@ public class GetMatchListSession extends Session<GetMatchListSession.Request, Ge
     public void success(Response response) {
         super.success(response);
         if (response.result == true)
-            if(response.matches.length == 0){
-                listener.onGetMatchList(response.matches,request.matchID);
-            }
-            else {
+            if (response.matches.length == 0) {
+                listener.onGetMatchList(response.matches, request.matchID);
+            } else {
                 listener.onGetMatchList(response.matches, response.matches[response.matches.length - 1].matchID);
             }
-        else;
+        else ;
         if (response.result == false)
-            listener.onGetMatchListError(response.description,request.matchID);
+            listener.onGetMatchListError(response.description, request.matchID);
+    }
+
+    public interface Listener {
+        void onGetMatchList(MatchListInfo[] matches, int matchID);
+
+        void onGetMatchListError(String cause, int matchID);
     }
 
     public class Response extends Session.Response {
@@ -44,7 +44,7 @@ public class GetMatchListSession extends Session<GetMatchListSession.Request, Ge
 
     }
 
-    public class Request extends Session.Request{
+    public class Request extends Session.Request {
         public String type = "getMatchList";
         public int matchID;
         public int filter;

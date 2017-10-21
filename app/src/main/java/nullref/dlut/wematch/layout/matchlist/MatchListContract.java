@@ -10,22 +10,31 @@ import nullref.dlut.wematch.widgets.adapter.MatchListAdapter;
  */
 
 public interface MatchListContract {
-    interface View extends BaseView<Presenter>{
+    interface View extends BaseView<Presenter> {
 
         void onRequestMatchError(String cause);
+
         void onMatchAdded(MatchListInfo[] matches);
-        void onRereshMarch(MatchListInfo[]matches);
+
+        void onRereshMarch(MatchListInfo[] matches);
+
         void onFollowMatch(int position);
+
         void onFollowMatchError(String cause);
+
         void setTitle(String title);
+
         MatchListAdapter getAdapter();
 
     }
 
-    interface Presenter extends BasePresenter<View>{
+    interface Presenter extends BasePresenter<View> {
         void initView();
+
         void refreshMatches();
+
         void getMoreMatches();
+
         void subscribeMatch(int position);
 
 

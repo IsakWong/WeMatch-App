@@ -1,10 +1,8 @@
 package nullref.dlut.wematch.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Rect;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
@@ -12,13 +10,7 @@ import android.renderscript.ScriptIntrinsicBlur;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.Space;
 
 import com.nineoldandroids.animation.ValueAnimator;
 
@@ -32,8 +24,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import nullref.dlut.wematch.R;
-
 /**
  * Created by IsakWong on 2017/7/1.
  */
@@ -41,7 +31,9 @@ import nullref.dlut.wematch.R;
 public class Utils {
 
 
-    public static void smoothScroll(final ScrollView scroll,int Y,int duration){
+    private static final float BITMAP_SCALE = 0.4f;
+
+    public static void smoothScroll(final ScrollView scroll, int Y, int duration) {
 
         ValueAnimator intAnimator = ValueAnimator.ofInt(scroll.getScrollY(), Y);
 
@@ -63,15 +55,12 @@ public class Utils {
         if (paramString == null || paramString.equals("")) {
             return "";
         }
-        try
-        {
+        try {
             String str = new String(paramString.getBytes(), "UTF-8");
             str = URLEncoder.encode(str, "UTF-8");
             return str;
-        }
-        catch (Exception localException)
-        {
-            Log.e("error","toURLEncoded error:"+paramString);
+        } catch (Exception localException) {
+            Log.e("error", "toURLEncoded error:" + paramString);
         }
 
         return "";
@@ -81,19 +70,17 @@ public class Utils {
         if (paramString == null || paramString.equals("")) {
             return "";
         }
-        try
-        {
+        try {
             String str = new String(paramString.getBytes(), "UTF-8");
             str = URLDecoder.decode(str, "UTF-8");
             return str;
-        }
-        catch (Exception localException)
-        {
+        } catch (Exception localException) {
 
         }
 
         return "";
     }
+
     /**
      * 将字符串转换为MD5码
      *
@@ -122,8 +109,10 @@ public class Utils {
         }
         return "";
     }
+
     /**
      * bitmap转为base64
+     *
      * @param bitmap 被转换的位图
      * @return 返回jpg格式的base64字符串
      */
@@ -159,6 +148,7 @@ public class Utils {
 
     /**
      * base64&#x8f6c;&#x4e3a;bitmap
+     *
      * @param base64Data
      * @return
      */
@@ -167,15 +157,13 @@ public class Utils {
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
     }
 
-    private static final float BITMAP_SCALE = 0.4f;
     /**
-     *
      * 模糊图片的具体方法
-     * @param context 上下文对象
-     * @param image 需要模糊的图片
-     * @return 模糊处理后的图片
      *
-     * */
+     * @param context 上下文对象
+     * @param image   需要模糊的图片
+     * @return 模糊处理后的图片
+     */
     public static Bitmap blurBitmap(Context context, Bitmap image, float blurRadius) {
 
         int width = Math.round(image.getWidth() * BITMAP_SCALE);
@@ -199,7 +187,7 @@ public class Utils {
 
     }
 
-    public static long getTimeStamp(String timeStr){
+    public static long getTimeStamp(String timeStr) {
         SimpleDateFormat sdr = new SimpleDateFormat("yyyy.mm.dd.hh.mm", Locale.CHINA);
         Date date;
         String times = null;

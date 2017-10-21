@@ -15,6 +15,7 @@ import nullref.dlut.wematch.bean.UserListInfo;
 public class UserCardSmall extends LinearLayout {
 
     public UserListInfo userListInfo;
+
     public UserCardSmall(Context context) {
         super(context);
         LayoutInflater.from(context).inflate(R.layout.discovery_user_card, this);

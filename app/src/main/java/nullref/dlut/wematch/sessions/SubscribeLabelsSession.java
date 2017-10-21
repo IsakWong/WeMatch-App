@@ -11,11 +11,6 @@ public class SubscribeLabelsSession extends Session<SubscribeLabelsSession.Reque
     Listener listener;
 
 
-    public interface Listener {
-        void onFollowLabels();
-        void onFollowLabelsError(String cause);
-    }
-
     public SubscribeLabelsSession(Listener listener) {
         this.listener = listener;
         request = new Request();
@@ -34,11 +29,17 @@ public class SubscribeLabelsSession extends Session<SubscribeLabelsSession.Reque
         }
     }
 
-    public class Response extends Session.Response{
+    public interface Listener {
+        void onFollowLabels();
+
+        void onFollowLabelsError(String cause);
+    }
+
+    public class Response extends Session.Response {
 
     }
 
-    public class Request extends Session.Request{
+    public class Request extends Session.Request {
         public String type = "followLabels";
         public ArrayList<Integer> labelsID = new ArrayList<>();
 

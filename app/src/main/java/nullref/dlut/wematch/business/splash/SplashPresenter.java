@@ -12,6 +12,11 @@ public class SplashPresenter implements SplashActivityContract.Presenter {
 
 
     SplashActivityContract.View view;
+    LoginSession loginSession = new LoginSession(this);
+
+    public SplashPresenter(SplashActivityContract.View view) {
+        this.view = view;
+    }
 
     @Override
     public void onLogin(LoginSession.Response response) {
@@ -25,24 +30,18 @@ public class SplashPresenter implements SplashActivityContract.Presenter {
         view.loginFailed();
     }
 
-    public SplashPresenter(SplashActivityContract.View view) {
-        this.view = view;
-    }
-
-
     public void logInFromLocalDB() {
         ConfigDbHelper configDb = ConfigDbHelper.getInstance();
-        UserDbHelper db =UserDbHelper.getInstance();
+        UserDbHelper db = UserDbHelper.getInstance();
         String userEmail = configDb.query("default_user");
-        if(userEmail == null){
+        if (userEmail == null) {
             view.loginFailed();
             return;
         }
         UserDbHelper.UserPwd user = db.getUserPwd(userEmail);
-        if(user == null) {
+        if (user == null) {
             view.loginFailed();
-        }
-        else{
+        } else {
             loginSession.request.email = user.email;
             loginSession.request.pwd = user.md5pwd;
             loginSession.send();
@@ -52,22 +51,16 @@ public class SplashPresenter implements SplashActivityContract.Presenter {
     public void checkFirstRun() {
         ConfigDbHelper config = ConfigDbHelper.getInstance();
         String value = config.query("first_run");
-        if(value.equals("true"))
-        {
+        if (value.equals("true")) {
             view.firstRun();
-        }
-        else{
+        } else {
             String autoLog = config.query("auto_login");
-            if(autoLog.equals("true")){
+            if (autoLog.equals("true")) {
                 logInFromLocalDB();
             }
             view.notFirstRun();
         }
-        config.update("first_run","false");
+        config.update("first_run", "false");
     }
-
-
-
-    LoginSession loginSession = new LoginSession(this);
 
 }

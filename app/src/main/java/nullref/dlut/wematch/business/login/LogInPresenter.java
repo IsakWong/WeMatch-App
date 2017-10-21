@@ -1,10 +1,7 @@
 package nullref.dlut.wematch.business.login;
 
-import com.j256.ormlite.android.apptools.OpenHelperManager;
-
 import nullref.dlut.wematch.sessions.LoginSession;
 import nullref.dlut.wematch.utils.Utils;
-import nullref.dlut.wematch.utils.WeMatchApplication;
 import nullref.dlut.wematch.utils.database.UserDbHelper;
 
 /**
@@ -16,12 +13,13 @@ public class LogInPresenter implements LogInActivityContract.Presenter {
     LogInActivityContract.View view;
     String email;
     String pwd;
+    LoginSession loginSession = new LoginSession(this);
+
 
     public LogInPresenter(LogInActivityContract.View view) {
 
         this.view = view;
     }
-
 
     @Override
     public void onLogin(LoginSession.Response response) {
@@ -36,8 +34,6 @@ public class LogInPresenter implements LogInActivityContract.Presenter {
         view.loginFailed(cause);
     }
 
-
-    LoginSession loginSession = new LoginSession(this);
     public void logIn(final String email, final String pwd) {
         this.email = email;
         this.pwd = Utils.md5(pwd);

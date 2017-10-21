@@ -9,18 +9,23 @@ import nullref.dlut.wematch.bean.UserListInfo;
  */
 
 public interface UserListContract {
-    interface View extends BaseView<Presenter>{
+    interface View extends BaseView<Presenter> {
 
         void onGetUserListError(String cause);
+
         void onGetUserList(UserListInfo[] userListInfo);
+
         void onFollowUser(int position);
+
         void onFollowUserError(String cause);
 
     }
 
-    interface Presenter extends BasePresenter<View>{
+    interface Presenter extends BasePresenter<View> {
         void refreshUsers();
+
         void getMoreUsers();
+
         void subscribeUser(int position);
     }
 }

@@ -5,8 +5,7 @@ import nullref.dlut.wematch.layout.userlist.UserListContract;
 import nullref.dlut.wematch.sessions.GetSubscribeUserSession;
 
 
-public class SubscribeUserListPresenter implements UserListContract.Presenter{
-
+public class SubscribeUserListPresenter implements UserListContract.Presenter {
 
 
     //content
@@ -24,11 +23,11 @@ public class SubscribeUserListPresenter implements UserListContract.Presenter{
         }
     });
 
-    public void setView(UserListContract.View view) {
-        this.view = view;
+    public SubscribeUserListPresenter() {
     }
 
-    public SubscribeUserListPresenter() {
+    public void setView(UserListContract.View view) {
+        this.view = view;
     }
 
     @Override
@@ -38,6 +37,7 @@ public class SubscribeUserListPresenter implements UserListContract.Presenter{
 
     @Override
     public void refreshUsers() {
+        refreshUserListSession.request.userID = -1;
         refreshUserListSession.send();
 
     }

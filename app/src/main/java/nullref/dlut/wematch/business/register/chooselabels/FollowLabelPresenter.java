@@ -3,8 +3,8 @@ package nullref.dlut.wematch.business.register.chooselabels;
 import java.util.ArrayList;
 
 import nullref.dlut.wematch.bean.Label;
-import nullref.dlut.wematch.sessions.SubscribeLabelsSession;
 import nullref.dlut.wematch.sessions.GetAllLabelsSession;
+import nullref.dlut.wematch.sessions.SubscribeLabelsSession;
 
 /**
  * Created by IsakWong on 2017/7/10.
@@ -14,6 +14,8 @@ public class FollowLabelPresenter implements FollowLabelActivityContract.Present
 
 
     FollowLabelActivityContract.View view;
+    SubscribeLabelsSession subscribeLabelsSession = new SubscribeLabelsSession(this);
+    private boolean gettingLabels = false;
 
     public FollowLabelPresenter(FollowLabelActivityContract.View view) {
         this.view = view;
@@ -45,14 +47,11 @@ public class FollowLabelPresenter implements FollowLabelActivityContract.Present
 
     }
 
-    SubscribeLabelsSession subscribeLabelsSession = new SubscribeLabelsSession(this);
     @Override
     public void followLabels(ArrayList<Integer> labels) {
         subscribeLabelsSession.request.labelsID = labels;
         subscribeLabelsSession.send();
     }
-
-    private boolean gettingLabels = false;
 
     public void getLabelsFromInternet() {
         if (gettingLabels == false) {

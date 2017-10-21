@@ -2,6 +2,7 @@ package nullref.dlut.wematch.business.splash;
 
 import android.os.Bundle;
 import android.widget.Button;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -64,14 +65,13 @@ public class SplashActivity extends BaseActivity implements SplashActivityContra
     }
 
     @OnClick(R.id.login_btn)
-    public void onLoginBtnClicked()
-    {
-        jumpTo(LogInActivity.class,false);
+    public void onLoginBtnClicked() {
+        jumpTo(LogInActivity.class, false);
     }
 
     @OnClick(R.id.regiser_btn)
     public void onRegiserBtnClicked() {
-        jumpTo(RegisterActivity.class,true);
+        jumpTo(RegisterActivity.class, true);
     }
 
     @Override

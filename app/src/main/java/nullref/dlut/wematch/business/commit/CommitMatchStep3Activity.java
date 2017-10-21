@@ -46,6 +46,7 @@ public class CommitMatchStep3Activity extends BaseActivity implements CommitMatc
     Spinner addMatchLabel2;
     @BindView(R.id.add_match_label3)
     Spinner addMatchLabel3;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,8 +125,6 @@ public class CommitMatchStep3Activity extends BaseActivity implements CommitMatc
         //绑定 Adapter到控件
 
     }
-
-
 
 
     @OnClick(R.id.next_btn)

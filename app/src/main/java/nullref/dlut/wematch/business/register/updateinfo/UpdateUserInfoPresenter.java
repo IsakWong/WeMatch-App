@@ -13,21 +13,21 @@ import nullref.dlut.wematch.utils.Utils;
 public class UpdateUserInfoPresenter implements UpdateUserInfoActivityContract.Presenter {
 
 
+    public UpdateUserInfoSession updateUserInfoSession = new UpdateUserInfoSession(this);
     UpdateUserInfoActivityContract.View view;
     String imagBase64;
+    UploadImgSession uploadImgSession = new UploadImgSession(this);
 
-    public UpdateUserInfoPresenter(UpdateUserInfoActivityContract.View view){
+    public UpdateUserInfoPresenter(UpdateUserInfoActivityContract.View view) {
         this.view = view;
     }
 
-    public UpdateUserInfoSession updateUserInfoSession = new UpdateUserInfoSession(this);
-
     @Override
     public void updateInfo(String shortInfo, String major, String school, int gender) {
-        updateUserInfoSession.request.pairs.add(new UpdateUserInfoSession.Pair("shortInfo",shortInfo));
-        updateUserInfoSession.request.pairs.add(new UpdateUserInfoSession.Pair("major",major));
-        updateUserInfoSession.request.pairs.add(new UpdateUserInfoSession.Pair("school",school));
-        updateUserInfoSession.request.pairs.add(new UpdateUserInfoSession.Pair("gender",Integer.toString(gender)));
+        updateUserInfoSession.request.pairs.add(new UpdateUserInfoSession.Pair("shortInfo", shortInfo));
+        updateUserInfoSession.request.pairs.add(new UpdateUserInfoSession.Pair("major", major));
+        updateUserInfoSession.request.pairs.add(new UpdateUserInfoSession.Pair("school", school));
+        updateUserInfoSession.request.pairs.add(new UpdateUserInfoSession.Pair("gender", Integer.toString(gender)));
         updateUserInfoSession.send();
 
     }
@@ -41,7 +41,6 @@ public class UpdateUserInfoPresenter implements UpdateUserInfoActivityContract.P
 
     }
 
-    UploadImgSession uploadImgSession = new UploadImgSession(this);
     @Override
     public void onUpdateUserInfo(UpdateUserInfoSession.Response response) {
 

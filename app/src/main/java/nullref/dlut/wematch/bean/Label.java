@@ -4,9 +4,8 @@ import java.io.Serializable;
 
 /**
  * Created by IsakWong on 2017/7/10.
- *
+ * <p>
  * 标签类
- *
  */
 
 public class Label implements Serializable {

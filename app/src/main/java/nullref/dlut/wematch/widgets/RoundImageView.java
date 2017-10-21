@@ -5,19 +5,20 @@ package nullref.dlut.wematch.widgets;
  */
 
 
-        import android.content.Context;
-        import android.graphics.Bitmap;
-        import android.graphics.Bitmap.Config;
-        import android.graphics.Canvas;
-        import android.graphics.Paint;
-        import android.graphics.PorterDuff.Mode;
-        import android.graphics.PorterDuffXfermode;
-        import android.graphics.Rect;
-        import android.graphics.drawable.BitmapDrawable;
-        import android.graphics.drawable.Drawable;
-        import android.graphics.drawable.NinePatchDrawable;
-        import android.util.AttributeSet;
-        import android.support.v7.widget.AppCompatImageView;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.NinePatchDrawable;
+import android.support.v7.widget.AppCompatImageView;
+import android.util.AttributeSet;
+
 /**
  * 圆形ImageView，可设置最多两个宽度不同且颜色不同的圆形边框。
  *
@@ -48,7 +49,6 @@ public class RoundImageView extends AppCompatImageView {
         super(context, attrs, defStyle);
         mContext = context;
     }
-
 
 
     @Override
@@ -114,8 +114,7 @@ public class RoundImageView extends AppCompatImageView {
     /**
      * 获取裁剪后的圆形图片
      *
-     * @param radius
-     *            半径
+     * @param radius 半径
      */
     public Bitmap getCroppedRoundBitmap(Bitmap bmp, int radius) {
         Bitmap scaledSrcBmp;
@@ -184,12 +183,12 @@ public class RoundImageView extends AppCompatImageView {
      */
     private void drawCircleBorder(Canvas canvas, int radius, int color) {
         Paint paint = new Paint();
-		/* 去锯齿 */
+        /* 去锯齿 */
         paint.setAntiAlias(true);
         paint.setFilterBitmap(true);
         paint.setDither(true);
         paint.setColor(color);
-		/* 设置paint的　style　为STROKE：空心 */
+        /* 设置paint的　style　为STROKE：空心 */
         paint.setStyle(Paint.Style.STROKE);
 		/* 设置paint的外框宽度 */
         paint.setStrokeWidth(mBorderThickness);

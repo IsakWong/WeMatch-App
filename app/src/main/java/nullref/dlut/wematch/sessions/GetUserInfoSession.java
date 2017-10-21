@@ -1,23 +1,15 @@
 package nullref.dlut.wematch.sessions;
 
 import nullref.dlut.wematch.bean.UserInfo;
-import nullref.dlut.wematch.bean.UserListInfo;
 
 /**
- *
  * 获取用户信息的会话
- *
  */
 
 public class GetUserInfoSession extends Session<GetUserInfoSession.Request, GetUserInfoSession.Response> {
 
     Listener listener;
 
-
-    public interface Listener {
-        void onGetUserInfo(UserInfo user);
-        void onGetUserInfoError(String cause);
-    }
 
     public GetUserInfoSession(Listener listener) {
         this.listener = listener;
@@ -34,11 +26,17 @@ public class GetUserInfoSession extends Session<GetUserInfoSession.Request, GetU
             listener.onGetUserInfoError(response.description);
     }
 
-    public class Response extends Session.Response{
+    public interface Listener {
+        void onGetUserInfo(UserInfo user);
+
+        void onGetUserInfoError(String cause);
+    }
+
+    public class Response extends Session.Response {
         public UserInfo userInfo;
     }
 
-    public class Request extends Session.Request{
+    public class Request extends Session.Request {
         public String type = "getUserInfo";
         public int userID;
     }

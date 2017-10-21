@@ -9,11 +9,11 @@ import nullref.dlut.wematch.bean.UserInfo;
  */
 
 public interface InfoPageContract {
-    interface View extends BaseView<Presenter>{
+    interface View extends BaseView<Presenter> {
         void onGetUserInfo(UserInfo userListInfoInfo);
     }
 
-    interface Presenter extends BasePresenter<View>{
+    interface Presenter extends BasePresenter<View> {
         void getUserInfo();
 
     }

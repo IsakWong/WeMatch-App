@@ -1,163 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="4dp"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical"
-    android:transitionName="share_match_card"
-    app:cardBackgroundColor="@color/textWhite"
-    app:cardCornerRadius="5dp"
-    app:cardElevation="4dp">
+    android:layout_marginBottom="1dp"
+    android:background="@color/textWhite"
+    android:fitsSystemWindows="false"
+    android:orientation="horizontal">
+
+    <nullref.dlut.wematch.widgets.RoundImageView
+        android:id="@+id/user_card_avatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="0"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/ic_app" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_weight="1"
+        android:gravity="center"
         android:orientation="horizontal">
 
-        <nullref.dlut.wematch.widgets.RoundImageView
-            android:id="@+id/user_card_avatar"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/ic_app" />
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="false"
-            android:layout_alignParentRight="false"
-            android:layout_alignWithParentIfMissing="false"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1">
 
-            <RelativeLayout
+            <TextView
+                android:id="@+id/user_card_title"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_weight="1">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_toStartOf="@+id/button"
+                android:elevation="1dp"
+                android:text="UserName"
+                android:textAppearance="@style/DarkSubhead"
+                android:textColor="@color/textDarkerGray" />
 
-                <TextView
-                    android:id="@+id/user_card_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="16dp"
-                    android:elevation="1dp"
-                    android:text="UserName"
-                    android:textAppearance="@style/DarkSubhead"
-                    android:textColor="@color/textDarkerGray" />
+            <TextView
+                android:id="@+id/user_card_short_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/user_card_title"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_toStartOf="@+id/button"
+                android:lines="2"
+                android:text="这个人很懒，暂未留下个人介绍。"
+                android:textAppearance="@style/DarkBody1" />
 
-                <TextView
-                    android:id="@+id/user_card_short_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/user_card_title"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="6dp"
-                    android:lines="1"
-                    android:text="这个人很懒，暂未留下个人介绍。"
-                    android:textAppearance="@style/DarkBody1" />
+            <TextView
+                android:id="@+id/label_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="false"
+                android:layout_below="@+id/user_card_short_info"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="6dp"
+                android:text="专业:"
+                android:textAppearance="@style/DarkCaption"
+                android:visibility="gone" />
 
-                <TextView
-                    android:id="@+id/label_"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="false"
-                    android:layout_below="@+id/user_card_short_info"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="6dp"
-                    android:text="专业:"
-                    android:textAppearance="@style/DarkCaption" />
+            <TextView
+                android:id="@+id/user_card_major"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/label_"
+                android:layout_alignBottom="@+id/label_"
+                android:layout_marginLeft="8dp"
+                android:layout_toEndOf="@+id/label_"
+                android:layout_weight="1"
+                android:text="计算机科学与技术"
+                android:textAppearance="@style/DarkCaption"
+                android:visibility="gone" />
 
-                <TextView
-                    android:id="@+id/user_card_major"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/label_"
-                    android:layout_alignBottom="@+id/label_"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="9dp"
-                    android:layout_toEndOf="@+id/label_"
-                    android:layout_weight="1"
-                    android:text="计算机科学与技术"
-                    android:textAppearance="@style/DarkCaption" />
+            <Button
+                android:id="@+id/button"
+                style="@style/TransButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="16dp"
+                android:padding="0dp"
+                android:text="已关注" />
 
-                <ImageButton
-                    android:id="@+id/user_card_zan"
-                    style="@style/myImageButtonStyle"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_alignBottom="@+id/user_card_zan_number"
-                    android:layout_alignParentBottom="false"
-                    android:layout_alignParentRight="false"
-                    android:layout_alignTop="@+id/user_card_zan_number"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="8dp"
-                    android:layout_toStartOf="@+id/user_card_zan_number"
-                    android:layout_weight="0"
-                    android:background="@color/colorTransparent"
-                    android:padding="0dp"
-                    android:scaleType="centerInside"
-                    app:srcCompat="@drawable/ic_zan_gray" />
+            <ImageButton
+                android:id="@+id/user_card_zan"
+                style="@style/myImageButtonStyle"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignBottom="@+id/user_card_zan_number"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentRight="false"
+                android:layout_alignTop="@+id/user_card_major"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="8dp"
+                android:layout_toStartOf="@+id/user_card_zan_number"
+                android:layout_weight="0"
+                android:background="@color/colorTransparent"
+                android:padding="0dp"
+                android:scaleType="centerInside"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_zan_gray" />
 
-                <TextView
-                    android:id="@+id/user_card_like"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="false"
-                    android:layout_below="@+id/user_card_major"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_toStartOf="@+id/user_card_zan"
-                    android:paddingBottom="8dp"
-                    android:paddingTop="8dp"
-                    android:text="0" />
+            <TextView
+                android:id="@+id/user_card_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/user_card_zan"
+                android:layout_alignParentRight="false"
+                android:layout_alignTop="@+id/user_card_zan"
+                android:layout_marginRight="16dp"
+                android:layout_toStartOf="@+id/user_card_zan"
+                android:gravity="center_vertical"
+                android:text="0"
+                android:visibility="gone" />
 
-                <ImageButton
-                    android:id="@+id/imageButton2"
-                    style="@style/myImageButtonStyle"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_alignBottom="@+id/user_card_zan_number"
-                    android:layout_alignParentBottom="false"
-                    android:layout_alignParentRight="false"
-                    android:layout_alignTop="@+id/user_card_zan_number"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="8dp"
-                    android:layout_toStartOf="@+id/user_card_like"
-                    android:layout_weight="0"
-                    android:background="@color/colorTransparent"
-                    android:padding="0dp"
-                    android:scaleType="centerInside"
-                    app:srcCompat="@drawable/ic_like_gray" />
+            <ImageButton
+                android:id="@+id/imageButton2"
+                style="@style/myImageButtonStyle"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignBottom="@+id/user_card_zan_number"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentRight="false"
+                android:layout_alignTop="@+id/user_card_major"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="8dp"
+                android:layout_toStartOf="@+id/user_card_like"
+                android:layout_weight="0"
+                android:background="@color/colorTransparent"
+                android:padding="0dp"
+                android:scaleType="centerInside"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_like_gray" />
 
-                <TextView
-                    android:id="@+id/user_card_zan_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/user_card_major"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginRight="16dp"
-                    android:paddingBottom="8dp"
-                    android:paddingTop="8dp"
-                    android:text="10" />
+            <TextView
+                android:id="@+id/user_card_zan_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/user_card_major"
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="16dp"
+                android:gravity="center_vertical"
+                android:text="10"
+                android:visibility="gone" />
 
-            </RelativeLayout>
+        </RelativeLayout>
 
-        </LinearLayout>
     </LinearLayout>
 
-</android.support.v7.widget.CardView>
+</LinearLayout>

@@ -12,18 +12,25 @@ public interface MatchInfoContract {
     interface View extends BaseView<Presenter> {
 
         void onError(String cause);
+
         void onMatchInfo(Match match);
+
         void onCreateTeam();
+
         void onCreateTeamError(String cause);
+
         void onFollowMatch();
+
         void onFollowMatchError(String cause);
 
     }
 
     interface Presenter extends BasePresenter<View> {
         void getMatchInfo();
+
         void followMatch();
-        void createTeam(String name,String info,int person);
+
+        void createTeam(String name, String info, int person);
 
     }
 }

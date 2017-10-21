@@ -11,9 +11,9 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 
 import java.util.ArrayList;
 
-import nullref.dlut.wematch.base.BasePage;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.BaseActivity;
+import nullref.dlut.wematch.base.BasePage;
 import nullref.dlut.wematch.business.discovery.DiscoveryPage;
 import nullref.dlut.wematch.business.discovery.DiscoveryPresenter;
 import nullref.dlut.wematch.business.info.InfoPage;

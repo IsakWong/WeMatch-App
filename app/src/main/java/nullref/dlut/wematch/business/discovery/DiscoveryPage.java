@@ -27,12 +27,15 @@ import nullref.dlut.wematch.base.ColorStatusPage;
 import nullref.dlut.wematch.bean.Label;
 import nullref.dlut.wematch.bean.MatchListInfo;
 import nullref.dlut.wematch.bean.UserListInfo;
+import nullref.dlut.wematch.business.MatchInfoPresenter;
 import nullref.dlut.wematch.business.subscribe.JoinTeamListPresenter;
 import nullref.dlut.wematch.business.subscribe.SubscribeMatchListPresenter;
+import nullref.dlut.wematch.layout.matchinfo.MatchInfoPage;
 import nullref.dlut.wematch.layout.matchlist.MatchListPage;
 import nullref.dlut.wematch.layout.teamlist.TeamListPage;
-import nullref.dlut.wematch.layout.userinfo.UserinfoPage;
-import nullref.dlut.wematch.layout.userinfo.UserinfoPresenter;
+import nullref.dlut.wematch.layout.userinfo.UserInfoPage;
+import nullref.dlut.wematch.layout.userinfo.UserInfoPresenter;
+import nullref.dlut.wematch.utils.NetworkManager;
 import nullref.dlut.wematch.utils.Utils;
 import nullref.dlut.wematch.widgets.UserCardSmall;
 
@@ -65,7 +68,20 @@ public class DiscoveryPage extends ColorStatusPage implements DiscoveryContract.
     @BindView(R.id.discvoeru_user_layout)
     LinearLayout discvoeruUserLayout;
 
-    MatchListInfo[] matches;
+    View.OnClickListener userCardClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            UserCardSmall item = (UserCardSmall) v;
+
+        }
+    };
+    View.OnClickListener matchCardListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+        }
+    };
+
     @Override
     public void setPresenter(DiscoveryContract.Presenter presenter) {
         this.presenter = presenter;
@@ -111,51 +127,50 @@ public class DiscoveryPage extends ColorStatusPage implements DiscoveryContract.
     public void onSubscribedLabelsAdded(Label[] labels) {
     }
 
-    View.OnClickListener userCardClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            UserCardSmall item = (UserCardSmall)v;
-            UserinfoPage userInfoPage= new UserinfoPage();
-            UserinfoPresenter userInfoPresenter = new UserinfoPresenter();
-            userInfoPage.setPresenter(userInfoPresenter);
-            userInfoPresenter.setView(userInfoPage);
-            userInfoPresenter.setUserId(item.userListInfo.ID);
-        }
-    };
-
     @Override
     public void onUsersAdded(UserListInfo[] userListInfos) {
 
-        for (UserListInfo item: userListInfos
-             ) {
-            UserCardSmall small = new UserCardSmall(getContext());
-            small.userListInfo = item;
-            String avatarUrlPath= "https://wematch.oss-cn-shanghai.aliyuncs.com/"+ item.avatarUrl;
-            CircleImageView profileImage = (CircleImageView)small.findViewById(R.id.profile_image);
-            TextView title = (TextView)small.findViewById(R.id.profile_name);
-            Glide
-                    .with(profileImage)
-                    .load(avatarUrlPath)
-                    .into(profileImage);
+        for (UserListInfo item : userListInfos) {
+
+            final UserListInfo userListInfo = item;
+            UserCardSmall userCard = new UserCardSmall(getContext());
+            userCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    UserInfoPage userInfoPage = new UserInfoPage();
+                    UserInfoPresenter userInfoPresenter = new UserInfoPresenter();
+                    userInfoPage.setPresenter(userInfoPresenter);
+                    userInfoPresenter.setView(userInfoPage);
+                    userInfoPresenter.setUserId(userListInfo.ID);
+                    jumpPage(userInfoPage);
+                }
+            });
+            CircleImageView profileImage = (CircleImageView) userCard.findViewById(R.id.profile_image);
+            TextView title = (TextView) userCard.findViewById(R.id.profile_name);
+            NetworkManager.LoadAvatar(profileImage,item.avatarUrl);
             title.setText(item.name);
-            discvoeruUserLayout.addView(small);
+            discvoeruUserLayout.addView(userCard);
         }
 
 
     }
 
-    View.OnClickListener matchCardListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-
-        }
-    };
     @Override
     public void onMatchesAdded(MatchListInfo[] matches) {
-        this.matches = matches;
         int size = matches.length > 4 ? 4 : matches.length;
         for (int i = 0; i < size; i++) {
-            matchesLayout[i].setOnClickListener(matchCardListener);
+            final MatchListInfo match = matches[i];
+            matchesLayout[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    MatchInfoPage matchInfoPage = new MatchInfoPage();
+                    MatchInfoPresenter matchInfoPresenter = new MatchInfoPresenter();
+                    matchInfoPage.setPresenter(matchInfoPresenter);
+                    matchInfoPresenter.setView(matchInfoPage);
+                    matchInfoPresenter.setMatchListInfo(match);
+                    jumpPage(matchInfoPage);
+                }
+            });
             ImageView pic = (ImageView) matchesLayout[i].findViewById(R.id.match_pic);
             TextView title = (TextView) matchesLayout[i].findViewById(R.id.match_title);
             title.setText(matches[i].name);

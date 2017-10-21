@@ -34,6 +34,8 @@ import nullref.dlut.wematch.widgets.AvatarImageTarget;
 public class UserInfoSetActivity extends BaseActivity implements UserInfoSetContract.View {
 
 
+    private static final int REQUEST_EDITOR_RESULT = 0;
+    private static final int REQUEST_CODE_PICK_IMAGE = 1;
     @BindView(R.id.navigation_icon)
     ImageButton navigationIcon;
     @BindView(R.id.info_save)
@@ -52,13 +54,9 @@ public class UserInfoSetActivity extends BaseActivity implements UserInfoSetCont
     CircleImageView infoAvatar;
     @BindView(R.id.info_set_qq)
     LinearLayout infoSetQq;
-
     private UserInfoSetPresenter presenter = new UserInfoSetPresenter(UserInfoSetActivity.this);
     private UserListInfo userListInfo = null;
-    private static final int REQUEST_EDITOR_RESULT = 0;
-    private static final int REQUEST_CODE_PICK_IMAGE = 1;
     private String avatarUrlPath;
-
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,23 +64,23 @@ public class UserInfoSetActivity extends BaseActivity implements UserInfoSetCont
         setContentView(R.layout.activity_user_info_sets);
         ButterKnife.bind(UserInfoSetActivity.this);
         Bundle bundle = getIntent().getExtras();
-        if(null!=bundle){
+        if (null != bundle) {
             userListInfo = (UserListInfo) bundle.getSerializable("userListInfo");
-            avatarUrlPath= "https://wematch.oss-cn-shanghai.aliyuncs.com/"+ userListInfo.avatarUrl;
+            avatarUrlPath = "https://wematch.oss-cn-shanghai.aliyuncs.com/" + userListInfo.avatarUrl;
             RequestOptions options2 = new RequestOptions()
                     .placeholder(R.drawable.bg_blue)
                     .priority(Priority.HIGH)
-                    .diskCacheStrategy( DiskCacheStrategy.NONE )
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
                     //.signature(new MediaStoreSignature())
-                    .skipMemoryCache( true );
+                    .skipMemoryCache(true);
             Glide
                     .with(UserInfoSetActivity.this)
                     .asBitmap()
                     .load(avatarUrlPath)
                     .apply(options2)
-                    .into(new AvatarImageTarget(infoAvatar,infoSetAvatarBg));
+                    .into(new AvatarImageTarget(infoAvatar, infoSetAvatarBg));
 
-        }else {
+        } else {
             onBackPressed();
         }
     }
@@ -105,7 +103,7 @@ public class UserInfoSetActivity extends BaseActivity implements UserInfoSetCont
                         infoAvatar.setImageBitmap(bit);
                         presenter.UpdateImg(Utils.bitmapToBase64(bit));
                     } catch (Exception e) {
-                        LogToFile.e(e,"");
+                        LogToFile.e(e, "");
                     }
                 }
                 break;
@@ -239,7 +237,6 @@ public class UserInfoSetActivity extends BaseActivity implements UserInfoSetCont
         intent.putExtras(argument);
         startActivityForResult(intent, REQUEST_EDITOR_RESULT);*/
     }
-
 
 
 }

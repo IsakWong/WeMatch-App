@@ -8,12 +8,10 @@ import java.util.ArrayList;
  * Created by isakwong on 2017/10/8.
  */
 
-public abstract class BaseAdapter<T extends RecyclerView.ViewHolder,T2> extends RecyclerView.Adapter<T> {
+public abstract class BaseAdapter<T extends RecyclerView.ViewHolder, T2> extends RecyclerView.Adapter<T> {
 
     protected ArrayList<T> holders = new ArrayList<T>();
     protected ArrayList<T2> datas = new ArrayList<T2>();
-
-
 
 
     protected float mPosX;
@@ -30,10 +28,10 @@ public abstract class BaseAdapter<T extends RecyclerView.ViewHolder,T2> extends 
     public void clearCard() {
         int size = datas.size();
         datas.clear();
-        notifyItemRangeRemoved(0,size);
+        notifyItemRangeRemoved(0, size);
     }
 
-    public ArrayList<T2> getDatas(){
+    public ArrayList<T2> getDatas() {
         return datas;
     }
 

@@ -11,11 +11,6 @@ public class GetSubscribeLabelsSession extends Session<GetSubscribeLabelsSession
     Listener listener;
 
 
-    public interface Listener {
-        void onGetLabels(Label[] labels);
-        void onGetLabelsError(String cause);
-    }
-
     public GetSubscribeLabelsSession(Listener listener) {
         this.listener = listener;
         request = new Request();
@@ -31,12 +26,18 @@ public class GetSubscribeLabelsSession extends Session<GetSubscribeLabelsSession
             listener.onGetLabelsError(response.description);
     }
 
-    public class Response extends Session.Response{
+    public interface Listener {
+        void onGetLabels(Label[] labels);
+
+        void onGetLabelsError(String cause);
+    }
+
+    public class Response extends Session.Response {
         public Label[] labels;
 
     }
 
-    public class Request extends Session.Request{
+    public class Request extends Session.Request {
         public String type = "getSubscribeLabels";
         public int userID;//-1表示取自己订阅的标签，其他值为获取指定ID用户订阅的标签
     }

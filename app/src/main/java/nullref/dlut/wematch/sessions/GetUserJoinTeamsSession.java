@@ -11,11 +11,6 @@ public class GetUserJoinTeamsSession extends Session<GetUserJoinTeamsSession.Req
     Listener listener;
 
 
-    public interface Listener {
-        void onGetTeamList(Team[] teams);
-        void onGetTeamListError(String cause);
-    }
-
     public GetUserJoinTeamsSession(Listener listener) {
         this.listener = listener;
         request = new Request();
@@ -31,6 +26,12 @@ public class GetUserJoinTeamsSession extends Session<GetUserJoinTeamsSession.Req
             listener.onGetTeamListError(response.description);
     }
 
+    public interface Listener {
+        void onGetTeamList(Team[] teams);
+
+        void onGetTeamListError(String cause);
+    }
+
     public class Response extends Session.Response {
 
         public Team[] teams;
@@ -38,7 +39,7 @@ public class GetUserJoinTeamsSession extends Session<GetUserJoinTeamsSession.Req
 
     }
 
-    public class Request extends Session.Request{
+    public class Request extends Session.Request {
         public String type = "getMyTeamList";
 
     }

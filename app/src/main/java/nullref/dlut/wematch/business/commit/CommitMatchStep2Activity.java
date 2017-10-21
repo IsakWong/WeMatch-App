@@ -70,12 +70,12 @@ public class CommitMatchStep2Activity extends BaseActivity implements CommitMatc
         this.presenter = new CommitMatchPresenter();
         presenter.viewStep2 = this;
 
-        ScrollUtils.addOnSoftKeyBoardVisibleListener(this,addMatchScroll);
+        ScrollUtils.addOnSoftKeyBoardVisibleListener(this, addMatchScroll);
 
         addMatchHost.getEditText().setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
+                if (hasFocus) {
                     ScrollUtils.curentView = v;
                 }
             }
@@ -83,7 +83,7 @@ public class CommitMatchStep2Activity extends BaseActivity implements CommitMatc
         addMatchWeb.getEditText().setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
+                if (hasFocus) {
                     ScrollUtils.curentView = v;
                 }
             }
@@ -91,7 +91,7 @@ public class CommitMatchStep2Activity extends BaseActivity implements CommitMatc
         addMatchMin.getEditText().setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
+                if (hasFocus) {
                     ScrollUtils.curentView = v;
                 }
             }
@@ -99,7 +99,7 @@ public class CommitMatchStep2Activity extends BaseActivity implements CommitMatc
         addMatchMax.getEditText().setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
+                if (hasFocus) {
                     ScrollUtils.curentView = v;
                 }
             }

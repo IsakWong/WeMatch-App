@@ -4,7 +4,6 @@ package nullref.dlut.wematch.layout.matchlist;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,14 +25,12 @@ import butterknife.Unbinder;
 import in.srain.cube.views.ptr.PtrDefaultHandler2;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import nullref.dlut.wematch.R;
-import nullref.dlut.wematch.base.BasePage;
 import nullref.dlut.wematch.base.ColorStatusPage;
 import nullref.dlut.wematch.bean.MatchListInfo;
 import nullref.dlut.wematch.business.MatchInfoPresenter;
 import nullref.dlut.wematch.business.commit.CommitMatchStep1Activity;
 import nullref.dlut.wematch.business.labelinfo.LabelinfoPage;
-import nullref.dlut.wematch.layout.matchinfo.MatchInfoContract;
-import nullref.dlut.wematch.layout.matchinfo.MatchInfoPageTest;
+import nullref.dlut.wematch.layout.matchinfo.MatchInfoPage;
 import nullref.dlut.wematch.widgets.adapter.MatchListAdapter;
 
 import static nullref.dlut.wematch.layout.matchlist.MatchListPage.NavigationType.NAVIGATION_BACK;
@@ -72,14 +69,6 @@ public class MatchListPage extends ColorStatusPage implements MatchListContract.
     TextView matchListTitle;
 
     AppCompatImageView shareImg;
-
-    private NavigationType navigationType;
-
-    public enum NavigationType {
-        NAVIGATION_MENU,
-        NAVIGATION_BACK
-    }
-
     LinearLayoutManager verticalLinearLayout;
     DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
     MatchListAdapter.CardListener matchCardListener = new MatchListAdapter.CardListener() {
@@ -87,14 +76,13 @@ public class MatchListPage extends ColorStatusPage implements MatchListContract.
         public void onViewClicked(View view, int position) {
             switch (view.getId()) {
                 case R.id.match_card:
-                    shareImg =(AppCompatImageView) view.findViewById(R.id.match_card_pic);
-                    MatchInfoPageTest matchInfoPageTest = new MatchInfoPageTest();
+                    shareImg = (AppCompatImageView) view.findViewById(R.id.match_card_pic);
+                    MatchInfoPage matchInfoPage = new MatchInfoPage();
                     MatchInfoPresenter matchInfoPresenter = new MatchInfoPresenter();
-                    matchInfoPresenter.setView(matchInfoPageTest);
+                    matchInfoPresenter.setView(matchInfoPage);
                     matchInfoPresenter.setMatchListInfo(mAdapter.getCardData(position));
-                    matchInfoPageTest.setPresenter(matchInfoPresenter);
-                    matchInfoPageTest.setShareImgDrawable(shareImg.getDrawable());
-                    jumpPage(matchInfoPageTest);
+                    matchInfoPage.setPresenter(matchInfoPresenter);
+                    jumpPage(matchInfoPage);
                     break;
                 case R.id.match_card_like:
                     presenter.subscribeMatch(position);
@@ -117,7 +105,18 @@ public class MatchListPage extends ColorStatusPage implements MatchListContract.
 
         }
     };
+    PtrDefaultHandler2 ptrDefaultHandler2 = new PtrDefaultHandler2() {
+        @Override
+        public void onLoadMoreBegin(PtrFrameLayout frame) {
+            presenter.getMoreMatches();
+        }
 
+        @Override
+        public void onRefreshBegin(PtrFrameLayout frame) {
+            presenter.refreshMatches();
+        }
+    };
+    private NavigationType navigationType;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -130,19 +129,6 @@ public class MatchListPage extends ColorStatusPage implements MatchListContract.
         mAdapter = new MatchListAdapter();
         verticalLinearLayout = new LinearLayoutManager(getInstance(), LinearLayoutManager.VERTICAL, false);
     }
-
-    PtrDefaultHandler2 ptrDefaultHandler2 = new PtrDefaultHandler2() {
-        @Override
-        public void onLoadMoreBegin(PtrFrameLayout frame) {
-            presenter.getMoreMatches();
-        }
-
-        @Override
-        public void onRefreshBegin(PtrFrameLayout frame) {
-            presenter.refreshMatches();
-        }
-    };
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -176,7 +162,6 @@ public class MatchListPage extends ColorStatusPage implements MatchListContract.
         return view;
     }
 
-
     @Override
     public void onDestroy() {
         presenter.setView(null);
@@ -199,8 +184,6 @@ public class MatchListPage extends ColorStatusPage implements MatchListContract.
         makeToast("关注比赛成功");
 
     }
-
-
 
     @Override
     public void onRequestMatchError(String cause) {
@@ -231,7 +214,6 @@ public class MatchListPage extends ColorStatusPage implements MatchListContract.
         }
         ptrFrame.refreshComplete();
     }
-
 
     @Override
     public void onDestroyView() {
@@ -297,6 +279,11 @@ public class MatchListPage extends ColorStatusPage implements MatchListContract.
 
     public void setNavigationType(NavigationType navigationType) {
         this.navigationType = navigationType;
+    }
+
+    public enum NavigationType {
+        NAVIGATION_MENU,
+        NAVIGATION_BACK
     }
 }
 

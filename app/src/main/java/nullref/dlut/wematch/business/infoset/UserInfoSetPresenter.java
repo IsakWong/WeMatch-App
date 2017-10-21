@@ -9,7 +9,7 @@ import nullref.dlut.wematch.sessions.UploadImgSession;
 
 public class UserInfoSetPresenter implements UserInfoSetContract.Presenter {
 
-    public static Boolean AvaChanges= false;
+    public static Boolean AvaChanges = false;
 
     public UserInfoSetContract.View view;
     private String imgBase64;
@@ -45,20 +45,21 @@ public class UserInfoSetPresenter implements UserInfoSetContract.Presenter {
     }
 
 
-    public void modifyInfo(String key,String value){
+    public void modifyInfo(String key, String value) {
         boolean hasKey = false;
-        for (UpdateUserInfoSession.Pair pair:updateUserInfoSession.request.pairs
-             ) {
-            if(pair.key.equals(key) ){
+        for (UpdateUserInfoSession.Pair pair : updateUserInfoSession.request.pairs
+                ) {
+            if (pair.key.equals(key)) {
                 pair.value = value;
                 hasKey = true;
             }
         }
-        if(hasKey == false){
-            updateUserInfoSession.request.pairs.add(new UpdateUserInfoSession.Pair(key,value));
+        if (hasKey == false) {
+            updateUserInfoSession.request.pairs.add(new UpdateUserInfoSession.Pair(key, value));
         }
 
     }
+
     public void UpdateInfo() {
         updateUserInfoSession.send();
     }
@@ -66,7 +67,7 @@ public class UserInfoSetPresenter implements UserInfoSetContract.Presenter {
 
     public void UpdateImg(String imgBase64) {
         this.imgBase64 = imgBase64;
-        modifyInfo("avatar","true");
+        modifyInfo("avatar", "true");
     }
 
 

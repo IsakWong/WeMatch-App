@@ -9,11 +9,6 @@ public class CreateTeamSession extends Session<CreateTeamSession.Request, Create
     Listener listener;
 
 
-    public interface Listener {
-        void onCreateTeam();
-        void onCreateTeamError(String cause);
-    }
-
     public CreateTeamSession(Listener listener) {
         this.listener = listener;
         request = new Request();
@@ -29,12 +24,18 @@ public class CreateTeamSession extends Session<CreateTeamSession.Request, Create
             listener.onCreateTeamError(response.description);
     }
 
-    public class Response extends Session.Response{
+    public interface Listener {
+        void onCreateTeam();
+
+        void onCreateTeamError(String cause);
+    }
+
+    public class Response extends Session.Response {
 
 
     }
 
-    public class Request extends Session.Request{
+    public class Request extends Session.Request {
         public String type = "createTeam";
         public int matchID;
         public int number;

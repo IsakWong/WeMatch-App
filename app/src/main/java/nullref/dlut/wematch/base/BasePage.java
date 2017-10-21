@@ -8,7 +8,6 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -18,12 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
-
-import com.squareup.leakcanary.RefWatcher;
-
 import nullref.dlut.wematch.R;
-import nullref.dlut.wematch.utils.PageManager;
-import nullref.dlut.wematch.utils.WeMatchApplication;
 
 /**
  * Created by IsakWong on 2017/5/17.
@@ -37,7 +31,7 @@ import nullref.dlut.wematch.utils.WeMatchApplication;
  * <p>
  * TransparentPage 透明状态栏
  */
-public abstract class BasePage extends Fragment{
+public abstract class BasePage extends Fragment {
 
     public BasePage nextFragment = null;
     public BasePage preFragment = null;
@@ -45,12 +39,15 @@ public abstract class BasePage extends Fragment{
     long time1;
     long time2;
 
+    public BasePage() {
+
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        time1= SystemClock.elapsedRealtime();
+        time1 = SystemClock.elapsedRealtime();
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -72,8 +69,8 @@ public abstract class BasePage extends Fragment{
             lp.height = statusBarHeight;
             statusBar.setLayoutParams(lp);
         }
-        time2= SystemClock.elapsedRealtime();
-        Log.e(this.getClass().toString(),"CreateView:"+Long.toString(time2-time1));
+        time2 = SystemClock.elapsedRealtime();
+        Log.e(this.getClass().toString(), "CreateView:" + Long.toString(time2 - time1));
     }
 
     @Override
@@ -81,7 +78,6 @@ public abstract class BasePage extends Fragment{
         Log.i(getClass().toString() + "  ", new Exception().getStackTrace()[0].getMethodName());
         super.onAttach(context);
     }
-
 
     @Override
     public void onDetach() {
@@ -116,26 +112,20 @@ public abstract class BasePage extends Fragment{
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(preFragment!=null){
+        if (preFragment != null) {
             preFragment.nextFragment = nextFragment;
         }
-        if(nextFragment!=null){
+        if (nextFragment != null) {
             nextFragment.preFragment = preFragment;
         }
         nextFragment = null;
-        preFragment =null;
+        preFragment = null;
         Log.i(getClass().toString() + "  ", new Exception().getStackTrace()[0].getMethodName());
-    }
-
-    public BasePage() {
-
     }
 
     public View findViewById(int id) {
         return view.findViewById(id);
     }
-
-
 
 
     @CallSuper
@@ -145,9 +135,6 @@ public abstract class BasePage extends Fragment{
         return transaction;
 
     }
-
-
-
 
 
     public BaseActivity getBaseActivity() {
@@ -185,24 +172,26 @@ public abstract class BasePage extends Fragment{
         return popupWindow;
     }
 
-    public void onBackPressed(){
-        if(preFragment == null)
+    public void onBackPressed() {
+        if (preFragment == null)
             getBaseActivity().finishAfterTransition();
         else {
             getBaseActivity().pageManager.backPage();
         }
     }
-    public void authError(){}
 
-    public Context getInstance(){
-        Context context = getContext();
+    public void authError() {
+    }
+
+    public Context getInstance() {
         return this.getContext();
     }
-    public void makeToast(String message){
-        Toast.makeText(getContext(),message,Toast.LENGTH_SHORT).show();
-    }
-    public void makeLongToast(String message){
 
-        Toast.makeText(getContext(),message,Toast.LENGTH_LONG).show();
+    public void makeToast(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void makeLongToast(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
     }
 }

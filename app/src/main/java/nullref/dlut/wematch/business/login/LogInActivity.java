@@ -12,9 +12,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import nullref.dlut.wematch.R;
+import nullref.dlut.wematch.base.BaseActivity;
 import nullref.dlut.wematch.base.BasePresenter;
 import nullref.dlut.wematch.business.MainpageActivity;
-import nullref.dlut.wematch.base.BaseActivity;
 
 
 /**
@@ -27,7 +27,7 @@ import nullref.dlut.wematch.base.BaseActivity;
  * Presenter:MatchInfoPresenter 处理业务逻辑
  */
 
-public class LogInActivity extends BaseActivity implements  LogInActivityContract.View {
+public class LogInActivity extends BaseActivity implements LogInActivityContract.View {
 
 
     @BindView(R.id.user_edit)

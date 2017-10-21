@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.bumptech.glide.request.target.ImageViewTarget;
-import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.bumptech.glide.request.transition.Transition;
 
 import nullref.dlut.wematch.utils.Utils;
@@ -32,11 +31,11 @@ public class AvatarImageTarget extends ImageViewTarget<Bitmap> {
     @Override
     public void onResourceReady(Bitmap bitmap, Transition<? super Bitmap> transition) {
 
-        if(infoAvatarBg!=null) {
+        if (infoAvatarBg != null) {
             Bitmap outBitmap = Utils.blurBitmap(infoAvatar.getContext(), bitmap, 20f);
             infoAvatarBg.setImageBitmap(outBitmap);
         }
-        if(infoAvatar!=null) {
+        if (infoAvatar != null) {
             infoAvatar.setImageBitmap(bitmap);
         }
     }

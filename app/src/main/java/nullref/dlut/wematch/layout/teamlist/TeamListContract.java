@@ -10,19 +10,25 @@ import nullref.dlut.wematch.widgets.adapter.TeamListAdapter;
  */
 
 public interface TeamListContract {
-    interface View extends BaseView<Presenter>{
+    interface View extends BaseView<Presenter> {
 
         void onGetTeamListError(String cause);
+
         void onGetTeam(Team[] teams);
+
         void onJoinTeam(int position);
+
         void onJoinTeamError(String cause);
+
         TeamListAdapter getAdapter();
 
     }
 
     interface Presenter extends BasePresenter<View> {
         void refreshTeam();
+
         void getMoreTeam();
+
         void joinTeam(int position);
     }
 }

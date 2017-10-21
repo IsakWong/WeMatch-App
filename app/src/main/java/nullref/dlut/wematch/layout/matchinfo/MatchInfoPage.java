@@ -3,7 +3,6 @@ package nullref.dlut.wematch.layout.matchinfo;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -41,8 +40,10 @@ import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.TransparentStatusPage;
 import nullref.dlut.wematch.bean.Match;
 import nullref.dlut.wematch.business.MatchTeamListPresenter;
+import nullref.dlut.wematch.business.MatchUserListPresenter;
 import nullref.dlut.wematch.layout.teamlist.TeamListPage;
 import nullref.dlut.wematch.layout.userlist.UserListPage;
+import nullref.dlut.wematch.utils.NetworkManager;
 import nullref.dlut.wematch.utils.Utils;
 
 import static android.content.Context.ALARM_SERVICE;
@@ -51,15 +52,11 @@ import static android.content.Context.ALARM_SERVICE;
  * Created by IsakWong on 2017/5/28.
  */
 
-public class MatchInfoPageTest extends TransparentStatusPage implements ObservableScrollViewCallbacks, MatchInfoContract.View {
+public class MatchInfoPage extends TransparentStatusPage implements ObservableScrollViewCallbacks, MatchInfoContract.View {
 
 
-
+    public int mShareImgId;
     MatchInfoContract.Presenter presenter;
-    public void setPresenter(MatchInfoContract.Presenter presenter) {
-        this.presenter = presenter;
-    }
-
     Match match;
     @BindView(R.id.match_info_short_info)
     TextView matchInfoShortInfo;
@@ -101,9 +98,6 @@ public class MatchInfoPageTest extends TransparentStatusPage implements Observab
     ImageView statusBar;
     @BindView(R.id.container)
     FrameLayout container;
-
-
-    public int mShareImgId;
     @BindView(R.id.navigation_icon)
     ImageButton navigationIcon;
     @BindView(R.id.share_icon)
@@ -118,14 +112,13 @@ public class MatchInfoPageTest extends TransparentStatusPage implements Observab
     FloatingActionsMenu fabMenu;
     @BindView(R.id.fab_alarm)
     FloatingActionButton fabAlarm;
+    boolean autoScrolling = false;
     private int mActionBarSize;
     private int mFlexibleSpaceImageHeight;
-    private Drawable shareImgDrawable;
 
-    boolean autoScrolling = false;
-
-
-
+    public void setPresenter(MatchInfoContract.Presenter presenter) {
+        this.presenter = presenter;
+    }
 
     @Override
     public void onCreate(Bundle saveedInstance) {
@@ -138,7 +131,7 @@ public class MatchInfoPageTest extends TransparentStatusPage implements Observab
                              final Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
-        view = inflater.inflate(R.layout.page_match_info_test, container, false);
+        view = inflater.inflate(R.layout.page_match_info, container, false);
         unbinder = ButterKnife.bind(this, view);
         mFlexibleSpaceImageHeight = getResources().getDimensionPixelSize(R.dimen.topbarSize);
         mActionBarSize = findViewById(R.id.status_bar).getLayoutParams().height + findViewById(R.id.toolbar).getLayoutParams().height;
@@ -148,9 +141,7 @@ public class MatchInfoPageTest extends TransparentStatusPage implements Observab
         }
 
         scroll.setScrollViewCallbacks(this);
-        if(shareImgDrawable!=null){
-            matchCardPic.setImageDrawable(shareImgDrawable);
-        }
+
 
         ScrollUtils.addOnGlobalLayoutListener(scroll, new Runnable() {
             @Override
@@ -169,9 +160,6 @@ public class MatchInfoPageTest extends TransparentStatusPage implements Observab
 
     }
 
-    public void setShareImgDrawable(Drawable shareImgDrawable) {
-        this.shareImgDrawable = shareImgDrawable;
-    }
 
 
     @Override
@@ -183,6 +171,7 @@ public class MatchInfoPageTest extends TransparentStatusPage implements Observab
     @Override
     public void onMatchInfo(Match match) {
         this.match = match;
+        NetworkManager.LoadPic(matchCardPic,match.imgUrl);
         matchInfoTitle.setText(match.name);
         matchInfoShortInfo.setText(match.shortInfo);
         matchInfoLoc.setText(match.loc);
@@ -270,9 +259,10 @@ public class MatchInfoPageTest extends TransparentStatusPage implements Observab
         if (match != null) {
             Bundle args = new Bundle();
             UserListPage userListPage = new UserListPage();
-
-            args.putInt("matchID", match.ID);
-            userListPage.setArguments(args);
+            MatchUserListPresenter matchUserListPresenter = new MatchUserListPresenter();
+            userListPage.setPresenter(matchUserListPresenter);
+            matchUserListPresenter.setView(userListPage);
+            matchUserListPresenter.setData(match);
             jumpPage(userListPage);
         }
 
@@ -338,7 +328,7 @@ public class MatchInfoPageTest extends TransparentStatusPage implements Observab
     public void onShareIconClicked() {
     }
 
-    @OnClick({R.id.fab_like, R.id.fab_create_team,R.id.fab_alarm})
+    @OnClick({R.id.fab_like, R.id.fab_create_team, R.id.fab_alarm})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.fab_like:
@@ -387,7 +377,7 @@ public class MatchInfoPageTest extends TransparentStatusPage implements Observab
                 // AlarmManager.ELAPSED_REALTIME_WAKEUP表示闹钟在睡眠状态下会唤醒系统并执行提示功能，该状态下闹钟使用相对时间
                 // SystemClock.elapsedRealtime()表示手机开始到现在经过的时间
                 am.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                        SystemClock.elapsedRealtime()+6000, sender);
+                        SystemClock.elapsedRealtime() + 6000, sender);
                 fabMenu.collapse();
                 makeToast("成功设置比赛提醒，当比赛进入日程时会进行提醒!");
         }

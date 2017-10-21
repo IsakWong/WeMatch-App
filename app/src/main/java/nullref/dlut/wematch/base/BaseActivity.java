@@ -5,18 +5,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import nullref.dlut.wematch.R;
-import nullref.dlut.wematch.utils.NetworkManager;
 import nullref.dlut.wematch.utils.PageManager;
 /* Created by IsakWong on 2017/5/15.
  */
@@ -69,31 +64,35 @@ public class BaseActivity extends AppCompatActivity {
             finishAfterTransition();
         }
     }
-    public void jumpTo(Class<?> type, boolean canBack,Bundle args) {
+
+    public void jumpTo(Class<?> type, boolean canBack, Bundle args) {
         Intent intent = new Intent();
         intent.setClass(this, type);
         intent.putExtras(args);
         startActivity(intent);
         overridePendingTransition(R.animator.in_to_left, R.animator.out_to_left);
 
-        if (!canBack){
+        if (!canBack) {
             pageManager.removeAllPage();
             finishAfterTransition();
         }
     }
-    public Context getInstance(){
+
+    public Context getInstance() {
 
         return this;
     }
 
-    public void authError(){
+    public void authError() {
 
     }
-    public void makeToast(String message){
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+
+    public void makeToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
-    public void makeLongToast(String message){
-        Toast.makeText(this,message,Toast.LENGTH_LONG).show();
+
+    public void makeLongToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
 }

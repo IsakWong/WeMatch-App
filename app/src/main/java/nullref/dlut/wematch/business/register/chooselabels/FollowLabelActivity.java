@@ -57,7 +57,7 @@ public class FollowLabelActivity extends BaseActivity implements FollowLabelActi
     @Override
     public void onFollowLabel() {
 
-        jumpTo(MainpageActivity.class,false);
+        jumpTo(MainpageActivity.class, false);
     }
 
     @Override
@@ -68,16 +68,15 @@ public class FollowLabelActivity extends BaseActivity implements FollowLabelActi
     @OnClick(R.id.reg_btn)
     public void onViewClicked() {
         ArrayList<Integer> chooseLabels = new ArrayList<>();
-        for(int i = 0;i<labelsGroup.getChildCount();i++){
-            CheckBox labelBox = (CheckBox)labelsGroup.getChildAt(i);
-            if(labelBox.isChecked()){
+        for (int i = 0; i < labelsGroup.getChildCount(); i++) {
+            CheckBox labelBox = (CheckBox) labelsGroup.getChildAt(i);
+            if (labelBox.isChecked()) {
                 chooseLabels.add(labels.get(i).getId());
             }
         }
-        if(chooseLabels.size()<4){
+        if (chooseLabels.size() < 4) {
             makeToast("至少选择四个以上的标签");
-        }
-        else {
+        } else {
             presenter.followLabels(chooseLabels);
         }
     }

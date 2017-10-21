@@ -4,10 +4,9 @@ import java.io.Serializable;
 
 /**
  * Created by isakwong on 2017/8/16.
- *
- *
+ * <p>
+ * <p>
  * 比赛列表的信息类
- *
  */
 
 public class MatchListInfo implements Serializable {

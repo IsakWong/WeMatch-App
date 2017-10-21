@@ -3,8 +3,6 @@ package nullref.dlut.wematch.sessions;
 
 import java.util.ArrayList;
 
-import nullref.dlut.wematch.utils.database.ConfigDbHelper;
-
 /**
  * 更新用户数据会话
  */
@@ -13,11 +11,6 @@ public class UpdateUserInfoSession extends Session<UpdateUserInfoSession.Request
 
     Listener listener;
 
-
-    public interface Listener {
-        void onUpdateUserInfo(Response response);
-        void onUpdateUserInfoError(String cause);
-    }
 
     public UpdateUserInfoSession(Listener listener) {
         this.listener = listener;
@@ -35,24 +28,32 @@ public class UpdateUserInfoSession extends Session<UpdateUserInfoSession.Request
 
     }
 
-    public class Response extends Session.Response{
+    public interface Listener {
+        void onUpdateUserInfo(Response response);
 
-        public String key;
+        void onUpdateUserInfoError(String cause);
     }
 
-    public static class Pair{
+    public static class Pair {
         public String key;
         public String value;
-        public Pair(String key,String value){
+
+        public Pair(String key, String value) {
             this.key = key;
             this.value = value;
         }
-        public Pair(){
+
+        public Pair() {
 
         }
     }
 
-    public class Request extends Session.Request{
+    public class Response extends Session.Response {
+
+        public String key;
+    }
+
+    public class Request extends Session.Request {
 
         public String type = "updateUserInfo";
         public ArrayList<Pair> pairs = new ArrayList<>();

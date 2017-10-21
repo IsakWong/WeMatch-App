@@ -16,6 +16,28 @@ public class MatchTeamListPresenter implements TeamListContract.Presenter {
     //content
     TeamListContract.View view;
     Match match;
+    JoinTeamSession joinTeamSession = new JoinTeamSession(new JoinTeamSession.Listener() {
+        @Override
+        public void onJoinTeam() {
+
+        }
+
+        @Override
+        public void onJoinTeamError(String cause) {
+
+        }
+    });
+    GetTeamsOfMatchtSession refreshTeamListSession = new GetTeamsOfMatchtSession(new GetTeamsOfMatchtSession.Listener() {
+        @Override
+        public void onGetTeamList(Team[] teams) {
+            view.onGetTeam(teams);
+        }
+
+        @Override
+        public void onGetTeamListError(String cause) {
+
+        }
+    });
 
     public Match getMatch() {
         return match;
@@ -29,35 +51,11 @@ public class MatchTeamListPresenter implements TeamListContract.Presenter {
         this.view = view;
     }
 
-    JoinTeamSession joinTeamSession = new JoinTeamSession(new JoinTeamSession.Listener() {
-        @Override
-        public void onJoinTeam() {
-
-        }
-
-        @Override
-        public void onJoinTeamError(String cause) {
-
-        }
-    });
-
-    GetTeamsOfMatchtSession refreshTeamListSession = new GetTeamsOfMatchtSession(new GetTeamsOfMatchtSession.Listener() {
-        @Override
-        public void onGetTeamList(Team[] teams) {
-            view.onGetTeam(teams);
-        }
-
-        @Override
-        public void onGetTeamListError(String cause) {
-
-        }
-    });
-
     @Override
     public void refreshTeam() {
 
         refreshTeamListSession.request.matchID = match.ID;
-        refreshTeamListSession.request.teamID =  -1;
+        refreshTeamListSession.request.teamID = -1;
         refreshTeamListSession.send();
     }
 

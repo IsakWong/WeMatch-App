@@ -15,24 +15,26 @@ import nullref.dlut.wematch.utils.Utils;
  * Created by IsakWong on 2017/7/10.
  */
 
-public class CommitMatchPresenter implements CommitMatchPageContract.Presenter,Serializable {
+public class CommitMatchPresenter implements CommitMatchPageContract.Presenter, Serializable {
 
 
+    public static CommitMatch commitMatch;
+    public static String base64;
     public CommitMatchPageContract.ViewStep1 viewStep1;
     public CommitMatchPageContract.ViewStep2 viewStep2;
     public CommitMatchPageContract.ViewStep3 viewStep3;
-    public static CommitMatch commitMatch;
-    public static String base64;
+    CommitMatchSession session = new CommitMatchSession(this);
+
+
+    public CommitMatchPresenter() {
+        commitMatch = new CommitMatch();
+        base64 = new String();
+    }
 
     public CommitMatch getCommitMatch() {
         return commitMatch;
     }
 
-
-    public CommitMatchPresenter(){
-        commitMatch = new CommitMatch();
-        base64 = new String();
-    }
     @Override
     public void onUploadImgError(String cause) {
 
@@ -78,8 +80,6 @@ public class CommitMatchPresenter implements CommitMatchPageContract.Presenter,S
         base64 = Utils.bitmapToBase64(bitmap);
     }
 
-
-    CommitMatchSession session = new CommitMatchSession(this);
     @Override
     public void commitMatch() {
         session.request.commitMatch = commitMatch;

@@ -11,12 +11,11 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.DatePicker.OnDateChangedListener;
-
-import android.support.v7.app.AlertDialog;
 
 import java.lang.reflect.Field;
 
@@ -31,10 +30,6 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener, On
 
     private final DatePicker mDatePickerStart;
     private final OnDateSetListener mCallBack;
-
-    public interface OnDateSetListener {
-        void onDateSet(DatePicker startDatePicker, int startYear, int startMonthOfYear, int startDayOfMonth);
-    }
 
     public DatePickerDialog(Context context, OnDateSetListener callBack, int year, int monthOfYear, int dayOfMonth) {
         this(context, 0, callBack, year, monthOfYear, dayOfMonth);
@@ -107,11 +102,9 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener, On
         return mDatePickerStart;
     }
 
-
     public void updateStartDate(int year, int monthOfYear, int dayOfMonth) {
         mDatePickerStart.updateDate(year, monthOfYear, dayOfMonth);
     }
-
 
     private void tryNotifyDateSet() {
         if (mCallBack != null) {
@@ -143,5 +136,9 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener, On
         int start_day = savedInstanceState.getInt(START_DAY);
         mDatePickerStart.init(start_year, start_month, start_day, this);
 
+    }
+
+    public interface OnDateSetListener {
+        void onDateSet(DatePicker startDatePicker, int startYear, int startMonthOfYear, int startDayOfMonth);
     }
 }

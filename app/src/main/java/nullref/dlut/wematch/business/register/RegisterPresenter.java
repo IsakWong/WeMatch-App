@@ -3,7 +3,6 @@ package nullref.dlut.wematch.business.register;
 import nullref.dlut.wematch.sessions.LoginSession;
 import nullref.dlut.wematch.sessions.RegisterSession;
 import nullref.dlut.wematch.utils.Utils;
-import nullref.dlut.wematch.utils.WeMatchApplication;
 import nullref.dlut.wematch.utils.database.UserDbHelper;
 
 /**
@@ -13,11 +12,14 @@ import nullref.dlut.wematch.utils.database.UserDbHelper;
 public class RegisterPresenter implements RegisterActivityContract.Presenter {
 
 
+    public int gender;//0女1男2保密
     RegisterActivityContract.View view;
     String email;
     String pwd;
-    public int gender;//0女1男2保密
+    LoginSession loginSession = new LoginSession(this);
+    RegisterSession session = new RegisterSession(this);
     private boolean registering = false;
+
 
     public RegisterPresenter(RegisterActivityContract.View view) {
         this.view = view;
@@ -28,11 +30,6 @@ public class RegisterPresenter implements RegisterActivityContract.Presenter {
         view.registerFailed(cause);
     }
 
-
-    LoginSession loginSession = new LoginSession(this);
-
-
-
     @Override
     public void onRegister(RegisterSession.Response response) {
         view.registerSuccess();
@@ -41,7 +38,6 @@ public class RegisterPresenter implements RegisterActivityContract.Presenter {
         loginSession.send();
 
     }
-
 
     @Override
     public void onLoginError(String cause) {
@@ -56,10 +52,8 @@ public class RegisterPresenter implements RegisterActivityContract.Presenter {
         userDb.close();
     }
 
-
-    RegisterSession session = new RegisterSession(this);
     @Override
-    public void register(String email, String pwd,String name) {
+    public void register(String email, String pwd, String name) {
         this.email = email;
         this.pwd = Utils.md5(pwd);
         session.request.email = this.email;

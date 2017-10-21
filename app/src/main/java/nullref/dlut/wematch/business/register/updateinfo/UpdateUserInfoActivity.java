@@ -21,7 +21,7 @@ import nullref.dlut.wematch.business.register.chooselabels.FollowLabelActivity;
  */
 
 
-public class UpdateUserInfoActivity extends BaseActivity implements UpdateUserInfoActivityContract.View{
+public class UpdateUserInfoActivity extends BaseActivity implements UpdateUserInfoActivityContract.View {
 
     UpdateUserInfoPresenter presenter = new UpdateUserInfoPresenter(this);
 
@@ -49,14 +49,14 @@ public class UpdateUserInfoActivity extends BaseActivity implements UpdateUserIn
         dataSpinner.add("大连东软信息学院");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_item, dataSpinner);
         schoolSpinner.setAdapter(adapter);
-        schoolSpinner.setSelection(0,true);
-        genderSpinner.setSelection(2,true);
+        schoolSpinner.setSelection(0, true);
+        genderSpinner.setSelection(2, true);
 
     }
 
     @Override
     public void onUploadImg() {
-        jumpTo(FollowLabelActivity.class,false);
+        jumpTo(FollowLabelActivity.class, false);
 
     }
 
@@ -67,7 +67,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements UpdateUserIn
 
     @Override
     public void onUpdateUserInfoError(String cause) {
-        Toast.makeText(getBaseContext(),cause,Toast.LENGTH_SHORT);
+        Toast.makeText(getBaseContext(), cause, Toast.LENGTH_SHORT);
     }
 
     @Override
@@ -78,7 +78,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements UpdateUserIn
     @OnClick(R.id.reg_btn)
     public void onViewClicked() {
 
-        presenter.updateInfo(regShortInfo.getText().toString(),regMajor.getText().toString(),dataSpinner.get(schoolSpinner.getSelectedItemPosition()),genderSpinner.getSelectedItemPosition());
+        presenter.updateInfo(regShortInfo.getText().toString(), regMajor.getText().toString(), dataSpinner.get(schoolSpinner.getSelectedItemPosition()), genderSpinner.getSelectedItemPosition());
 
     }
 }

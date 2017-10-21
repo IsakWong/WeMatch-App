@@ -12,14 +12,8 @@ import nullref.dlut.wematch.sessions.GetSubscribeUserSession;
 public class DiscoveryPresenter implements DiscoveryContract.Presenter {
 
 
-    @Override
-    public void setView(DiscoveryContract.View view) {
-        this.view = view;
-    }
-
     //content
     DiscoveryContract.View view;
-
     GetMatchListSession getMatchListSession = new GetMatchListSession(new GetMatchListSession.Listener() {
         @Override
         public void onGetMatchList(MatchListInfo[] matches, int matchID) {
@@ -31,13 +25,6 @@ public class DiscoveryPresenter implements DiscoveryContract.Presenter {
 
         }
     });
-    @Override
-    public void getMatches() {
-        getMatchListSession.request.matchID = -1;
-        getMatchListSession.request.filter = 1;
-        getMatchListSession.send();
-    }
-
     GetSubscribeUserSession getSubscribeUserSession = new GetSubscribeUserSession(new GetSubscribeUserSession.Listener() {
         @Override
         public void onGetFollowUsers(UserListInfo[] userListInfo) {
@@ -49,9 +36,22 @@ public class DiscoveryPresenter implements DiscoveryContract.Presenter {
 
         }
     });
+
+    @Override
+    public void setView(DiscoveryContract.View view) {
+        this.view = view;
+    }
+
+    @Override
+    public void getMatches() {
+        getMatchListSession.request.matchID = -1;
+        getMatchListSession.request.filter = 1;
+        getMatchListSession.send();
+    }
+
     @Override
     public void getUsers() {
-        getSubscribeUserSession.request.ID = -1;
+        getSubscribeUserSession.request.userID = -1;
         getSubscribeUserSession.send();
     }
 

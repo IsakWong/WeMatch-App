@@ -4,20 +4,23 @@ package nullref.dlut.wematch.utils;
  * Created by IsakWong on 2017/5/18.
  */
 
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
-import com.google.gson.JsonIOException;
-import com.google.gson.JsonSyntaxException;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import nullref.dlut.wematch.sessions.Session;
 import nullref.dlut.wematch.utils.database.ConfigDbHelper;
-import okhttp3.*;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -25,6 +28,14 @@ import rx.schedulers.Schedulers;
 
 public class NetworkManager {
 
+
+    private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    private static OkHttpClient client;
+
+    private static String serverIp;
+    private static String userAuth;
+    private static String avatarPrefix;
+    private static String imageUrlPrefix;
 
     //NetWork 初始化代码段
     static {
@@ -34,19 +45,10 @@ public class NetworkManager {
                 .readTimeout(3, TimeUnit.SECONDS)
                 .build();
         avatarPrefix = ConfigDbHelper.getInstance().query(ConfigDbHelper.AvatarUrlPrefix);
+        imageUrlPrefix = ConfigDbHelper.getInstance().query(ConfigDbHelper.imageUrlPrefix);
         serverIp = ConfigDbHelper.getInstance().query(ConfigDbHelper.MainServerIp);
         userAuth = "";
     }
-
-    private static OkHttpClient client;
-
-    private static String serverIp;
-    private static String userAuth;
-    private static String avatarPrefix;
-
-
-    private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-
 
     public static String getUserAuth() {
         return userAuth;
@@ -57,12 +59,19 @@ public class NetworkManager {
     }
 
 
-    public static void LoadAvatar(ImageView avatarView,String avatarUrl){
+    public static void LoadAvatar(ImageView avatarView, String avatarUrl) {
         Glide
                 .with(avatarView)
-                .load(avatarPrefix+avatarUrl)
+                .load(avatarPrefix + avatarUrl)
                 .into(avatarView);
     }
+    public static void LoadPic(ImageView imageView, String imageUrl) {
+        Glide
+                .with(imageView)
+                .load(imageUrlPrefix + imageUrl)
+                .into(imageView);
+    }
+
     public static <T2 extends Session.Response> void newSession(final Session session) {
 
         final Gson g = new Gson();
@@ -83,7 +92,7 @@ public class NetworkManager {
                         @Override
                         public void onFailure(Call call, IOException e) {
                             subscriber.onError(e);
-                            LogToFile.e(e,"");
+                            LogToFile.e(e, "");
                             subscriber.onCompleted();
                             call.cancel();
                         }
@@ -91,23 +100,20 @@ public class NetworkManager {
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
 
-                            if(null!=response){
+                            if (null != response) {
                                 String body = "";
                                 body = response.body().string();
-                                T2 s = (T2)g.fromJson(body, session.response.getClass());
+                                T2 s = (T2) g.fromJson(body, session.response.getClass());
                                 subscriber.onNext(s);
-                            }
-                            else
-                            {
+                            } else {
 
                             }
                             subscriber.onCompleted();
                         }
 
                     });
-                }
-                 catch (Exception e) {
-                    LogToFile.e(e,"requeset: "+requestString);
+                } catch (Exception e) {
+                    LogToFile.e(e, "requeset: " + requestString);
                 }
             }
         });

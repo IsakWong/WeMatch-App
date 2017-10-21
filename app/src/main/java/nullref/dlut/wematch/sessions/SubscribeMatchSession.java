@@ -11,11 +11,6 @@ public class SubscribeMatchSession extends Session<SubscribeMatchSession.Request
     Listener listener;
 
 
-    public interface Listener {
-        void onFollowMatch();
-        void onFollowMatchError(String cause);
-    }
-
     public SubscribeMatchSession(Listener listener) {
         this.listener = listener;
         request = new Request();
@@ -27,17 +22,23 @@ public class SubscribeMatchSession extends Session<SubscribeMatchSession.Request
         super.success(response);
         if (response.result == true)
             listener.onFollowMatch();
-        if (response.result == false){
+        if (response.result == false) {
             if (response.description.equals("match already subscribed"))
                 listener.onFollowMatchError("您已订阅该比赛。");
         }
     }
 
-    public class Response extends Session.Response{
+    public interface Listener {
+        void onFollowMatch();
+
+        void onFollowMatchError(String cause);
+    }
+
+    public class Response extends Session.Response {
 
     }
 
-    public class Request extends Session.Request{
+    public class Request extends Session.Request {
         public String type = "followMatches";
         public ArrayList<Integer> matchID = new ArrayList<>();
 

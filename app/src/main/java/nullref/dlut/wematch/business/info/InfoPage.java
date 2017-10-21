@@ -22,11 +22,9 @@ import butterknife.Unbinder;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.ColorStatusPage;
 import nullref.dlut.wematch.bean.UserInfo;
-import nullref.dlut.wematch.bean.UserListInfo;
-import nullref.dlut.wematch.business.subscribe.SubscribeMatchListPresenter;
-import nullref.dlut.wematch.business.infoset.UserInfoSetActivity;
 import nullref.dlut.wematch.business.login.LogInActivity;
 import nullref.dlut.wematch.business.subscribe.JoinTeamListPresenter;
+import nullref.dlut.wematch.business.subscribe.SubscribeMatchListPresenter;
 import nullref.dlut.wematch.business.subscribe.SubscribeUserListPresenter;
 import nullref.dlut.wematch.layout.matchlist.MatchListPage;
 import nullref.dlut.wematch.layout.teamlist.TeamListPage;
@@ -72,10 +70,9 @@ public class InfoPage extends ColorStatusPage implements InfoPageContract.View {
     TextView userName;
     @BindView(R.id.sex)
     ImageView sex;
-
+    InfoPageContract.Presenter presenter;
     private UserInfo userListInfo;
     private String avatarUrlPath;
-    InfoPageContract.Presenter presenter;
 
     @Override
     public void setPresenter(InfoPageContract.Presenter presenter) {
@@ -95,22 +92,20 @@ public class InfoPage extends ColorStatusPage implements InfoPageContract.View {
         view = inflater.inflate(R.layout.page_info, container, false);
         unbinder = ButterKnife.bind(this, view);
         ConfigDbHelper configDbHelper = ConfigDbHelper.getInstance();
-        if(configDbHelper.query("need_update").equals("true"))
-        {
+        if (configDbHelper.query("need_update").equals("true")) {
             presenter.getUserInfo();
-        }else
-        {
-            avatarUrlPath= "https://wematch.oss-cn-shanghai.aliyuncs.com/"+ configDbHelper.query("avatar_url");
+        } else {
+            avatarUrlPath = "https://wematch.oss-cn-shanghai.aliyuncs.com/" + configDbHelper.query("avatar_url");
             RequestOptions options2 = new RequestOptions()
                     .placeholder(R.drawable.bg_blue)
                     .priority(Priority.HIGH)
-                    .diskCacheStrategy( DiskCacheStrategy.AUTOMATIC);
+                    .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC);
             Glide
                     .with(infoAvatar)
                     .asBitmap()
                     .load(avatarUrlPath)
                     .apply(options2)
-                    .into(new AvatarImageTarget(infoAvatar,infoAvatarBg));
+                    .into(new AvatarImageTarget(infoAvatar, infoAvatarBg));
         }
         return view;
     }
@@ -141,18 +136,18 @@ public class InfoPage extends ColorStatusPage implements InfoPageContract.View {
             case 2:
                 break;
         }*/
-        avatarUrlPath= "https://wematch.oss-cn-shanghai.aliyuncs.com/"+ userListInfo.avatarUrl;
+        avatarUrlPath = "https://wematch.oss-cn-shanghai.aliyuncs.com/" + userListInfo.avatarUrl;
         RequestOptions options2 = new RequestOptions()
                 .placeholder(R.drawable.bg_blue)
                 .priority(Priority.HIGH)
-                .diskCacheStrategy( DiskCacheStrategy.NONE )
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true);
         Glide
                 .with(infoAvatar)
                 .asBitmap()
                 .load(avatarUrlPath)
                 .apply(options2)
-                .into(new AvatarImageTarget(infoAvatar,infoAvatarBg));
+                .into(new AvatarImageTarget(infoAvatar, infoAvatarBg));
     }
 
     @OnClick({R.id.my_subscribe_users, R.id.my_subscribe_matches, R.id.my_teams, R.id.match_logout, R.id.info_update})
@@ -169,13 +164,13 @@ public class InfoPage extends ColorStatusPage implements InfoPageContract.View {
             case R.id.my_subscribe_matches:
                 MatchListPage matchListPage = new MatchListPage();
                 SubscribeMatchListPresenter matchListPresenter = new SubscribeMatchListPresenter();
-                matchListPresenter .setView(matchListPage);
-                matchListPage.setPresenter(matchListPresenter );
+                matchListPresenter.setView(matchListPage);
+                matchListPage.setPresenter(matchListPresenter);
                 jumpPage(matchListPage);
                 break;
             case R.id.my_teams:
                 //// TODO: 2017/9/14 我的小队
-                TeamListPage teamListPage =new TeamListPage();
+                TeamListPage teamListPage = new TeamListPage();
                 JoinTeamListPresenter subscribeTeamListPresenter = new JoinTeamListPresenter();
                 subscribeTeamListPresenter.setView(teamListPage);
                 teamListPage.setPresenter(subscribeTeamListPresenter);
@@ -183,11 +178,11 @@ public class InfoPage extends ColorStatusPage implements InfoPageContract.View {
                 break;
             case R.id.match_logout:
                 ConfigDbHelper dbHelper = ConfigDbHelper.getInstance();
-                dbHelper.update("auto_login","false");
+                dbHelper.update("auto_login", "false");
                 getBaseActivity().jumpTo(LogInActivity.class, false);
                 break;
             case R.id.info_update:
-                if(userListInfo !=null){
+                if (userListInfo != null) {
                     Bundle bundle = new Bundle();
 
                     //bundle.putSerializable("userListInfo", userListInfo);

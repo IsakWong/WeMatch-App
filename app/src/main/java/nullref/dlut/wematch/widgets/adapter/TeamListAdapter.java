@@ -20,24 +20,21 @@ import nullref.dlut.wematch.bean.Team;
  * 支持添加卡片，删除卡片
  */
 
-public class TeamListAdapter extends BaseAdapter<TeamListAdapter.TeamCardViewHolder,Team> {
-
-
-
-
+public class TeamListAdapter extends BaseAdapter<TeamListAdapter.TeamCardViewHolder, Team> {
 
 
     CardListener listener;
+
     public void setListener(CardListener listener) {
-        for (TeamCardViewHolder holder:holders
-             ) {
+        for (TeamCardViewHolder holder : holders
+                ) {
             holder.setListener(listener);
         }
         this.listener = listener;
     }
+
     @Override
     public TeamCardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         View card = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_team, parent, false);
         TeamCardViewHolder holder = new TeamCardViewHolder(card);
         holders.add(holder);
@@ -48,9 +45,7 @@ public class TeamListAdapter extends BaseAdapter<TeamListAdapter.TeamCardViewHol
     @Override
     public void onBindViewHolder(TeamCardViewHolder holder, int position) {
         Team data = (Team) datas.get(position);
-        holder.onBindView(data,position);
-
-
+        holder.onBindView(data, position);
     }
 
     @Override
@@ -60,35 +55,22 @@ public class TeamListAdapter extends BaseAdapter<TeamListAdapter.TeamCardViewHol
 
     public interface CardListener {
         void onViewClicked(View view, int position);
-        void onViewLongPressed(View view, int postion);
 
+        void onViewLongPressed(View view, int postion);
     }
 
     /**
-     *
      * ViewHolder 比赛卡片的视图容器
-     *
      */
 
-    public  class TeamCardViewHolder extends RecyclerView.ViewHolder {
-
+    public class TeamCardViewHolder extends RecyclerView.ViewHolder {
 
 
         TextView teamName;
         TextView teamInfo;
         ImageView userAvatar;
-
-        Team data;
+        Team team;
         CardListener listener;
-
-        public CardListener getListener() {
-            return listener;
-        }
-
-        public void setListener(CardListener listener) {
-            this.listener = listener;
-        }
-
         View.OnTouchListener onTouchListener = new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent motion) {
@@ -112,7 +94,7 @@ public class TeamListAdapter extends BaseAdapter<TeamListAdapter.TeamCardViewHol
                             }
                         }
                         if (Math.abs(mCurPosX - mPosX) < 25) {
-                            listener.onViewClicked(v,getLayoutPosition());
+                            listener.onViewClicked(v, getLayoutPosition());
                         }
 
                         break;
@@ -125,13 +107,23 @@ public class TeamListAdapter extends BaseAdapter<TeamListAdapter.TeamCardViewHol
             super(view);
             teamName = (TextView) view.findViewById(R.id.team_card_title);
             teamInfo = (TextView) view.findViewById(R.id.team_card_short_info);
-            userAvatar = (ImageView)view.findViewById(R.id.team_card_avatar);
+            userAvatar = (ImageView) view.findViewById(R.id.team_card_avatar);
 
             view.setOnTouchListener(onTouchListener);
         }
-        public void onBindView(Team data, int position)
-        {
-            this.data = data;
+
+        public CardListener getListener() {
+            return listener;
+        }
+
+        public void setListener(CardListener listener) {
+            this.listener = listener;
+        }
+
+        public void onBindView(Team team, int position) {
+            this.team = team;
+            teamInfo.setText(team.shortInfo);
+            teamName.setText(team.name);
 
         }
     }

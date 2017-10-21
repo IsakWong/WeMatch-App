@@ -1,17 +1,16 @@
 package nullref.dlut.wematch.layout.userinfo;
 
 import nullref.dlut.wematch.bean.UserInfo;
-import nullref.dlut.wematch.bean.UserListInfo;
 import nullref.dlut.wematch.sessions.GetUserInfoSession;
 
 /**
  * Created by isakwong on 2017/10/16.
  */
 
-public class UserinfoPresenter implements UserinfoContract.Presenter {
+public class UserInfoPresenter implements UserInfoContract.Presenter {
 
 
-    UserinfoContract.View view;
+    UserInfoContract.View view;
     int userId = -1;
 
     GetUserInfoSession getUserInfoSession = new GetUserInfoSession(new GetUserInfoSession.Listener() {
@@ -25,14 +24,16 @@ public class UserinfoPresenter implements UserinfoContract.Presenter {
 
         }
     });
+
     @Override
-    public void setView(UserinfoContract.View view) {
+    public void setView(UserInfoContract.View view) {
         this.view = view;
     }
 
     public void setUserId(int userId) {
         this.userId = userId;
     }
+
     @Override
     public void getUserInfo() {
         getUserInfoSession.request.userID = this.userId;

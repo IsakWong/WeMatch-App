@@ -23,13 +23,15 @@ import java.util.Locale;
  */
 public class LogToFile {
 
-    private static  boolean canLog = true;
+    private static final char VERBOSE = 'v';
+    private static final char DEBUG = 'd';
+    private static final char INFO = 'i';
+    private static final char WARN = 'w';
+    private static final char ERROR = 'e';
+    private static boolean canLog = true;
     private static String TAG = "LogToFile";
-
     private static String logPath = null;//log日志存放路径
-
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.US);//日期格式;
-
     private static Date date = new Date();//因为log日志是使用日期命名的，使用静态成员变量主要是为了在整个程序运行期间只存在一个.log文件中;
 
     /**
@@ -55,23 +57,12 @@ public class LogToFile {
             } else {
                 return context.getFilesDir().getPath();//直接存在/data/data里，非root手机是看不到的
             }
-        }catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         canLog = false;
         return "";
     }
-
-    private static final char VERBOSE = 'v';
-
-    private static final char DEBUG = 'd';
-
-    private static final char INFO = 'i';
-
-    private static final char WARN = 'w';
-
-    private static final char ERROR = 'e';
 
     public static void v(String tag, String msg) {
         writeToFile(VERBOSE, tag, msg);
@@ -93,8 +84,14 @@ public class LogToFile {
         writeToFile(ERROR, tag, msg);
     }
 
-    public static void e(Exception exception,String extras){e(exception.toString(),exception.getMessage()+"\n"+extras);}
-    public static void e(Exception exception){e(exception.toString(),exception.getMessage());}
+    public static void e(Exception exception, String extras) {
+        e(exception.toString(), exception.getMessage() + "\n" + extras);
+    }
+
+    public static void e(Exception exception) {
+        e(exception.toString(), exception.getMessage());
+    }
+
     /**
      * 将log信息写入文件中
      *
@@ -103,8 +100,8 @@ public class LogToFile {
      * @param msg
      */
     private static void writeToFile(char type, String tag, String msg) {
-        if(!canLog) {
-            Log.e(tag,msg);
+        if (!canLog) {
+            Log.e(tag, msg);
             return;
         }
         if (null == logPath) {

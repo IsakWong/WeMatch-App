@@ -11,11 +11,6 @@ public class GetAllLabelsSession extends Session<GetAllLabelsSession.Request, Ge
     Listener listener;
 
 
-    public interface Listener {
-        void onGetLabels(Label[] labels);
-        void onGetLabelsError(String cause);
-    }
-
     public GetAllLabelsSession(Listener listener) {
         this.listener = listener;
         request = new Request();
@@ -31,12 +26,18 @@ public class GetAllLabelsSession extends Session<GetAllLabelsSession.Request, Ge
             listener.onGetLabelsError(response.description);
     }
 
-    public class Response extends Session.Response{
+    public interface Listener {
+        void onGetLabels(Label[] labels);
+
+        void onGetLabelsError(String cause);
+    }
+
+    public class Response extends Session.Response {
         public Label[] labels;
 
     }
 
-    public class Request extends Session.Request{
+    public class Request extends Session.Request {
         public String type = "getLabels";
 
     }

@@ -8,9 +8,7 @@ import nullref.dlut.wematch.sessions.GetUserJoinTeamsSession;
  * Created by IsakWong on 2017/5/25.
  */
 
-public class JoinTeamListPresenter implements TeamListContract.Presenter{
-
-
+public class JoinTeamListPresenter implements TeamListContract.Presenter {
 
 
     //content
@@ -27,6 +25,7 @@ public class JoinTeamListPresenter implements TeamListContract.Presenter{
 
         }
     });
+
     public void setView(TeamListContract.View view) {
         this.view = view;
     }

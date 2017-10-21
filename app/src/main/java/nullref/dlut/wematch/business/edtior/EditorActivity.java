@@ -2,7 +2,6 @@ package nullref.dlut.wematch.business.edtior;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -31,7 +30,7 @@ public class EditorActivity extends BaseActivity {
     EditText edit;
     @BindView(R.id.close)
     ImageButton close;
-    Intent result= new Intent();
+    Intent result = new Intent();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +41,7 @@ public class EditorActivity extends BaseActivity {
         //edit.setInputType(arguments.getInt("input_type"));
         edit.setHint(arguments.getString("default_value"));
         edit.setLines(arguments.getInt("lines"));
-        result.putExtra("key",arguments.getString("key"));
+        result.putExtra("key", arguments.getString("key"));
 
 
     }
@@ -54,7 +53,7 @@ public class EditorActivity extends BaseActivity {
 
     @OnClick(R.id.navigation_icon)
     public void onNavigationIconClicked() {
-        setResult(RESULT_CANCELED,result);
+        setResult(RESULT_CANCELED, result);
         onBackPressed();
     }
 
@@ -64,8 +63,8 @@ public class EditorActivity extends BaseActivity {
 
     @OnClick(R.id.save_btn)
     public void onSaveBtnClicked() {
-        result.putExtra("value",edit.getText().toString());
-        setResult(RESULT_OK,result);
+        result.putExtra("value", edit.getText().toString());
+        setResult(RESULT_OK, result);
         finishAfterTransition();
     }
 

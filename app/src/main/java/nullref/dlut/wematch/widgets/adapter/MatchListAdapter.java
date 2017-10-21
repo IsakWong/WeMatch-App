@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.bean.MatchListInfo;
+import nullref.dlut.wematch.utils.NetworkManager;
 
 /**
  * Created by IsakWong on 2017/5/27.
@@ -23,14 +24,14 @@ import nullref.dlut.wematch.bean.MatchListInfo;
  * 支持添加卡片，删除卡片
  */
 
-public class MatchListAdapter extends BaseAdapter<MatchListAdapter.MatchCardViewHolder,MatchListInfo> {
-
+public class MatchListAdapter extends BaseAdapter<MatchListAdapter.MatchCardViewHolder, MatchListInfo> {
 
 
     CardListener listener;
+
     public void setListener(CardListener listener) {
-        for (MatchCardViewHolder holder:holders
-             ) {
+        for (MatchCardViewHolder holder : holders
+                ) {
             holder.setListener(listener);
         }
         this.listener = listener;
@@ -50,13 +51,13 @@ public class MatchListAdapter extends BaseAdapter<MatchListAdapter.MatchCardView
     @Override
     public void addCard(MatchListInfo match) {
         int position = datas.size();
-        int i = datas.size()-1;
-        for(;i>=0;i--){
-            if(match.matchID <datas.get(i).matchID){
+        int i = datas.size() - 1;
+        for (; i >= 0; i--) {
+            if (match.matchID < datas.get(i).matchID) {
                 break;
             }
         }
-        datas.add(i+1,match);
+        datas.add(i + 1, match);
         notifyItemInserted(position);
     }
 
@@ -64,25 +65,23 @@ public class MatchListAdapter extends BaseAdapter<MatchListAdapter.MatchCardView
     @Override
     public void onBindViewHolder(MatchCardViewHolder holder, int position) {
         MatchListInfo data = (MatchListInfo) datas.get(position);
-        holder.onBindView(data,position);
+        holder.onBindView(data, position);
 
 
     }
 
     public interface CardListener {
-        void onViewClicked(View view,int position);
-        void onViewLongPressed(View view,int postion);
+        void onViewClicked(View view, int position);
+
+        void onViewLongPressed(View view, int postion);
 
     }
 
     /**
-     *
      * ViewHolder 比赛卡片的视图容器
-     *
      */
 
-    public  class MatchCardViewHolder extends RecyclerView.ViewHolder {
-
+    public class MatchCardViewHolder extends RecyclerView.ViewHolder {
 
 
         AppCompatImageView mMatchImg;
@@ -92,15 +91,6 @@ public class MatchListAdapter extends BaseAdapter<MatchListAdapter.MatchCardView
         AppCompatImageView likeBtn;
         MatchListInfo data;
         CardListener listener;
-
-        public CardListener getListener() {
-            return listener;
-        }
-
-        public void setListener(CardListener listener) {
-            this.listener = listener;
-        }
-
         View.OnTouchListener onTouchListener = new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent motion) {
@@ -124,7 +114,7 @@ public class MatchListAdapter extends BaseAdapter<MatchListAdapter.MatchCardView
                             }
                         }
                         if (Math.abs(mCurPosX - mPosX) < 25) {
-                            listener.onViewClicked(v,getLayoutPosition());
+                            listener.onViewClicked(v, getLayoutPosition());
                         }
 
                         break;
@@ -132,6 +122,35 @@ public class MatchListAdapter extends BaseAdapter<MatchListAdapter.MatchCardView
                 return true;
             }
         };
+
+        public MatchCardViewHolder(View view) {
+            super(view);
+            mMatchImg = (AppCompatImageView) view.findViewById(R.id.match_card_pic);
+            likeBtn = (AppCompatImageView) view.findViewById(R.id.match_card_like);
+            mTitle = (TextView) view.findViewById(R.id.match_card_title);
+            mIntro = (TextView) view.findViewById(R.id.match_card_short_info);
+            mLabels[0] = (TextView) view.findViewById(R.id.match_card_label1);
+            mLabels[0].setTag(0);
+            mLabels[1] = (TextView) view.findViewById(R.id.match_card_label2);
+            mLabels[1].setTag(1);
+            mLabels[2] = (TextView) view.findViewById(R.id.match_card_label3);
+            mLabels[2].setTag(2);
+
+            likeBtn.setOnTouchListener(onTouchListener);
+            for (int i = 0; i < mLabels.length; i++) {
+                mLabels[i].setOnTouchListener(onTouchListener);
+            }
+            view.setOnTouchListener(onTouchListener);
+        }
+
+        public CardListener getListener() {
+            return listener;
+        }
+
+        public void setListener(CardListener listener) {
+            this.listener = listener;
+        }
+
         public TextView getmTitle() {
             return mTitle;
         }
@@ -144,49 +163,24 @@ public class MatchListAdapter extends BaseAdapter<MatchListAdapter.MatchCardView
             return mIntro;
         }
 
-        public MatchCardViewHolder(View view) {
-            super(view);
-            mMatchImg = (AppCompatImageView) view.findViewById(R.id.match_card_pic);
-            likeBtn = (AppCompatImageView)view.findViewById(R.id.match_card_like);
-            mTitle = (TextView) view.findViewById(R.id.match_card_title);
-            mIntro = (TextView) view.findViewById(R.id.match_card_short_info);
-            mLabels[0]= (TextView) view.findViewById(R.id.match_card_label1);
-            mLabels[0].setTag(0);
-            mLabels[1]= (TextView) view.findViewById(R.id.match_card_label2);
-            mLabels[1].setTag(1);
-            mLabels[2]= (TextView) view.findViewById(R.id.match_card_label3);
-            mLabels[2].setTag(2);
-
-            likeBtn.setOnTouchListener(onTouchListener);
-            for(int i = 0;i<mLabels.length;i++){
-                mLabels[i].setOnTouchListener(onTouchListener);
-            }
-            view.setOnTouchListener(onTouchListener);
-        }
-        public void onBindView(MatchListInfo data, int position)
-        {
+        public void onBindView(MatchListInfo data, int position) {
             this.data = data;
             getmTitle().setText(data.name);
             getmIntro().setText(data.shortInfo);
             int i = 0;
-            for (i = 0;i<data.labels.length;i++) {
+            for (i = 0; i < data.labels.length; i++) {
                 mLabels[i].setText(data.labels[i].getName());
             }
-            for(;i<mLabels.length;i++){
+            for (; i < mLabels.length; i++) {
                 mLabels[i].setText("");
             }
             ViewCompat.setTransitionName(itemView.findViewById(R.id.match_card_pic), position + "");
-            if(data.liked){
+            if (data.liked) {
                 likeBtn.setImageResource(R.drawable.ic_like_red);
-            }
-            else
-            {
+            } else {
                 likeBtn.setImageResource(R.drawable.ic_like_gray);
             }
-            Glide
-                    .with(mMatchImg)
-                    .load("http://60.205.218.75:8980/image/"+data.imgUrl)
-                    .into(getmMatchImg());
+            NetworkManager.LoadPic(mMatchImg,data.imgUrl);
         }
     }
 

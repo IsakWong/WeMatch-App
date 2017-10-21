@@ -9,11 +9,6 @@ public class UploadImgSession extends Session<UploadImgSession.Request, UploadIm
     Listener listener;
 
 
-    public interface Listener {
-        void onUploadImg();
-        void onUploadImgError(String cause);
-    }
-
     public UploadImgSession(Listener listener) {
         this.listener = listener;
         request = new Request();
@@ -29,12 +24,18 @@ public class UploadImgSession extends Session<UploadImgSession.Request, UploadIm
             listener.onUploadImgError("上传图片失败");
     }
 
+    public interface Listener {
+        void onUploadImg();
+
+        void onUploadImgError(String cause);
+    }
+
     public class Response extends Session.Response {
 
 
     }
 
-    public class Request extends Session.Request{
+    public class Request extends Session.Request {
         public String type = "uploadImage";
         //base64编码后的位图，Utils有相关编码的方法,bitmapToBase64
         public String imgBase64;

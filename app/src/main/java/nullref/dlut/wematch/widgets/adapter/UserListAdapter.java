@@ -22,11 +22,10 @@ import nullref.dlut.wematch.widgets.RoundImageView;
  * 支持添加卡片，删除卡片
  */
 
-public class UserListAdapter extends BaseAdapter<UserListAdapter.UserCardViewHolder,UserListInfo>  {
+public class UserListAdapter extends BaseAdapter<UserListAdapter.UserCardViewHolder, UserListInfo> {
 
 
     CardListener listener;
-
 
 
     @Override
@@ -38,8 +37,9 @@ public class UserListAdapter extends BaseAdapter<UserListAdapter.UserCardViewHol
         holder.setListener(listener);
         return holder;
     }
+
     public void setListener(CardListener listener) {
-        for (UserCardViewHolder holder:holders
+        for (UserCardViewHolder holder : holders
                 ) {
             holder.setListener(listener);
         }
@@ -49,23 +49,21 @@ public class UserListAdapter extends BaseAdapter<UserListAdapter.UserCardViewHol
     @Override
     public void onBindViewHolder(UserCardViewHolder holder, int position) {
         UserListInfo data = datas.get(position);
-        holder.onBindView(data,position);
+        holder.onBindView(data, position);
     }
 
     public interface CardListener {
         void onViewClicked(View view, int position);
+
         void onViewLongPressed(View view, int postion);
 
     }
 
     /**
-     *
      * ViewHolder
-     *
      */
 
-    public  class UserCardViewHolder extends RecyclerView.ViewHolder {
-
+    public class UserCardViewHolder extends RecyclerView.ViewHolder {
 
 
         TextView userName;
@@ -75,15 +73,6 @@ public class UserListAdapter extends BaseAdapter<UserListAdapter.UserCardViewHol
 
         UserListInfo data;
         CardListener listener;
-
-        public CardListener getListener() {
-            return listener;
-        }
-
-        public void setListener(CardListener listener) {
-            this.listener = listener;
-        }
-
         View.OnTouchListener onTouchListener = new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent motion) {
@@ -107,7 +96,7 @@ public class UserListAdapter extends BaseAdapter<UserListAdapter.UserCardViewHol
                             }
                         }
                         if (Math.abs(mCurPosX - mPosX) < 25) {
-                            listener.onViewClicked(v,getLayoutPosition());
+                            listener.onViewClicked(v, getLayoutPosition());
                         }
 
                         break;
@@ -121,12 +110,20 @@ public class UserListAdapter extends BaseAdapter<UserListAdapter.UserCardViewHol
             userName = (TextView) view.findViewById(R.id.user_card_title);
             userInfo = (TextView) view.findViewById(R.id.user_card_short_info);
             userMajor = (TextView) view.findViewById(R.id.user_card_major);
-            userAvatar = (RoundImageView)view.findViewById(R.id.user_card_avatar);
+            userAvatar = (RoundImageView) view.findViewById(R.id.user_card_avatar);
 
             view.setOnTouchListener(onTouchListener);
         }
-        public void onBindView(UserListInfo data, int position)
-        {
+
+        public CardListener getListener() {
+            return listener;
+        }
+
+        public void setListener(CardListener listener) {
+            this.listener = listener;
+        }
+
+        public void onBindView(UserListInfo data, int position) {
             this.data = data;
             if (data.name == "") {
                 userInfo.setText("");
@@ -147,7 +144,7 @@ public class UserListAdapter extends BaseAdapter<UserListAdapter.UserCardViewHol
 
             Glide
                     .with(userAvatar)
-                    .load("http://60.205.218.75:8980/image/"+data.avatarUrl)
+                    .load("http://60.205.218.75:8980/image/" + data.avatarUrl)
                     .into(userAvatar);
         }
     }

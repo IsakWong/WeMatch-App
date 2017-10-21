@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.graphics.Rect;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Space;
@@ -34,19 +33,19 @@ public class ScrollUtils {
                 //获得屏幕整体的高度
                 int hight = decorView.getHeight();
                 //获得键盘高度
-                keyboardHeight  = hight-displayHight;
+                keyboardHeight = hight - displayHight;
                 boolean visible = (double) displayHight / hight < 0.8;
-                if(visible != isVisiableForLast){
+                if (visible != isVisiableForLast) {
                     int height = scrollView.getHeight() - keyboardHeight;
                     int Top = curentView.getTop();
-                    if(visible){
-                        Space space =(Space)scrollView.findViewById(R.id.fill_space);
-                        if(space !=null){
-                            LinearLayout.LayoutParams linearParams =(LinearLayout.LayoutParams) space.getLayoutParams(); //取控件textView当前的布局参数
+                    if (visible) {
+                        Space space = (Space) scrollView.findViewById(R.id.fill_space);
+                        if (space != null) {
+                            LinearLayout.LayoutParams linearParams = (LinearLayout.LayoutParams) space.getLayoutParams(); //取控件textView当前的布局参数
                             linearParams.height = scrollView.getHeight();
                             space.setLayoutParams(linearParams); //使设置好的布局参数应用到控件</pre>
                         }
-                        Utils.smoothScroll(scrollView,Top- height,500);
+                        Utils.smoothScroll(scrollView, Top - height, 500);
                     }
 
                 }

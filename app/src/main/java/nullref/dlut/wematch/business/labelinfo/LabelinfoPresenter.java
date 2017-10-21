@@ -7,16 +7,15 @@ import nullref.dlut.wematch.sessions.SubscribeLabelsSession;
  * Created by IsakWong on 2017/5/25.
  */
 
-public class LabelinfoPresenter implements LabelinfoContract.Presenter{
+public class LabelinfoPresenter implements LabelinfoContract.Presenter {
 
     LabelinfoContract.View view;
-
+    SubscribeLabelsSession session = new SubscribeLabelsSession(this);
 
     public LabelinfoPresenter(LabelinfoContract.View view) {
         this.view = view;
     }
 
-    SubscribeLabelsSession session = new SubscribeLabelsSession(this);
     @Override
     public void followLabel(Label label) {
         session.request.labelsID.clear();

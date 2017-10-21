@@ -10,12 +10,13 @@ import nullref.dlut.wematch.sessions.SubscribeLabelsSession;
 public interface LabelinfoContract {
     interface View {
         void onFollowLabel();
+
         void onFollowLabelError(String cause);
 
 
     }
 
-    interface Presenter extends SubscribeLabelsSession.Listener{
+    interface Presenter extends SubscribeLabelsSession.Listener {
         void followLabel(Label label);
     }
 }

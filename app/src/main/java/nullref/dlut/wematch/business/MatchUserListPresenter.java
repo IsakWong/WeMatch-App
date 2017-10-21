@@ -1,37 +1,20 @@
-package nullref.dlut.wematch.layout.userlist;
+package nullref.dlut.wematch.business;
 
 import nullref.dlut.wematch.bean.Match;
 import nullref.dlut.wematch.bean.UserListInfo;
+import nullref.dlut.wematch.layout.userlist.UserListContract;
 import nullref.dlut.wematch.sessions.GetSubscribeUsersOfMatchSession;
 
 /**
  * Created by IsakWong on 2017/5/25.
  */
 
-public class UserListPresenter implements UserListContract.Presenter{
+public class MatchUserListPresenter implements UserListContract.Presenter {
 
-
-    public UserListContract.View getView() {
-        return view;
-    }
-
-    public void setView(UserListContract.View view) {
-        this.view = view;
-    }
 
     //content
     UserListContract.View view;
-
-    public Match getData() {
-        return data;
-    }
-
-    public void setData(Match data) {
-        this.data = data;
-    }
-
     Match data;
-
     GetSubscribeUsersOfMatchSession refreshMatchUserSession = new GetSubscribeUsersOfMatchSession(new GetSubscribeUsersOfMatchSession.Listener() {
         @Override
         public void onGetFollowUsers(UserListInfo[] userListInfo) {
@@ -44,6 +27,21 @@ public class UserListPresenter implements UserListContract.Presenter{
         }
     });
 
+    public UserListContract.View getView() {
+        return view;
+    }
+
+    public void setView(UserListContract.View view) {
+        this.view = view;
+    }
+
+    public Match getData() {
+        return data;
+    }
+
+    public void setData(Match data) {
+        this.data = data;
+    }
 
     @Override
     public void refreshUsers() {

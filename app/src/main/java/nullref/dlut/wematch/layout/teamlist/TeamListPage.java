@@ -49,10 +49,12 @@ public class TeamListPage extends ColorStatusPage implements TeamListContract.Vi
     public void setPresenter(TeamListContract.Presenter presenter) {
         this.presenter = presenter;
     }
+
     @Override
     public TeamListAdapter getAdapter() {
         return adapter;
     }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -138,7 +140,7 @@ public class TeamListPage extends ColorStatusPage implements TeamListContract.Vi
 
 
     @OnClick(R.id.navigation_icon)
-    public void onNavigationClicked(){
+    public void onNavigationClicked() {
         onBackPressed();
     }
 

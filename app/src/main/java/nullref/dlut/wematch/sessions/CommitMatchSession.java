@@ -11,11 +11,6 @@ public class CommitMatchSession extends Session<CommitMatchSession.Request, Comm
     Listener listener;
 
 
-    public interface Listener {
-        void onCommitMatch(String key);
-        void onCommitMatchError(String cause);
-    }
-
     public CommitMatchSession(Listener listener) {
         this.listener = listener;
         request = new Request();
@@ -31,12 +26,18 @@ public class CommitMatchSession extends Session<CommitMatchSession.Request, Comm
             listener.onCommitMatchError("提交失败");
     }
 
-    public class Response extends Session.Response{
+    public interface Listener {
+        void onCommitMatch(String key);
+
+        void onCommitMatchError(String cause);
+    }
+
+    public class Response extends Session.Response {
         public String key;
 
     }
 
-    public class Request extends Session.Request{
+    public class Request extends Session.Request {
         public String type = "userCommitMatch";
         public CommitMatch commitMatch;//提交的比赛信息
 

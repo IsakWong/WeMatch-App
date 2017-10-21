@@ -4,12 +4,11 @@ import java.io.Serializable;
 
 /**
  * Created by IsakWong on 2017/7/4.
- *
+ * <p>
  * 提交比赛页面的信息类
- *
  */
 
-public class CommitMatch implements Serializable{
+public class CommitMatch implements Serializable {
     public int ID;//比赛ID，服务器分配
     public String name;//比赛名字，25字以内
     public String shortInfo;//简短介绍 40字以内
@@ -24,9 +23,6 @@ public class CommitMatch implements Serializable{
 
     public int[] labels;//比赛标签数组
     public String host;//举办方
-
-
-
 
 
 }

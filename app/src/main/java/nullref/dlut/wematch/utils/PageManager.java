@@ -5,9 +5,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.transition.Fade;
-import android.transition.TransitionInflater;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
 import java.util.ArrayList;
 
@@ -21,13 +18,12 @@ import nullref.dlut.wematch.base.BasePage;
  */
 public class PageManager {
 
-    private BasePage curFragment;
-    private FragmentManager mFragmentManager;
-
     /**
      * The M fragments.
      */
     ArrayList<BasePage> fragments = new ArrayList<>();
+    private BasePage curFragment;
+    private FragmentManager mFragmentManager;
 
 
     /**
@@ -35,7 +31,7 @@ public class PageManager {
      *
      * @param manager the manager
      */
-    public PageManager(FragmentManager manager){
+    public PageManager(FragmentManager manager) {
         mFragmentManager = manager;
     }
 
@@ -53,7 +49,7 @@ public class PageManager {
      *
      * @param fragment the fragment
      */
-    public  void setCurFragment(BasePage fragment) {
+    public void setCurFragment(BasePage fragment) {
         curFragment = fragment;
     }
 
@@ -65,16 +61,12 @@ public class PageManager {
      */
     public void showPage(BasePage fragment) {
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
-        if(fragments.contains(fragment))
-        {
+        if (fragments.contains(fragment)) {
             transaction.show(fragment);
+        } else {
+            transaction.add(R.id.mainpage_content, fragment);
         }
-        else
-        {
-            transaction.add(R.id.mainpage_content,fragment);
-        }
-        if(curFragment!= null)
-        {
+        if (curFragment != null) {
             curFragment.setExitTransition(new Fade());
             transaction
                     .hide(curFragment);
@@ -100,7 +92,7 @@ public class PageManager {
         fragment.setEnterTransition(new Fade());
         transaction
                 .hide(curFragment)
-                .add(R.id.mainpage_content,fragment)
+                .add(R.id.mainpage_content, fragment)
                 .commit();
         curFragment.nextFragment = fragment;
         fragment.preFragment = curFragment;
@@ -113,11 +105,9 @@ public class PageManager {
      */
     public void backPage() {
         BasePage preFragment;
-        if(curFragment!=null)
-        {
+        if (curFragment != null) {
             fragments.remove(curFragment);
-            if(curFragment.preFragment!=null)
-            {
+            if (curFragment.preFragment != null) {
                 preFragment = curFragment.preFragment;
                 FragmentTransaction transaction = mFragmentManager.beginTransaction();
                 curFragment.setExitTransition(new Fade());
@@ -134,12 +124,13 @@ public class PageManager {
         }
 
     }
-    public void removeAllPage(){
+
+    public void removeAllPage() {
 
 
         FragmentTransaction transcaction = mFragmentManager.beginTransaction();
-        for (Fragment fragment:fragments
-             ) {
+        for (Fragment fragment : fragments
+                ) {
 
             transcaction.remove(curFragment);
         }

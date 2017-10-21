@@ -10,14 +10,18 @@ import nullref.dlut.wematch.sessions.UploadImgSession;
 public interface UserInfoSetContract {
     interface View {
         void onUploadImg();
+
         void onUploadImgError(String cause);
+
         void onUpdateUserInfo();
+
         void onUpdateUserInfoError(String cause);
     }
 
-    interface Presenter extends UpdateUserInfoSession.Listener,UploadImgSession.Listener{
+    interface Presenter extends UpdateUserInfoSession.Listener, UploadImgSession.Listener {
         void UpdateInfo();
-        void modifyInfo(String key,String value);
+
+        void modifyInfo(String key, String value);
     }
 
 }

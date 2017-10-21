@@ -11,11 +11,6 @@ public class GetSubscribeUsersOfMatchSession extends Session<GetSubscribeUsersOf
     Listener listener;
 
 
-    public interface Listener {
-        void onGetFollowUsers(UserListInfo[] userListInfo);
-        void onGetFollowUsersError(String cause);
-    }
-
     public GetSubscribeUsersOfMatchSession(Listener listener) {
         this.listener = listener;
         request = new Request();
@@ -31,11 +26,17 @@ public class GetSubscribeUsersOfMatchSession extends Session<GetSubscribeUsersOf
             listener.onGetFollowUsersError(response.description);
     }
 
+    public interface Listener {
+        void onGetFollowUsers(UserListInfo[] userListInfo);
+
+        void onGetFollowUsersError(String cause);
+    }
+
     public class Response extends Session.Response {
         public UserListInfo[] userListInfo;
     }
 
-    public class Request extends Session.Request{
+    public class Request extends Session.Request {
         public String type = "getMatchFollowUser";
         public int matchID;//获取该ID比赛的关注者列表
         public int userID;

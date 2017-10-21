@@ -10,24 +10,31 @@ import nullref.dlut.wematch.sessions.UploadImgSession;
  */
 
 public interface CommitMatchPageContract {
-    interface ViewStep1{
+    interface ViewStep1 {
 
     }
-    interface ViewStep2{
+
+    interface ViewStep2 {
 
     }
-    interface ViewStep3{
+
+    interface ViewStep3 {
         void error(String cause);
+
         void onCommitMatch();
+
         void onLabelReceived(Label[] labels);
+
         void onCommitInfo();
 
     }
+
     interface View {
     }
 
-    interface Presenter extends CommitMatchSession.Listener,GetAllLabelsSession.Listener,UploadImgSession.Listener {
+    interface Presenter extends CommitMatchSession.Listener, GetAllLabelsSession.Listener, UploadImgSession.Listener {
         void commitMatch();
+
         void init();
     }
 }

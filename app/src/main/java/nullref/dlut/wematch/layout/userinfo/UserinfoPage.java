@@ -32,7 +32,6 @@ import butterknife.Unbinder;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.ColorStatusPage;
 import nullref.dlut.wematch.bean.UserInfo;
-import nullref.dlut.wematch.bean.UserListInfo;
 import nullref.dlut.wematch.widgets.AvatarImageTarget;
 import nullref.dlut.wematch.widgets.RoundImageView;
 
@@ -42,9 +41,9 @@ import nullref.dlut.wematch.widgets.RoundImageView;
  */
 
 
-public class UserinfoPage extends ColorStatusPage implements UserinfoContract.View, ObservableScrollViewCallbacks {
+public class UserInfoPage extends ColorStatusPage implements UserInfoContract.View, ObservableScrollViewCallbacks {
 
-    UserinfoContract.Presenter presenter;
+    UserInfoContract.Presenter presenter;
     @BindView(R.id.match_info_short_info)
     TextView matchInfoShortInfo;
     @BindView(R.id.match_info_community)
@@ -63,8 +62,6 @@ public class UserinfoPage extends ColorStatusPage implements UserinfoContract.Vi
     FloatingActionButton fabLike;
     @BindView(R.id.fab_menu)
     FloatingActionsMenu fabMenu;
-    @BindView(R.id.user_card_pic)
-    AppCompatImageView userCardPic;
     @BindView(R.id.status_bar)
     ImageView statusBar;
     @BindView(R.id.navigation_icon)
@@ -77,6 +74,8 @@ public class UserinfoPage extends ColorStatusPage implements UserinfoContract.Vi
     RoundImageView userInfoAvatar;
     @BindView(R.id.container)
     FrameLayout container;
+    @BindView(R.id.user_info_avatar_bg)
+    AppCompatImageView userInfoAvatarBg;
 
     UserInfo userInfo;
     Unbinder unbinder;
@@ -84,18 +83,17 @@ public class UserinfoPage extends ColorStatusPage implements UserinfoContract.Vi
     private int mActionBarSize;
     private int mFlexibleSpaceImageHeight;
 
-    public void setPresenter(UserinfoContract.Presenter presenter) {
+    public UserInfoPage() {
+
+    }
+
+    public void setPresenter(UserInfoContract.Presenter presenter) {
         this.presenter = presenter;
     }
 
-
-    public UserinfoPage() {
-
-    }
-
     @Override
-    public void onCreate(Bundle saveedInstance) {
-        super.onCreate(saveedInstance);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
     }
 
@@ -116,26 +114,25 @@ public class UserinfoPage extends ColorStatusPage implements UserinfoContract.Vi
 
             }
         });
-        String avatarUrlPath= "https://wematch.oss-cn-shanghai.aliyuncs.com/"+ userInfo.avatarUrl;
-        RequestOptions options2 = new RequestOptions()
-                .placeholder(R.drawable.bg_blue)
-                .priority(Priority.HIGH)
-                .diskCacheStrategy( DiskCacheStrategy.NONE )
-                .skipMemoryCache(true);
-        Glide
-                .with(userInfoAvatar)
-                .asBitmap()
-                .load(avatarUrlPath)
-                .apply(options2)
-                .into(new AvatarImageTarget(userInfoAvatar,userCardPic));
+        presenter.getUserInfo();
         return view;
     }
 
-    public void setUserInfo(UserInfo userInfo){this.userInfo = userInfo;}
 
     @Override
     public void onGetUser(UserInfo user) {
         userInfo = user;
+        String avatarUrlPath = "https://wematch.oss-cn-shanghai.aliyuncs.com/" + user.avatarUrl;
+        RequestOptions options2 = new RequestOptions()
+                .placeholder(R.drawable.bg_blue)
+                .priority(Priority.HIGH)
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC);
+        Glide
+                .with(this)
+                .asBitmap()
+                .load(avatarUrlPath)
+                .apply(options2)
+                .into(new AvatarImageTarget(userInfoAvatar, userInfoAvatarBg));
 
     }
 
@@ -163,11 +160,11 @@ public class UserinfoPage extends ColorStatusPage implements UserinfoContract.Vi
         float flexibleRange = mFlexibleSpaceImageHeight - mActionBarSize;
         int minOverlayTransitionY = mActionBarSize - overlay.getHeight();
         ViewHelper.setTranslationY(overlay, ScrollUtils.getFloat(-scrollY, minOverlayTransitionY, 0));
-        ViewHelper.setTranslationY(userCardPic, ScrollUtils.getFloat(-scrollY, minOverlayTransitionY, 0));
+        ViewHelper.setTranslationY(userInfoAvatarBg, ScrollUtils.getFloat(-scrollY, minOverlayTransitionY, 0));
         ViewHelper.setTranslationY(userInfoAvatar, ScrollUtils.getFloat(-scrollY, minOverlayTransitionY, 0));
-        ViewHelper.setAlpha(userCardPic, 1 - ScrollUtils.getFloat((float) scrollY / flexibleRange, 0, 1));
-        ViewHelper.setScaleX(userInfoAvatar,1 - ScrollUtils.getFloat((float) scrollY / flexibleRange, 0, 1));
-        ViewHelper.setScaleY(userInfoAvatar,1 - ScrollUtils.getFloat((float) scrollY / flexibleRange, 0, 1));
+        ViewHelper.setAlpha(userInfoAvatarBg, 1 - ScrollUtils.getFloat((float) scrollY / flexibleRange, 0, 1));
+        ViewHelper.setScaleX(userInfoAvatar, 1 - ScrollUtils.getFloat((float) scrollY / flexibleRange, 0, 1));
+        ViewHelper.setScaleY(userInfoAvatar, 1 - ScrollUtils.getFloat((float) scrollY / flexibleRange, 0, 1));
     }
 
     @Override
@@ -199,5 +196,8 @@ public class UserinfoPage extends ColorStatusPage implements UserinfoContract.Vi
     }
 
 
+    @OnClick(R.id.user_info_avatar_bg)
+    public void onViewClicked() {
+    }
 }
 

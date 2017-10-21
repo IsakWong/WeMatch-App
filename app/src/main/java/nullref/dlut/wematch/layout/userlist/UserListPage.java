@@ -17,8 +17,8 @@ import butterknife.Unbinder;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.ColorStatusPage;
 import nullref.dlut.wematch.bean.UserListInfo;
-import nullref.dlut.wematch.layout.userinfo.UserinfoPage;
-import nullref.dlut.wematch.layout.userinfo.UserinfoPresenter;
+import nullref.dlut.wematch.layout.userinfo.UserInfoPage;
+import nullref.dlut.wematch.layout.userinfo.UserInfoPresenter;
 import nullref.dlut.wematch.widgets.adapter.UserListAdapter;
 
 /**
@@ -29,13 +29,7 @@ import nullref.dlut.wematch.widgets.adapter.UserListAdapter;
 public class UserListPage extends ColorStatusPage implements UserListContract.View {
 
     UserListContract.Presenter presenter;
-    public void setPresenter(UserListContract.Presenter presenter) {
-        this.presenter = presenter;
-    }
-
     UserListAdapter adapter;
-
-
     @BindView(R.id.navigation_icon)
     ImageButton navigationIcon;
     @BindView(R.id.toolbar_refresh)
@@ -45,13 +39,15 @@ public class UserListPage extends ColorStatusPage implements UserListContract.Vi
     @BindView(R.id.user_list)
     RecyclerView userList;
     Unbinder unbinder;
-
     int matchID;
+
     public UserListPage() {
 
     }
 
-
+    public void setPresenter(UserListContract.Presenter presenter) {
+        this.presenter = presenter;
+    }
 
     @Override
     public void onCreate(Bundle saveedInstance) {
@@ -72,9 +68,9 @@ public class UserListPage extends ColorStatusPage implements UserListContract.Vi
         adapter.setListener(new UserListAdapter.CardListener() {
             @Override
             public void onViewClicked(View view, int position) {
-                UserinfoPage  page = new UserinfoPage();
+                UserInfoPage page = new UserInfoPage();
                 UserListInfo userListInfo = adapter.getCardData(position);
-                UserinfoPresenter presenter = new UserinfoPresenter();
+                UserInfoPresenter presenter = new UserInfoPresenter();
                 presenter.setView(page);
                 presenter.setUserId(userListInfo.ID);
                 page.setPresenter(presenter);
@@ -87,12 +83,11 @@ public class UserListPage extends ColorStatusPage implements UserListContract.Vi
             }
         });
 
-        if(adapter.getDatas().isEmpty()){
+        if (adapter.getDatas().isEmpty()) {
             presenter.refreshUsers();
         }
         return view;
     }
-
 
 
     @Override
@@ -114,7 +109,7 @@ public class UserListPage extends ColorStatusPage implements UserListContract.Vi
     @Override
     public void onGetUserList(UserListInfo[] userListInfos) {
         adapter.clearCard();
-        for (UserListInfo match: userListInfos
+        for (UserListInfo match : userListInfos
                 ) {
             adapter.addCard(match);
         }
@@ -133,7 +128,6 @@ public class UserListPage extends ColorStatusPage implements UserListContract.Vi
     public void onToolbarRefreshClicked() {
         presenter.refreshUsers();
     }
-
 
 
 }
