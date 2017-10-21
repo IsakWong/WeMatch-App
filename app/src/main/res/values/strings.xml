@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WeMatch 赛友</string>
+    <string name="app_name">WeMatch</string>
     <string name="bottom_navigation_match_list">比赛</string>
     <string name="bottom_navigation_community">社区</string>
     <string name="bottom_navigation_discovery">发现</string>

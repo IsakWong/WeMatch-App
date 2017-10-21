@@ -339,11 +339,9 @@ public class MatchInfoPage extends TransparentStatusPage implements ObservableSc
 
                 break;
             case R.id.fab_create_team:
-                final AlertDialog.Builder customizeDialog =
-                        new AlertDialog.Builder(getContext());
-                final View dialogView = getBaseActivity().getLayoutInflater()
-                        .inflate(R.layout.dialog_create_team, null);
-                customizeDialog.setView(dialogView);
+                final AlertDialog.Builder dialogBuilder =  new AlertDialog.Builder(getContext());
+                final View dialogView = getBaseActivity().getLayoutInflater().inflate(R.layout.dialog_create_team, null);
+                dialogBuilder.setView(dialogView);
                 final EditText name = (EditText) dialogView.findViewById(R.id.team_name_edit);
                 final EditText info = (EditText) dialogView.findViewById(R.id.team_info_edit);
                 final EditText person = (EditText) dialogView.findViewById(R.id.team_person_edit);
@@ -354,10 +352,8 @@ public class MatchInfoPage extends TransparentStatusPage implements ObservableSc
                             String strName = name.getText().toString();
                             String strInfo = info.getText().toString();
                             try {
-
                                 Integer persons = Integer.valueOf(person.getText().toString());
                                 presenter.createTeam(strName, strInfo, persons);
-
                             } catch (NumberFormatException exception) {
                                 makeToast("人数格式出错");
                             }
@@ -365,7 +361,7 @@ public class MatchInfoPage extends TransparentStatusPage implements ObservableSc
 
                     }
                 });
-                final AlertDialog dialog = customizeDialog.show();
+                dialogBuilder.show();
                 fabMenu.collapse();
                 break;
             case R.id.fab_alarm:

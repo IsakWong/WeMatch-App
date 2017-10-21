@@ -129,6 +129,9 @@ public class UserListPage extends ColorStatusPage implements UserListContract.Vi
         presenter.refreshUsers();
     }
 
-
+    @OnClick(R.id.navigation_icon)
+    public void onViewClicked() {
+        backPage();
+    }
 }
 

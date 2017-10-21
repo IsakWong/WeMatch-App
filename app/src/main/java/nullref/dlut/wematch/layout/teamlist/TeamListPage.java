@@ -128,7 +128,7 @@ public class TeamListPage extends ColorStatusPage implements TeamListContract.Vi
                 ) {
             adapter.addCard(team);
         }
-        //ptrFrame.refreshComplete();
+        ptrFrame.refreshComplete();
     }
 
 

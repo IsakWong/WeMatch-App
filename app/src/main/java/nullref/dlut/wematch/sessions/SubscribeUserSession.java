@@ -1,5 +1,7 @@
 package nullref.dlut.wematch.sessions;
 
+import java.util.ArrayList;
+
 /**
  * Created by isakwong on 2017/7/16.
  */
@@ -38,7 +40,7 @@ public class SubscribeUserSession extends Session<SubscribeUserSession.Request, 
 
     public class Request extends Session.Request {
         public String type = "followUsers";
-        public int[] userID;
+        public ArrayList<Integer> userID;
 
     }
 }
