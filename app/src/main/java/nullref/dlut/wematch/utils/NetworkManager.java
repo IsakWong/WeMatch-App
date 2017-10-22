@@ -101,10 +101,16 @@ public class NetworkManager {
                         public void onResponse(Call call, Response response) throws IOException {
 
                             if (null != response) {
-                                String body = "";
-                                body = response.body().string();
-                                T2 s = (T2) g.fromJson(body, session.response.getClass());
-                                subscriber.onNext(s);
+                                try{
+
+                                    String body = "";
+                                    body = response.body().string();
+                                    T2 s = (T2) g.fromJson(body, session.response.getClass());
+                                    subscriber.onNext(s);
+                                }
+                                catch (Exception exp){
+                                    subscriber.onError(exp);
+                                }
                             } else {
 
                             }

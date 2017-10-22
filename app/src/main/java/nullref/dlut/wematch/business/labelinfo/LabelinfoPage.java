@@ -54,8 +54,6 @@ public class LabelinfoPage extends ColorStatusPage implements LabelinfoContract.
 
     @BindView(R.id.fab_like)
     FloatingActionButton fabLike;
-    @BindView(R.id.label_info_web)
-    WebView labelInfoWeb;
 
     public LabelinfoPage() {
 
@@ -83,7 +81,7 @@ public class LabelinfoPage extends ColorStatusPage implements LabelinfoContract.
         unbinder = ButterKnife.bind(this, view);
         try {
             String encodeurl = "http://wematchcommunity.applinzi.com/main-label.php?labelname=" + Utils.toURLEncoded(data.getName());
-            labelInfoWeb.loadUrl(encodeurl);
+            //labelInfoWeb.loadUrl(encodeurl);
         } catch (Exception ex) {
 
         }

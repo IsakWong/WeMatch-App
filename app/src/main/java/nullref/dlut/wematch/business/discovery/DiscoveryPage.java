@@ -209,6 +209,7 @@ public class DiscoveryPage extends ColorStatusPage implements DiscoveryContract.
 
     @OnClick(R.id.discovery_labels)
     public void onDiscoveryLabelsClicked() {
+        makeToast(getResources().getString(R.string.to_do));
     }
 }
 

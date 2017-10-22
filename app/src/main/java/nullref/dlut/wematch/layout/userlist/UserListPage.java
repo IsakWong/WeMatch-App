@@ -71,6 +71,7 @@ public class UserListPage extends ColorStatusPage implements UserListContract.Vi
                 UserInfoPage page = new UserInfoPage();
                 UserListInfo userListInfo = adapter.getCardData(position);
                 UserInfoPresenter presenter = new UserInfoPresenter();
+
                 presenter.setView(page);
                 presenter.setUserId(userListInfo.ID);
                 page.setPresenter(presenter);

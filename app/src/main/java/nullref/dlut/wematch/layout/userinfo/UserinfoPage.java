@@ -1,6 +1,9 @@
 package nullref.dlut.wematch.layout.userinfo;
 
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatImageView;
@@ -29,11 +32,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import de.hdodenhof.circleimageview.CircleImageView;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.ColorStatusPage;
 import nullref.dlut.wematch.bean.UserInfo;
+import nullref.dlut.wematch.business.subscribe.SubscribeMatchListPresenter;
+import nullref.dlut.wematch.layout.matchlist.MatchListPage;
 import nullref.dlut.wematch.widgets.AvatarImageTarget;
-import nullref.dlut.wematch.widgets.RoundImageView;
 
 
 /**
@@ -43,15 +48,25 @@ import nullref.dlut.wematch.widgets.RoundImageView;
 
 public class UserInfoPage extends ColorStatusPage implements UserInfoContract.View, ObservableScrollViewCallbacks {
 
+
+    @BindView(R.id.user_info_matches)
+    LinearLayout userInfoMatches;
+    @BindView(R.id.user_info_subscribers)
+    LinearLayout userInfoSubscribers;
+    @BindView(R.id.match_info_message)
+    LinearLayout matchInfoMessage;
+    @BindView(R.id.textView17)
+    TextView textView17;
+    @BindView(R.id.appCompatImageView2)
+    AppCompatImageView appCompatImageView2;
+    private int mActionBarSize;
+    private int mFlexibleSpaceImageHeight;
+    UserInfo userInfo;
+    Unbinder unbinder;
     UserInfoContract.Presenter presenter;
-    @BindView(R.id.match_info_short_info)
-    TextView matchInfoShortInfo;
-    @BindView(R.id.match_info_community)
-    LinearLayout matchInfoCommunity;
-    @BindView(R.id.match_info_website)
-    LinearLayout matchInfoWebsite;
-    @BindView(R.id.match_info_concern)
-    LinearLayout matchInfoConcern;
+
+    @BindView(R.id.user_info_short_info)
+    TextView userShortInfo;
     @BindView(R.id.scroll_content)
     LinearLayout scrollContent;
     @BindView(R.id.scroll)
@@ -71,17 +86,20 @@ public class UserInfoPage extends ColorStatusPage implements UserInfoContract.Vi
     @BindView(R.id.toolbar)
     LinearLayout toolbar;
     @BindView(R.id.user_info_avatar)
-    RoundImageView userInfoAvatar;
+    CircleImageView userInfoAvatar;
     @BindView(R.id.container)
     FrameLayout container;
     @BindView(R.id.user_info_avatar_bg)
     AppCompatImageView userInfoAvatarBg;
 
-    UserInfo userInfo;
-    Unbinder unbinder;
-
-    private int mActionBarSize;
-    private int mFlexibleSpaceImageHeight;
+    @BindView(R.id.user_info_name)
+    TextView userInfoName;
+    @BindView(R.id.user_info_school)
+    TextView userInfoSchool;
+    @BindView(R.id.user_info_qq)
+    TextView userInfoQq;
+    @BindView(R.id.user_info_major)
+    TextView userInfoMajor;
 
     public UserInfoPage() {
 
@@ -120,13 +138,17 @@ public class UserInfoPage extends ColorStatusPage implements UserInfoContract.Vi
 
 
     @Override
-    public void onGetUser(UserInfo user) {
-        userInfo = user;
-        String avatarUrlPath = "https://wematch.oss-cn-shanghai.aliyuncs.com/" + user.avatarUrl;
+    public void onGetUser(UserInfo userInfo) {
+        this.userInfo = userInfo;
+        userShortInfo.setText(userInfo.shortInfo);
+        userInfoName.setText(userInfo.name);
+        userInfoMajor.setText(userInfo.major);
+        String avatarUrlPath = "https://wematch.oss-cn-shanghai.aliyuncs.com/" + userInfo.avatarUrl;
         RequestOptions options2 = new RequestOptions()
                 .placeholder(R.drawable.bg_blue)
                 .priority(Priority.HIGH)
                 .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC);
+
         Glide
                 .with(this)
                 .asBitmap()
@@ -196,8 +218,42 @@ public class UserInfoPage extends ColorStatusPage implements UserInfoContract.Vi
     }
 
 
-    @OnClick(R.id.user_info_avatar_bg)
+    @OnClick(R.id.user_info_matches)
+    public void onUserInfoMatchesClicked() {
+        MatchListPage matchListPage = new MatchListPage();
+        SubscribeMatchListPresenter presenter = new SubscribeMatchListPresenter();
+        presenter.setView(matchListPage);
+        matchListPage.setPresenter(presenter);
+        presenter.setUserID(-1);
+        jumpPage(matchListPage);
+    }
+
+    @OnClick(R.id.user_info_subscribers)
+    public void onUserInfoSubscribersClicked() {
+        //TODO 关注用户的人
+        makeToast("功能正在测试中，即将上线~");
+    }
+
+
+    @OnClick(R.id.share_icon)
+    public void onShareIconClicked() {
+        //TODO 用户分享
+        ClipboardManager cm = (ClipboardManager) getBaseActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData mClipData = ClipData.newPlainText("Label", "");
+        cm.setPrimaryClip(mClipData);
+        makeToast("用户信息已经复制到粘贴板。");
+    }
+
+    @OnClick(R.id.match_info_message)
     public void onViewClicked() {
+        //TODO 私信功能
+        makeToast("功能正在测试中，即将上线~");
+    }
+
+    @OnClick(R.id.fab_like)
+    public void onFabLikeClicked() {
+        makeToast("订阅用户成功！");
+        fabMenu.collapse();
     }
 }
 

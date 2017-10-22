@@ -14,6 +14,17 @@ import nullref.dlut.wematch.widgets.adapter.MatchListAdapter;
 public class SubscribeMatchListPresenter implements MatchListContract.Presenter {
 
     MatchListContract.View view;
+    int userID = -1;
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+
     GetMatchListSession getSubscribeMatchList = new GetMatchListSession(new GetMatchListSession.Listener() {
         @Override
         public void onGetMatchList(MatchListInfo[] matches, int matchID) {

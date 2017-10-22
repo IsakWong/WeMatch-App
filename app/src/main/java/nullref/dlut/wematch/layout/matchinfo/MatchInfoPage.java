@@ -2,6 +2,9 @@ package nullref.dlut.wematch.layout.matchinfo;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -326,6 +329,11 @@ public class MatchInfoPage extends TransparentStatusPage implements ObservableSc
 
     @OnClick(R.id.share_icon)
     public void onShareIconClicked() {
+        //TODO 比赛分享
+        ClipboardManager cm = (ClipboardManager) getBaseActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData mClipData = ClipData.newPlainText("Label", "");
+        cm.setPrimaryClip(mClipData);
+        makeToast("用户信息已经复制到粘贴板。");
     }
 
     @OnClick({R.id.fab_like, R.id.fab_create_team, R.id.fab_alarm})
