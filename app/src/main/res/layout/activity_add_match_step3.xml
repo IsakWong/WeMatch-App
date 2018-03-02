@@ -25,7 +25,7 @@
 
         <include
             android:id="@+id/status_bar"
-            layout="@layout/status_bar" />
+            layout="@layout/status_bar_blue" />
 
         <LinearLayout
             android:layout_width="match_parent"

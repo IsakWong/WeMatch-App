@@ -28,8 +28,8 @@ import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.ColorStatusPage;
 import nullref.dlut.wematch.bean.MatchListInfo;
 import nullref.dlut.wematch.business.MatchInfoPresenter;
-import nullref.dlut.wematch.business.commit.CommitMatchStep1Activity;
-import nullref.dlut.wematch.business.labelinfo.LabelinfoPage;
+import nullref.dlut.wematch.layout.commit.CommitMatchActivity;
+import nullref.dlut.wematch.layout.labelinfo.LabelPage;
 import nullref.dlut.wematch.layout.matchinfo.MatchInfoPage;
 import nullref.dlut.wematch.widgets.adapter.MatchListAdapter;
 
@@ -42,9 +42,8 @@ import static nullref.dlut.wematch.layout.matchlist.MatchListPage.NavigationType
  */
 
 
-public class MatchListPage extends ColorStatusPage implements MatchListContract.View {
+public class MatchListPage extends ColorStatusPage<MatchListContract.Presenter> implements MatchListContract.View {
 
-    MatchListContract.Presenter presenter;
 
     MatchListAdapter mAdapter;
 
@@ -91,7 +90,7 @@ public class MatchListPage extends ColorStatusPage implements MatchListContract.
                 case R.id.match_card_label2:
                 case R.id.match_card_label3:
                     Integer index = (Integer) view.getTag();
-                    LabelinfoPage labelInfoPage = new LabelinfoPage();
+                    LabelPage labelInfoPage = new LabelPage();
                     Bundle args = new Bundle();
                     args.putSerializable("label", mAdapter.getCardData(position).labels[index]);
                     labelInfoPage.setArguments(args);
@@ -164,8 +163,6 @@ public class MatchListPage extends ColorStatusPage implements MatchListContract.
 
     @Override
     public void onDestroy() {
-        presenter.setView(null);
-        setPresenter(null);
         super.onDestroy();
     }
 
@@ -240,7 +237,7 @@ public class MatchListPage extends ColorStatusPage implements MatchListContract.
                 @Override
                 public void onClick(View v) {
 
-                    getBaseActivity().jumpTo(CommitMatchStep1Activity.class, true);
+                    getBaseActivity().jumpTo(CommitMatchActivity.class, true);
                     popupWindow.dismiss();
                 }
             });
@@ -267,10 +264,6 @@ public class MatchListPage extends ColorStatusPage implements MatchListContract.
         makeToast(getString(R.string.to_do));
     }
 
-    @Override
-    public void setPresenter(MatchListContract.Presenter presenter) {
-        this.presenter = presenter;
-    }
 
     @Override
     public MatchListAdapter getAdapter() {

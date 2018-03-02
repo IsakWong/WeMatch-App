@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/WeMatch App.iml" filepath="$PROJECT_DIR$/WeMatch App.iml" />
       <module fileurl="file://$PROJECT_DIR$/WeMatch-App.iml" filepath="$PROJECT_DIR$/WeMatch-App.iml" />
       <module fileurl="file://$PROJECT_DIR$/ahbottomnavigation/ahbottomnavigation.iml" filepath="$PROJECT_DIR$/ahbottomnavigation/ahbottomnavigation.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ptr-lib/ptr-lib.iml" filepath="$PROJECT_DIR$/ptr-lib/ptr-lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ptr-lib/ptr.iml" filepath="$PROJECT_DIR$/ptr-lib/ptr.iml" />
     </modules>
   </component>
 </project>

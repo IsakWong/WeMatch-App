@@ -55,11 +55,11 @@ import static android.content.Context.ALARM_SERVICE;
  * Created by IsakWong on 2017/5/28.
  */
 
-public class MatchInfoPage extends TransparentStatusPage implements ObservableScrollViewCallbacks, MatchInfoContract.View {
+public class MatchInfoPage extends TransparentStatusPage<MatchInfoContract.Presenter> implements ObservableScrollViewCallbacks, MatchInfoContract.View {
 
 
     public int mShareImgId;
-    MatchInfoContract.Presenter presenter;
+
     Match match;
     @BindView(R.id.match_info_short_info)
     TextView matchInfoShortInfo;
@@ -373,7 +373,7 @@ public class MatchInfoPage extends TransparentStatusPage implements ObservableSc
                 fabMenu.collapse();
                 break;
             case R.id.fab_alarm:
-                Intent intent = new Intent(getBaseActivity(), AutoReceiver.class);
+                Intent intent = new Intent(getBaseActivity(), MatchNotificationReceiver.class);
                 intent.setAction("OPEN_PAGE");
                 // PendingIntent这个类用于处理即将发生的事情
                 PendingIntent sender = PendingIntent.getBroadcast(getBaseActivity(), 0, intent, 0);

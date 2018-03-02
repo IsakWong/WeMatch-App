@@ -2,6 +2,7 @@ package nullref.dlut.wematch.business.subscribe;
 
 import java.util.ArrayList;
 
+import nullref.dlut.wematch.base.BasePresenter;
 import nullref.dlut.wematch.bean.MatchListInfo;
 import nullref.dlut.wematch.layout.matchlist.MatchListContract;
 import nullref.dlut.wematch.sessions.GetMatchListSession;
@@ -11,9 +12,8 @@ import nullref.dlut.wematch.widgets.adapter.MatchListAdapter;
  * Created by IsakWong on 2017/5/25.
  */
 
-public class SubscribeMatchListPresenter implements MatchListContract.Presenter {
+public class SubscribeMatchListPresenter  extends BasePresenter<MatchListContract.View> implements MatchListContract.Presenter {
 
-    MatchListContract.View view;
     int userID = -1;
 
     public int getUserID() {
@@ -85,11 +85,6 @@ public class SubscribeMatchListPresenter implements MatchListContract.Presenter 
     @Override
     public void subscribeMatch(int position) {
 
-    }
-
-    @Override
-    public void setView(MatchListContract.View view) {
-        this.view = view;
     }
 
 }

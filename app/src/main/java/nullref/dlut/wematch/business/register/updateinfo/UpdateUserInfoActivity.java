@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.BaseActivity;
-import nullref.dlut.wematch.business.register.chooselabels.FollowLabelActivity;
+import nullref.dlut.wematch.layout.subscribe_labels.SubscribeLabelsActivity;
 
 /**
  * Created by IsakWong on 2017/5/18.
@@ -56,7 +56,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements UpdateUserIn
 
     @Override
     public void onUploadImg() {
-        jumpTo(FollowLabelActivity.class, false);
+        jumpTo(SubscribeLabelsActivity.class, false);
 
     }
 
@@ -72,6 +72,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements UpdateUserIn
 
     @Override
     public void onUpdateUserInfo() {
+        jumpTo(SubscribeLabelsActivity.class,false);
 
     }
 

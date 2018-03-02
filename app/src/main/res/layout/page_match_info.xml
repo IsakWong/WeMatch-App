@@ -622,7 +622,7 @@
 
         <include
             android:id="@+id/status_bar"
-            layout="@layout/status_bar" />
+            layout="@layout/status_bar_blue" />
 
         <LinearLayout
             android:id="@+id/toolbar"

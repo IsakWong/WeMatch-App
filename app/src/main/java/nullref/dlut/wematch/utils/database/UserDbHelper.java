@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.stmt.DeleteBuilder;
+import com.j256.ormlite.stmt.UpdateBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.DatabaseTable;
 import com.j256.ormlite.table.TableUtils;
@@ -65,6 +67,17 @@ public class UserDbHelper extends BaseDbHelper {
         return null;
     }
 
+    public void deleteUserRecord(String email){
+        try {
+            DeleteBuilder deleteBuilder = getDao(UserPwd.class).deleteBuilder();
+
+            deleteBuilder.where().eq("email", email).prepare();
+            deleteBuilder.delete();
+
+        } catch (Exception excep) {
+            LogToFile.e("type:database...", excep.getMessage());
+        }
+    }
     public void saveUserPwd(String username, String pwd) {
 
         UserPwd user = new UserPwd();

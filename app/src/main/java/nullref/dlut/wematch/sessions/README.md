@@ -1,5 +1,10 @@
 # Log
 
+### 02/03/2018
+1. 增加了[获取用户推送比赛列表会话](https://github.com/IsakWong/WeMatch-App/blob/master/app/src/main/java/nullref/dlut/wematch/sessions/GetRecommendedMatchesSession.java " ")\
+相关bean:\
+[MatchListInfo](https://github.com/IsakWong/WeMatch-App/blob/master/app/src/main/java/nullref/dlut/wematch/bean/MatchListInfo.java " ") \
+
 ### 10/20/2017
 1. 修改了[获取订阅的用户列表会话](https://github.com/IsakWong/WeMatch-App/blob/master/app/src/main/java/nullref/dlut/wematch/sessions/GetSubscribeUserSession.java " ")\
 相关Bean:\

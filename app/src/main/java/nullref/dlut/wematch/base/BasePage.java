@@ -31,7 +31,13 @@ import nullref.dlut.wematch.R;
  * <p>
  * TransparentPage 透明状态栏
  */
-public abstract class BasePage extends Fragment {
+public abstract class BasePage<T> extends Fragment {
+
+    public T presenter;
+
+    public void setPresenter(T presenter) {
+        this.presenter = presenter;
+    }
 
     public BasePage nextFragment = null;
     public BasePage preFragment = null;

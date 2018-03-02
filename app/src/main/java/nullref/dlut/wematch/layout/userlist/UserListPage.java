@@ -18,7 +18,7 @@ import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.ColorStatusPage;
 import nullref.dlut.wematch.bean.UserListInfo;
 import nullref.dlut.wematch.layout.userinfo.UserInfoPage;
-import nullref.dlut.wematch.layout.userinfo.UserInfoPresenter;
+import nullref.dlut.wematch.business.UserInfoPresenter;
 import nullref.dlut.wematch.widgets.adapter.UserListAdapter;
 
 /**
@@ -26,7 +26,7 @@ import nullref.dlut.wematch.widgets.adapter.UserListAdapter;
  */
 
 
-public class UserListPage extends ColorStatusPage implements UserListContract.View {
+public class UserListPage extends ColorStatusPage<UserListContract.Presenter> implements UserListContract.View {
 
     UserListContract.Presenter presenter;
     UserListAdapter adapter;
@@ -70,11 +70,12 @@ public class UserListPage extends ColorStatusPage implements UserListContract.Vi
             public void onViewClicked(View view, int position) {
                 UserInfoPage page = new UserInfoPage();
                 UserListInfo userListInfo = adapter.getCardData(position);
-                UserInfoPresenter presenter = new UserInfoPresenter();
 
-                presenter.setView(page);
-                presenter.setUserId(userListInfo.ID);
-                page.setPresenter(presenter);
+                UserInfoPresenter userPresenter = new UserInfoPresenter();
+                userPresenter.setView(page);
+                userPresenter.setUserId(userListInfo.ID);
+                page.setPresenter(userPresenter);
+
                 jumpPage(page);
             }
 

@@ -9,7 +9,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.BaseActivity;
-import nullref.dlut.wematch.business.login.LogInActivity;
+import nullref.dlut.wematch.base.BasePresenter;
+import nullref.dlut.wematch.layout.login.LogInActivity;
 import nullref.dlut.wematch.business.register.updateinfo.UpdateUserInfoActivity;
 
 /**
@@ -17,7 +18,7 @@ import nullref.dlut.wematch.business.register.updateinfo.UpdateUserInfoActivity;
  */
 
 
-public class RegisterActivity extends BaseActivity implements RegisterActivityContract.View {
+public class RegisterActivity extends BaseActivity<RegisterActivityContract.Presenter> implements RegisterActivityContract.View {
 
 
     @BindView(R.id.email_edit)
@@ -30,15 +31,12 @@ public class RegisterActivity extends BaseActivity implements RegisterActivityCo
     Button backBtn;
     @BindView(R.id.name_edit)
     EditText nameEdit;
-    private RegisterPresenter presenter;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg);
         ButterKnife.bind(this);
-
-        presenter = new RegisterPresenter(this);
     }
 
 

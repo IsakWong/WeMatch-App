@@ -44,9 +44,9 @@ public class UpdateUserInfoPresenter implements UpdateUserInfoActivityContract.P
     @Override
     public void onUpdateUserInfo(UpdateUserInfoSession.Response response) {
 
-        view.onUploadImg();
-        uploadImgSession.request.key = response.key;
-        uploadImgSession.request.imgBase64 = imagBase64;
+        view.onUpdateUserInfo();
+        //uploadImgSession.request.key = response.key;
+        //uploadImgSession.request.imgBase64 = imagBase64;
         //uploadImgSession.send();
 
     }

@@ -11,7 +11,7 @@ import nullref.dlut.wematch.R;
  * Created by IsakWong on 2017/6/23.
  */
 
-public class TransparentStatusPage extends BasePage {
+public class TransparentStatusPage<T> extends BasePage<T> {
 
     public FragmentTransaction preEnterPage(FragmentTransaction transaction, BasePage targetFragment) {
         super.preEnterPage(transaction, targetFragment);

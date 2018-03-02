@@ -65,7 +65,7 @@
                         android:layout_marginBottom="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_weight="0"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal" android:baselineAligned="false">
 
                         <LinearLayout
                             android:id="@+id/user_info_matches"
@@ -80,7 +80,6 @@
                                 android:layout_height="56dp"
                                 android:layout_gravity="center"
                                 android:layout_marginLeft="0dp"
-                                android:layout_row="0"
                                 android:layout_rowSpan="2"
                                 android:layout_weight="0"
                                 android:paddingBottom="16dp"
@@ -124,11 +123,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_column="1"
-                                android:layout_columnSpan="1"
                                 android:layout_gravity="center"
-                                android:layout_row="1"
-                                android:layout_rowSpan="1"
                                 android:layout_weight="0"
                                 android:gravity="center_vertical"
                                 android:text="关注Ta的人"
@@ -148,8 +143,6 @@
                                 android:layout_height="56dp"
                                 android:layout_gravity="center"
                                 android:layout_marginLeft="0dp"
-                                android:layout_row="0"
-                                android:layout_rowSpan="2"
                                 android:layout_weight="0"
                                 android:paddingBottom="16dp"
                                 android:paddingTop="16dp"
@@ -158,11 +151,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_column="1"
-                                android:layout_columnSpan="1"
                                 android:layout_gravity="center"
-                                android:layout_row="1"
-                                android:layout_rowSpan="1"
                                 android:layout_weight="0"
                                 android:gravity="center_vertical"
                                 android:text="私信Ta"
@@ -196,7 +185,7 @@
                             android:layout_width="56dp"
                             android:layout_height="56dp"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginStart="16dp"
                             android:layout_row="0"
                             android:layout_rowSpan="2"
                             android:paddingBottom="16dp"
@@ -209,7 +198,7 @@
                             android:layout_column="1"
                             android:layout_columnSpan="1"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginStart="16dp"
                             android:layout_marginTop="10dp"
                             android:layout_row="0"
                             android:layout_rowSpan="1"
@@ -224,7 +213,7 @@
                             android:layout_column="1"
                             android:layout_columnSpan="1"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginStart="16dp"
                             android:layout_row="1"
                             android:layout_rowSpan="1"
                             android:gravity="center_vertical"
@@ -243,7 +232,7 @@
                             android:layout_width="56dp"
                             android:layout_height="56dp"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginStart="16dp"
                             android:layout_row="0"
                             android:layout_rowSpan="2"
                             android:paddingBottom="16dp"
@@ -256,7 +245,7 @@
                             android:layout_column="1"
                             android:layout_columnSpan="1"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginStart="16dp"
                             android:layout_marginTop="10dp"
                             android:layout_row="0"
                             android:layout_rowSpan="1"
@@ -271,7 +260,7 @@
                             android:layout_column="1"
                             android:layout_columnSpan="1"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginStart="16dp"
                             android:layout_row="1"
                             android:layout_rowSpan="1"
                             android:gravity="center_vertical"
@@ -291,7 +280,7 @@
                             android:layout_width="56dp"
                             android:layout_height="56dp"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginStart="16dp"
                             android:layout_row="0"
                             android:layout_rowSpan="2"
                             android:paddingBottom="16dp"
@@ -304,7 +293,7 @@
                             android:layout_column="1"
                             android:layout_columnSpan="1"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginStart="16dp"
                             android:layout_marginTop="10dp"
                             android:layout_row="0"
                             android:layout_rowSpan="1"
@@ -319,7 +308,7 @@
                             android:layout_column="1"
                             android:layout_columnSpan="1"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginStart="16dp"
                             android:layout_row="1"
                             android:layout_rowSpan="1"
                             android:gravity="center_vertical"
@@ -340,7 +329,7 @@
                             android:layout_width="56dp"
                             android:layout_height="56dp"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginStart="16dp"
                             android:layout_row="0"
                             android:layout_rowSpan="2"
                             android:paddingBottom="16dp"
@@ -353,7 +342,7 @@
                             android:layout_column="1"
                             android:layout_columnSpan="1"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginStart="16dp"
                             android:layout_marginTop="10dp"
                             android:layout_row="0"
                             android:layout_rowSpan="1"
@@ -368,7 +357,7 @@
                             android:layout_column="1"
                             android:layout_columnSpan="1"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginStart="16dp"
                             android:layout_row="1"
                             android:layout_rowSpan="1"
                             android:gravity="center_vertical"
@@ -394,30 +383,26 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView17"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_weight="0"
                         android:text="简介"
                         android:textAppearance="@style/DarkSubhead"
-                        android:textColor="@color/colorAccent5"/>
+                        android:textColor="@color/colorAccent5" />
 
                     <TextView
-                        android:id="@+id/user_info_major"
+                        android:id="@+id/user_info_intro"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_column="1"
-                        android:layout_columnSpan="1"
                         android:layout_gravity="center"
-                        android:layout_row="1"
                         android:layout_rowSpan="1"
                         android:layout_weight="0"
                         android:gravity="center_vertical"
                         android:padding="16dp"
                         android:text="参加过移动应用设计大赛，大连理工大学攀登杯，对数学建模感兴趣\n对机器学习也感兴趣，欢迎志同道合的朋友认识~"
-                        android:textAppearance="@style/DarkBody1"/>
+                        android:textAppearance="@style/DarkBody1" />
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
@@ -477,12 +462,12 @@
 
         <include
             android:id="@+id/status_bar"
-            layout="@layout/transparent_status_bar" />
+            layout="@layout/status_bar_transparent" />
 
         <LinearLayout
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
             android:layout_weight="0"
             android:orientation="horizontal">
 
@@ -492,7 +477,7 @@
                 android:layout_width="@dimen/iconSize"
                 android:layout_height="@dimen/iconSize"
                 android:layout_gravity="center_vertical"
-                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_weight="0"
                 android:background="@color/colorTransparent"
                 android:scaleType="centerInside"
@@ -522,7 +507,6 @@
         android:id="@+id/user_info_avatar"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_centerInParent="true"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="120dp"
         android:scaleType="centerCrop"

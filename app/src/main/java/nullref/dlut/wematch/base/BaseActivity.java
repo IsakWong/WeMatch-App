@@ -11,13 +11,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
+import java.io.Serializable;
+
 import nullref.dlut.wematch.R;
+import nullref.dlut.wematch.business.SplashPresenter;
+import nullref.dlut.wematch.business.register.RegisterActivityContract;
 import nullref.dlut.wematch.utils.PageManager;
 /* Created by IsakWong on 2017/5/15.
  */
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity<T> extends AppCompatActivity {
 
+
+    public T presenter;
+
+    public void setPresenter(T presenter) {
+        this.presenter = presenter;
+    }
 
     protected PageManager pageManager;
 
@@ -25,6 +35,11 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         pageManager = new PageManager(getSupportFragmentManager());
+        CallBack callBack = (CallBack) getIntent().getSerializableExtra("call_back");
+        if(callBack!=null){
+            callBack.Run(this);
+        }
+
     }
 
     @Override
@@ -33,6 +48,9 @@ public class BaseActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
+    public interface CallBack extends Serializable{
+        void Run(BaseActivity baseActivity);
+    }
     public PageManager getPageManager() {
         return pageManager;
     }
@@ -56,6 +74,7 @@ public class BaseActivity extends AppCompatActivity {
 
     public void jumpTo(Class<?> type, boolean canBack) {
         Intent intent = new Intent();
+
         intent.setClass(this, type);
         startActivity(intent);
         overridePendingTransition(R.animator.in_to_left, R.animator.out_to_left);
@@ -64,7 +83,17 @@ public class BaseActivity extends AppCompatActivity {
             finishAfterTransition();
         }
     }
-
+    public void jumpTo(Class<?> type, boolean canBack,CallBack callBack) {
+        Intent intent = new Intent();
+        intent.putExtra("call_back",callBack);
+        intent.setClass(this, type);
+        startActivity(intent);
+        overridePendingTransition(R.animator.in_to_left, R.animator.out_to_left);
+        if (!canBack) {
+            pageManager.removeAllPage();
+            finishAfterTransition();
+        }
+    }
     public void jumpTo(Class<?> type, boolean canBack, Bundle args) {
         Intent intent = new Intent();
         intent.setClass(this, type);

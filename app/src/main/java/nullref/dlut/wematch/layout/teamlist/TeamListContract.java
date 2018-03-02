@@ -10,7 +10,7 @@ import nullref.dlut.wematch.widgets.adapter.TeamListAdapter;
  */
 
 public interface TeamListContract {
-    interface View extends BaseView<Presenter> {
+    interface View  {
 
         void onGetTeamListError(String cause);
 
@@ -24,7 +24,7 @@ public interface TeamListContract {
 
     }
 
-    interface Presenter extends BasePresenter<View> {
+    interface Presenter {
         void refreshTeam();
 
         void getMoreTeam();

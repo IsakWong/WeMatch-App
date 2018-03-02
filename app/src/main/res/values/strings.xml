@@ -12,5 +12,6 @@
     <string name="reg_hint2">填写您的个人简介和专业信息，以让您和他人找到最佳队友。\n\nTeam, Timing, Action, Idea.</string>
     <string name="reg_hint_choose_label">我们将为您自动推荐相关的比赛和社区内容。\n\nWe push the matches, you push the future.</string>
     <string name="to_do">功能测始中...即将上线~</string>
+    <string name="user_default_name">user_name</string>
 
 </resources>

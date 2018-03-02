@@ -9,13 +9,13 @@ import nullref.dlut.wematch.bean.UserInfo;
  */
 
 public interface UserInfoContract {
-    interface View extends BaseView<Presenter> {
+    interface View {
         void onGetUser(UserInfo userListInfo);
 
         void onError();
     }
 
-    interface Presenter extends BasePresenter<View> {
+    interface Presenter{
         void getUserInfo();
     }
 }

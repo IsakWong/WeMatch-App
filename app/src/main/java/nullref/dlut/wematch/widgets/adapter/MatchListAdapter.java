@@ -9,8 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.bean.MatchListInfo;
 import nullref.dlut.wematch.utils.NetworkManager;
@@ -40,7 +38,7 @@ public class MatchListAdapter extends BaseAdapter<MatchListAdapter.MatchCardView
     @Override
     public MatchCardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View card = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_match, parent, false);
+        View card = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_match_list, parent, false);
         MatchCardViewHolder holder = new MatchCardViewHolder(card);
         holders.add(holder);
         holder.setListener(listener);

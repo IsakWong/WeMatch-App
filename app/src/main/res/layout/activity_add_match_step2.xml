@@ -24,7 +24,7 @@
 
         <include
             android:id="@+id/status_bar"
-            layout="@layout/status_bar" />
+            layout="@layout/status_bar_blue" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -90,7 +90,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="16dp"
                             android:layout_weight="0"
-                            android:text="官网  &amp;  举办者"
+                            android:text="官网  &amp; 举办者"
                             android:textAppearance="@style/DarkBody1"
                             android:textColor="@color/colorAccent5" />
 

@@ -47,6 +47,6 @@ public class GetMatchListSession extends Session<GetMatchListSession.Request, Ge
     public class Request extends Session.Request {
         public String type = "getMatchList";
         public int matchID;
-        public int filter;
+        public int filter; //0表示不筛选，1表示获取与订阅标签相同标签的比赛，2表示获取订阅的比赛（follow match），3表示获取订阅标签对应的比赛和订阅的比赛
     }
 }

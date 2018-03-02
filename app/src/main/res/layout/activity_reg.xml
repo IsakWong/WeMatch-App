@@ -6,7 +6,7 @@
     android:background="@color/textWhite"
     android:clickable="false"
     android:gravity="center_horizontal"
-    tools:context="nullref.dlut.wematch.business.login.LogInActivity">
+    tools:context="nullref.dlut.wematch.layout.login.LogInActivity">
 
     <FrameLayout
         android:id="@+id/top"
@@ -40,7 +40,7 @@
 
         <include
             android:id="@+id/status_bar"
-            layout="@layout/status_bar"
+            layout="@layout/status_bar_blue"
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:layout_weight="0" />

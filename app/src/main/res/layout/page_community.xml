@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/status_bar" />
+    <include layout="@layout/status_bar_blue" />
 
     <LinearLayout
         android:id="@+id/toolbar"
@@ -37,7 +37,6 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:text="社区"
-            android:textAlignment="viewStart"
             android:textColor="@color/textWhite"
             android:textSize="@dimen/textSubhead" />
 

@@ -84,7 +84,7 @@ public class ConfigDbHelper extends BaseDbHelper {
 
             Pair serverIP = new Pair();
             serverIP.name = MainServerIp;
-            serverIP.value = "http://60.205.218.75:8980/api";
+            serverIP.value = "http://120.79.193.18:8980/api";
             ;
             configDao.create(serverIP);
 
@@ -116,7 +116,7 @@ public class ConfigDbHelper extends BaseDbHelper {
 
             Pair imagePrefix = new Pair();
             imagePrefix.name = imageUrlPrefix;
-            imagePrefix.value = "http://60.205.218.75:8980/image/";
+            imagePrefix.value = "http://120.79.193.18:8980/image/";
             configDao.create(imagePrefix);
 
         } catch (Exception exception) {

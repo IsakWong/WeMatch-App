@@ -9,7 +9,7 @@ import nullref.dlut.wematch.bean.Match;
  */
 
 public interface MatchInfoContract {
-    interface View extends BaseView<Presenter> {
+    interface View {
 
         void onError(String cause);
 
@@ -25,7 +25,7 @@ public interface MatchInfoContract {
 
     }
 
-    interface Presenter extends BasePresenter<View> {
+    interface Presenter {
         void getMatchInfo();
 
         void followMatch();

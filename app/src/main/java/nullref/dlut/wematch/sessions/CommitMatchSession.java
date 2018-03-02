@@ -41,6 +41,5 @@ public class CommitMatchSession extends Session<CommitMatchSession.Request, Comm
         public String type = "userCommitMatch";
         public CommitMatch commitMatch;//提交的比赛信息
 
-
     }
 }

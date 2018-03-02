@@ -28,7 +28,7 @@ import nullref.dlut.wematch.widgets.adapter.TeamListAdapter;
  */
 
 
-public class TeamListPage extends ColorStatusPage implements TeamListContract.View {
+public class TeamListPage extends ColorStatusPage<TeamListContract.Presenter> implements TeamListContract.View {
 
     @BindView(R.id.navigation_icon)
     ImageButton navigationIcon;

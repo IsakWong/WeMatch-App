@@ -1,1 +1,2 @@
-include ':app', ':ahbottomnavigation', ':ptr-lib'
+include ':app', ':ahbottomnavigation', ':ptr'
+project(':ptr').projectDir = new File('ptr-lib')

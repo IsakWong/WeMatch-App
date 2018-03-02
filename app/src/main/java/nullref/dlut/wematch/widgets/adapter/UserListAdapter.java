@@ -31,7 +31,7 @@ public class UserListAdapter extends BaseAdapter<UserListAdapter.UserCardViewHol
     @Override
     public UserCardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View card = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_user, parent, false);
+        View card = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_user_list, parent, false);
         UserCardViewHolder holder = new UserCardViewHolder(card);
         holders.add(holder);
         holder.setListener(listener);

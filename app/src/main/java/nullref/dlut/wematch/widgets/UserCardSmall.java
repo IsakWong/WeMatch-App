@@ -18,12 +18,12 @@ public class UserCardSmall extends LinearLayout {
 
     public UserCardSmall(Context context) {
         super(context);
-        LayoutInflater.from(context).inflate(R.layout.discovery_user_card, this);
+        LayoutInflater.from(context).inflate(R.layout.card_user_grid, this);
     }
 
     public UserCardSmall(Context context, AttributeSet attrs) {
         super(context, attrs);
-        LayoutInflater.from(context).inflate(R.layout.discovery_user_card, this);
+        LayoutInflater.from(context).inflate(R.layout.card_user_grid, this);
     }
 
 

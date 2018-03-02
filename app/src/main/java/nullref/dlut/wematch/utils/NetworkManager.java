@@ -4,6 +4,8 @@ package nullref.dlut.wematch.utils;
  * Created by IsakWong on 2017/5/18.
  */
 
+import android.os.Debug;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -22,6 +24,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import rx.Observable;
+import rx.Observer;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -93,28 +96,21 @@ public class NetworkManager {
                         public void onFailure(Call call, IOException e) {
                             subscriber.onError(e);
                             LogToFile.e(e, "");
-                            subscriber.onCompleted();
                             call.cancel();
                         }
 
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
-
-                            if (null != response) {
-                                try{
-
-                                    String body = "";
-                                    body = response.body().string();
-                                    T2 s = (T2) g.fromJson(body, session.response.getClass());
-                                    subscriber.onNext(s);
-                                }
-                                catch (Exception exp){
-                                    subscriber.onError(exp);
-                                }
-                            } else {
-
+                            try{
+                                String body = "";
+                                body = response.body().string();
+                                T2 s = (T2) g.fromJson(body, session.response.getClass());
+                                subscriber.onNext(s);
+                                subscriber.onCompleted();
                             }
-                            subscriber.onCompleted();
+                            catch (Exception exp){
+                                subscriber.onError(exp);
+                            }
                         }
 
                     });
@@ -124,7 +120,7 @@ public class NetworkManager {
             }
         });
 
-        Subscriber<T2> subscriber = new Subscriber<T2>() {
+        Observer<T2> subscriber = new Observer<T2>() {
 
             @Override
             public void onCompleted() {
@@ -134,11 +130,12 @@ public class NetworkManager {
             @Override
             public void onError(Throwable e) {
                 session.error(e);
+                session.complete();
             }
 
             @Override
             public void onNext(T2 t2) {
-                session.success(t2);
+                 session.success(t2);
             }
         };
         sender

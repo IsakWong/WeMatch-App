@@ -8,11 +8,11 @@ import nullref.dlut.wematch.base.BaseView;
  */
 
 public interface WebsiteContract {
-    interface View extends BaseView<Presenter> {
+    interface View {
 
     }
 
-    interface Presenter extends BasePresenter<View> {
+    interface Presenter {
 
     }
 }

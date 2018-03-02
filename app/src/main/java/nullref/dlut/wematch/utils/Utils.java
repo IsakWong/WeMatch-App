@@ -123,11 +123,10 @@ public class Utils {
         try {
             if (bitmap != null) {
                 baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-
+                Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap,256,256,true);
+                scaledBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 baos.flush();
                 baos.close();
-
                 byte[] bitmapBytes = baos.toByteArray();
                 result = Base64.encodeToString(bitmapBytes, Base64.DEFAULT);
             }

@@ -19,7 +19,7 @@ public interface RegisterActivityContract {
         void registerFailed(String errpr);
     }
 
-    interface Presenter extends RegisterSession.Listener, LoginSession.Listener {
+    interface Presenter{
         void register(String email, String pwd, String name);
 
     }

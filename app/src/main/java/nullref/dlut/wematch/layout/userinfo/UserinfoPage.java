@@ -46,7 +46,7 @@ import nullref.dlut.wematch.widgets.AvatarImageTarget;
  */
 
 
-public class UserInfoPage extends ColorStatusPage implements UserInfoContract.View, ObservableScrollViewCallbacks {
+public class UserInfoPage extends ColorStatusPage<UserInfoContract.Presenter> implements UserInfoContract.View, ObservableScrollViewCallbacks {
 
 
     @BindView(R.id.user_info_matches)
@@ -55,8 +55,6 @@ public class UserInfoPage extends ColorStatusPage implements UserInfoContract.Vi
     LinearLayout userInfoSubscribers;
     @BindView(R.id.match_info_message)
     LinearLayout matchInfoMessage;
-    @BindView(R.id.textView17)
-    TextView textView17;
     @BindView(R.id.appCompatImageView2)
     AppCompatImageView appCompatImageView2;
     private int mActionBarSize;
@@ -101,13 +99,6 @@ public class UserInfoPage extends ColorStatusPage implements UserInfoContract.Vi
     @BindView(R.id.user_info_major)
     TextView userInfoMajor;
 
-    public UserInfoPage() {
-
-    }
-
-    public void setPresenter(UserInfoContract.Presenter presenter) {
-        this.presenter = presenter;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

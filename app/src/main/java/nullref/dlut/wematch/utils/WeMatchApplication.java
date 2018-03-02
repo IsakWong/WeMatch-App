@@ -22,7 +22,8 @@ public class WeMatchApplication extends Application {
         super.onCreate();
         instance = this;
 
-        //init database
+        //getAllLabelsFromServer database
+        LogToFile.init(this);
         ConfigDbHelper.getInstance();
         UserDbHelper.getInstance();
     }

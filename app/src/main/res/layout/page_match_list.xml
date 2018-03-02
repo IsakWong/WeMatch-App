@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <include
-        layout="@layout/status_bar"
+        layout="@layout/status_bar_blue"
         />
 
     <LinearLayout
@@ -85,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:elevation="0dp"
-            tools:listitem="@layout/card_match">
+            tools:listitem="@layout/card_match_list">
 
         </android.support.v7.widget.RecyclerView>
     </in.srain.cube.views.ptr.PtrClassicFrameLayout>
