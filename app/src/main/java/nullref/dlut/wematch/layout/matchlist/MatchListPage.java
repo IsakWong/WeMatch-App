@@ -27,7 +27,7 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.ColorStatusPage;
 import nullref.dlut.wematch.bean.MatchListInfo;
-import nullref.dlut.wematch.business.MatchInfoPresenter;
+import nullref.dlut.wematch.layout.matchinfo.MatchInfoPresenter;
 import nullref.dlut.wematch.layout.commit.CommitMatchActivity;
 import nullref.dlut.wematch.layout.labelinfo.LabelPage;
 import nullref.dlut.wematch.layout.matchinfo.MatchInfoPage;

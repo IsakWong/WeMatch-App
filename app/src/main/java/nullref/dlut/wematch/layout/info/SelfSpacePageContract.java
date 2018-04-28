@@ -9,7 +9,7 @@ import nullref.dlut.wematch.bean.UserInfo;
  */
 
 public interface SelfSpacePageContract {
-    interface View{
+    interface View extends BaseView{
         void onGetUserInfo(UserInfo userListInfoInfo);
     }
 

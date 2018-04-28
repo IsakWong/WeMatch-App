@@ -1,4 +1,4 @@
-package nullref.dlut.wematch.business.subscribe;
+package nullref.dlut.wematch.layout.userlist;
 
 import nullref.dlut.wematch.bean.UserListInfo;
 import nullref.dlut.wematch.layout.userlist.UserListContract;

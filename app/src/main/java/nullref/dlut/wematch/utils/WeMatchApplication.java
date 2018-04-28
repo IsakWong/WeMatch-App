@@ -2,6 +2,8 @@ package nullref.dlut.wematch.utils;
 
 import android.app.Application;
 
+import com.bumptech.glide.Glide;
+
 import nullref.dlut.wematch.utils.database.ConfigDbHelper;
 import nullref.dlut.wematch.utils.database.UserDbHelper;
 
@@ -23,6 +25,13 @@ public class WeMatchApplication extends Application {
         instance = this;
 
         //getAllLabelsFromServer database
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Glide.get(instance).clearDiskCache();
+            }
+        }).start();
+        Glide.get(instance).clearMemory();
         LogToFile.init(this);
         ConfigDbHelper.getInstance();
         UserDbHelper.getInstance();

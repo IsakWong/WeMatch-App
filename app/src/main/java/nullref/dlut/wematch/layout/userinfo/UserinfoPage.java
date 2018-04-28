@@ -36,7 +36,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.ColorStatusPage;
 import nullref.dlut.wematch.bean.UserInfo;
-import nullref.dlut.wematch.business.subscribe.SubscribeMatchListPresenter;
+import nullref.dlut.wematch.layout.matchlist.SubscribeMatchListPresenter;
 import nullref.dlut.wematch.layout.matchlist.MatchListPage;
 import nullref.dlut.wematch.widgets.AvatarImageTarget;
 

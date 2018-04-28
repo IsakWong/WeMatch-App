@@ -9,7 +9,7 @@ import nullref.dlut.wematch.bean.UserListInfo;
  */
 
 public interface UserListContract {
-    interface View{
+    interface View  extends BaseView{
 
         void onGetUserListError(String cause);
 

@@ -1,4 +1,4 @@
-package nullref.dlut.wematch.business.register;
+package nullref.dlut.wematch.layout.register;
 
 import nullref.dlut.wematch.base.BasePresenter;
 import nullref.dlut.wematch.sessions.LoginSession;

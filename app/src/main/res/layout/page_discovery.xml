@@ -233,45 +233,15 @@
                     app:srcCompat="@drawable/ic_enter_gray" />
             </LinearLayout>
 
-            <GridLayout
+            <android.support.v7.widget.GridLayout
+                android:id="@+id/match_grid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:orientation="horizontal"
                 android:paddingTop="8dp"
-                android:rowCount="2">
+                app:columnCount="2"
+                app:rowCount="2">
 
-                <LinearLayout
-                    android:id="@+id/match_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_columnSpan="1"
-                    android:layout_columnWeight="1"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_rowSpan="1"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/match_pic"
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:contentDescription="TODO"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/bg_baidustar" />
-
-                    <TextView
-                        android:id="@+id/match_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="12dp"
-                        android:layout_marginTop="4dp"
-                        android:text="TextView"
-                        android:textAppearance="@style/DarkBody1" />
-                </LinearLayout>
-
-            </GridLayout>
+            </android.support.v7.widget.GridLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

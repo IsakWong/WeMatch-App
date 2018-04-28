@@ -1,6 +1,7 @@
 package nullref.dlut.wematch.layout.splash;
 
-import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -9,12 +10,15 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.BaseActivity;
-import nullref.dlut.wematch.base.BasePresenter;
-import nullref.dlut.wematch.business.LogInPresenter;
-import nullref.dlut.wematch.business.SplashPresenter;
-import nullref.dlut.wematch.business.register.RegisterActivity;
-import nullref.dlut.wematch.layout.login.LogInActivity;
+import nullref.dlut.wematch.bean.CommitMatch;
 import nullref.dlut.wematch.layout.MainpageActivity;
+import nullref.dlut.wematch.layout.login.LogInPresenter;
+import nullref.dlut.wematch.layout.register.RegisterActivity;
+import nullref.dlut.wematch.layout.login.LogInActivity;
+import nullref.dlut.wematch.sessions.CommitMatchSession;
+import nullref.dlut.wematch.sessions.UploadImgSession;
+import nullref.dlut.wematch.utils.LogToFile;
+import nullref.dlut.wematch.utils.Utils;
 
 /**
  * Created by IsakWong on 2017/6/26.
@@ -27,7 +31,7 @@ public class SplashActivity extends BaseActivity<SplashActivityContract.Presente
     @BindView(R.id.login_btn)
     Button loginBtn;
     @BindView(R.id.register_btn)
-    Button regiserBtn;
+    Button registerBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,7 @@ public class SplashActivity extends BaseActivity<SplashActivityContract.Presente
 
     @Override
     public void loginSuccess() {
+
         jumpTo(MainpageActivity.class, false);
     }
 

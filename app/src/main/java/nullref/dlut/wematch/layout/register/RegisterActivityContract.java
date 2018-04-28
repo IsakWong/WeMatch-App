@@ -1,5 +1,6 @@
-package nullref.dlut.wematch.business.register;
+package nullref.dlut.wematch.layout.register;
 
+import nullref.dlut.wematch.base.BaseView;
 import nullref.dlut.wematch.sessions.LoginSession;
 import nullref.dlut.wematch.sessions.RegisterSession;
 
@@ -8,7 +9,7 @@ import nullref.dlut.wematch.sessions.RegisterSession;
  */
 
 public interface RegisterActivityContract {
-    interface View {
+    interface View extends BaseView {
 
         void loginSuccess();
 

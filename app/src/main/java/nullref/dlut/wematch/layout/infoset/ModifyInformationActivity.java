@@ -21,10 +21,11 @@ import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.BaseActivity;
+import nullref.dlut.wematch.bean.UserInfo;
 import nullref.dlut.wematch.bean.UserListInfo;
-import nullref.dlut.wematch.business.UserInfoSetPresenter;
-import nullref.dlut.wematch.business.edtior.EditorActivity;
+import nullref.dlut.wematch.layout.edtior.EditorActivity;
 import nullref.dlut.wematch.utils.LogToFile;
+import nullref.dlut.wematch.utils.NetworkManager;
 import nullref.dlut.wematch.utils.Utils;
 import nullref.dlut.wematch.widgets.AvatarImageTarget;
 
@@ -56,7 +57,7 @@ public class ModifyInformationActivity extends BaseActivity<ModifyInformationCon
     @BindView(R.id.info_set_qq)
     LinearLayout infoSetQq;
 
-    private UserListInfo userListInfo = null;
+    private UserInfo userListInfo = null;
 
     private String avatarUrlPath;
 
@@ -67,8 +68,8 @@ public class ModifyInformationActivity extends BaseActivity<ModifyInformationCon
         ButterKnife.bind(ModifyInformationActivity.this);
         Bundle bundle = getIntent().getExtras();
         if (null != bundle) {
-            userListInfo = (UserListInfo) bundle.getSerializable("userListInfo");
-            avatarUrlPath = "https://wematch.oss-cn-shanghai.aliyuncs.com/" + userListInfo.avatarUrl;
+            userListInfo = (UserInfo) bundle.getSerializable("user_info");
+            avatarUrlPath = NetworkManager.avatarPrefix+ userListInfo.avatarUrl;
             RequestOptions options2 = new RequestOptions()
                     .placeholder(R.drawable.bg_blue)
                     .priority(Priority.HIGH)
@@ -215,7 +216,7 @@ public class ModifyInformationActivity extends BaseActivity<ModifyInformationCon
 
     @OnClick(R.id.info_avatar)
     public void onInfoAvatarClicked() {
-        UserInfoSetPresenter.AvaChanges = true;
+        ModifyInformationPresenter.AvaChanges = true;
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE);

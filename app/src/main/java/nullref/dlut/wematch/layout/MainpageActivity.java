@@ -14,11 +14,11 @@ import java.util.ArrayList;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.BaseActivity;
 import nullref.dlut.wematch.base.BasePage;
-import nullref.dlut.wematch.business.MatchListPresenter;
+import nullref.dlut.wematch.layout.matchlist.MatchListPresenter;
 import nullref.dlut.wematch.layout.info.SelfSpacePage;
 import nullref.dlut.wematch.layout.discovery.DiscoveryPage;
-import nullref.dlut.wematch.business.DiscoveryPresenter;
-import nullref.dlut.wematch.business.SelfSpavePagePresenter;
+import nullref.dlut.wematch.layout.discovery.DiscoveryPresenter;
+import nullref.dlut.wematch.layout.info.SelfSpacePagePresenter;
 import nullref.dlut.wematch.layout.matchlist.MatchListPage;
 import nullref.dlut.wematch.layout.website.WebPage;
 
@@ -89,9 +89,9 @@ public class MainpageActivity extends BaseActivity {
 
 
         SelfSpacePage selfSpacePage = new SelfSpacePage();
-        SelfSpavePagePresenter selfSpavePagePresenter = new SelfSpavePagePresenter();
-        selfSpacePage.setPresenter(selfSpavePagePresenter);
-        selfSpavePagePresenter.setView(selfSpacePage);
+        SelfSpacePagePresenter selfSpacePagePresenter = new SelfSpacePagePresenter();
+        selfSpacePage.setPresenter(selfSpacePagePresenter);
+        selfSpacePagePresenter.setView(selfSpacePage);
 
 
         int index = 0;

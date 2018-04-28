@@ -1,31 +1,31 @@
-package nullref.dlut.wematch.business;
+package nullref.dlut.wematch.layout.discovery;
 
+import nullref.dlut.wematch.base.BasePresenter;
 import nullref.dlut.wematch.bean.MatchListInfo;
 import nullref.dlut.wematch.bean.UserListInfo;
 import nullref.dlut.wematch.layout.discovery.DiscoveryContract;
-import nullref.dlut.wematch.sessions.GetMatchListSession;
+import nullref.dlut.wematch.sessions.GetRecommendedMatchesSession;
 import nullref.dlut.wematch.sessions.GetSubscribeUserSession;
 
 /**
  * Created by IsakWong on 2017/5/25.
  */
 
-public class DiscoveryPresenter implements DiscoveryContract.Presenter {
+public class DiscoveryPresenter extends BasePresenter<DiscoveryContract.View>implements DiscoveryContract.Presenter {
 
 
-    //content
-    DiscoveryContract.View view;
-    GetMatchListSession getMatchListSession = new GetMatchListSession(new GetMatchListSession.Listener() {
+    GetRecommendedMatchesSession getMatchListSession = new GetRecommendedMatchesSession(new GetRecommendedMatchesSession.Listener() {
         @Override
-        public void onGetMatchList(MatchListInfo[] matches, int matchID) {
+        public void onGetMatchList(MatchListInfo[] matches) {
             view.onMatchesAdded(matches);
         }
 
         @Override
-        public void onGetMatchListError(String cause, int matchID) {
+        public void onGetMatchListError(String cause) {
 
         }
     });
+
     GetSubscribeUserSession getSubscribeUserSession = new GetSubscribeUserSession(new GetSubscribeUserSession.Listener() {
         @Override
         public void onGetFollowUsers(UserListInfo[] userListInfo) {
@@ -45,8 +45,6 @@ public class DiscoveryPresenter implements DiscoveryContract.Presenter {
 
     @Override
     public void getMatches() {
-        getMatchListSession.request.matchID = -1;
-        getMatchListSession.request.filter = 1;
         getMatchListSession.send();
     }
 
@@ -57,7 +55,7 @@ public class DiscoveryPresenter implements DiscoveryContract.Presenter {
     }
 
     @Override
-    public void getSubscibedLabels() {
+    public void getSubscribedLabels() {
 
 
     }

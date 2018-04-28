@@ -9,9 +9,8 @@ import nullref.dlut.wematch.bean.Match;
  */
 
 public interface MatchInfoContract {
-    interface View {
+    interface View  extends BaseView{
 
-        void onError(String cause);
 
         void onMatchInfo(Match match);
 

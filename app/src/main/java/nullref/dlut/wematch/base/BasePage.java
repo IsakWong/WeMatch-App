@@ -193,6 +193,9 @@ public abstract class BasePage<T> extends Fragment {
         return this.getContext();
     }
 
+    public void onMessage(String message){
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
     public void makeToast(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }

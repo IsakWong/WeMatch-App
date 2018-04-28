@@ -2,6 +2,7 @@ package nullref.dlut.wematch.layout.commit;
 
 import android.graphics.Bitmap;
 
+import nullref.dlut.wematch.base.BaseView;
 import nullref.dlut.wematch.bean.CommitMatch;
 import nullref.dlut.wematch.bean.Label;
 import nullref.dlut.wematch.sessions.CommitMatchSession;
@@ -14,7 +15,7 @@ import nullref.dlut.wematch.sessions.UploadImgSession;
 
 public interface CommitMatchActivityContract {
 
-    interface View {
+    interface View  extends BaseView {
         void onCommitMatchImage();
 
         void onLabelReceived(Label[] labels);

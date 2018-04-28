@@ -3,6 +3,7 @@ package nullref.dlut.wematch.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
@@ -110,6 +111,11 @@ public class Utils {
         return "";
     }
 
+
+    public static Bitmap scaleBitmap(Bitmap bitmap,int width,int height){
+        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap,width,height,true);
+        return scaledBitmap;
+    }
     /**
      * bitmap转为base64
      *
@@ -123,8 +129,8 @@ public class Utils {
         try {
             if (bitmap != null) {
                 baos = new ByteArrayOutputStream();
-                Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap,256,256,true);
-                scaledBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 baos.flush();
                 baos.close();
                 byte[] bitmapBytes = baos.toByteArray();

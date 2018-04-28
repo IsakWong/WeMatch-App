@@ -1,4 +1,4 @@
-package nullref.dlut.wematch.business;
+package nullref.dlut.wematch.layout.commit;
 
 import android.graphics.Bitmap;
 

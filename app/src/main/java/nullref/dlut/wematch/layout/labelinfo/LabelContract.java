@@ -1,5 +1,6 @@
 package nullref.dlut.wematch.layout.labelinfo;
 
+import nullref.dlut.wematch.base.BaseView;
 import nullref.dlut.wematch.bean.Label;
 import nullref.dlut.wematch.sessions.SubscribeLabelsSession;
 
@@ -8,7 +9,7 @@ import nullref.dlut.wematch.sessions.SubscribeLabelsSession;
  */
 
 public interface LabelContract {
-    interface View {
+    interface View  extends BaseView {
         void onFollowLabel();
 
         void onFollowLabelError(String cause);

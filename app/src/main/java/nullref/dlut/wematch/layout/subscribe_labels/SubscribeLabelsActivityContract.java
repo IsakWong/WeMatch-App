@@ -2,6 +2,7 @@ package nullref.dlut.wematch.layout.subscribe_labels;
 
 import java.util.ArrayList;
 
+import nullref.dlut.wematch.base.BaseView;
 import nullref.dlut.wematch.bean.Label;
 import nullref.dlut.wematch.sessions.GetAllLabelsSession;
 import nullref.dlut.wematch.sessions.SubscribeLabelsSession;
@@ -11,7 +12,7 @@ import nullref.dlut.wematch.sessions.SubscribeLabelsSession;
  */
 
 public interface SubscribeLabelsActivityContract {
-    interface View {
+    interface View  extends BaseView {
         void addLabel(Label label);
 
         void onFollowLabel();

@@ -20,15 +20,21 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import nullref.dlut.wematch.R;
+import nullref.dlut.wematch.base.BaseActivity;
 import nullref.dlut.wematch.base.ColorStatusPage;
 import nullref.dlut.wematch.bean.UserInfo;
+import nullref.dlut.wematch.layout.infoset.ModifyInformationActivity;
+import nullref.dlut.wematch.layout.infoset.ModifyInformationContract;
+import nullref.dlut.wematch.layout.infoset.ModifyInformationPresenter;
 import nullref.dlut.wematch.layout.login.LogInActivity;
-import nullref.dlut.wematch.business.subscribe.JoinTeamListPresenter;
-import nullref.dlut.wematch.business.subscribe.SubscribeMatchListPresenter;
-import nullref.dlut.wematch.business.subscribe.SubscribeUserListPresenter;
+import nullref.dlut.wematch.layout.login.LogInPresenter;
+import nullref.dlut.wematch.layout.teamlist.JoinTeamListPresenter;
+import nullref.dlut.wematch.layout.matchlist.SubscribeMatchListPresenter;
+import nullref.dlut.wematch.layout.userlist.SubscribeUserListPresenter;
 import nullref.dlut.wematch.layout.matchlist.MatchListPage;
 import nullref.dlut.wematch.layout.teamlist.TeamListPage;
 import nullref.dlut.wematch.layout.userlist.UserListPage;
+import nullref.dlut.wematch.utils.NetworkManager;
 import nullref.dlut.wematch.utils.database.ConfigDbHelper;
 import nullref.dlut.wematch.widgets.AvatarImageTarget;
 
@@ -36,13 +42,14 @@ import nullref.dlut.wematch.widgets.AvatarImageTarget;
  * Created by IsakWong on 2017/5/14.
  */
 
-public class SelfSpacePage extends ColorStatusPage implements SelfSpacePageContract.View {
+public class SelfSpacePage extends ColorStatusPage<SelfSpacePageContract.Presenter> implements SelfSpacePageContract.View {
 
 
     @BindView(R.id.info_avatar_bg)
     ImageView infoAvatarBg;
     @BindView(R.id.info_avatar)
     ImageView infoAvatar;
+
     Unbinder unbinder;
     @BindView(R.id.overlay)
     ImageView overlay;
@@ -66,11 +73,12 @@ public class SelfSpacePage extends ColorStatusPage implements SelfSpacePageContr
     GridLayout matchLogout;
     @BindView(R.id.info_update)
     ImageButton infoUpdate;
+
     @BindView(R.id.user_name)
     TextView userName;
     @BindView(R.id.sex)
     ImageView sex;
-    SelfSpacePageContract.Presenter presenter;
+
     private UserInfo userListInfo;
     private String avatarUrlPath;
 
@@ -89,21 +97,7 @@ public class SelfSpacePage extends ColorStatusPage implements SelfSpacePageContr
         view = inflater.inflate(R.layout.page_info, container, false);
         unbinder = ButterKnife.bind(this, view);
         ConfigDbHelper configDbHelper = ConfigDbHelper.getInstance();
-        if (configDbHelper.query("need_update").equals("true")) {
-            presenter.getUserInfo();
-        } else {
-            avatarUrlPath = "https://wematch.oss-cn-shanghai.aliyuncs.com/" + configDbHelper.query("avatar_url");
-            RequestOptions options2 = new RequestOptions()
-                    .placeholder(R.drawable.bg_blue)
-                    .priority(Priority.HIGH)
-                    .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC);
-            Glide
-                    .with(infoAvatar)
-                    .asBitmap()
-                    .load(avatarUrlPath)
-                    .apply(options2)
-                    .into(new AvatarImageTarget(infoAvatar, infoAvatarBg));
-        }
+        presenter.getUserInfo();
         return view;
     }
 
@@ -133,7 +127,7 @@ public class SelfSpacePage extends ColorStatusPage implements SelfSpacePageContr
             case 2:
                 break;
         }*/
-        avatarUrlPath = "https://wematch.oss-cn-shanghai.aliyuncs.com/" + userListInfo.avatarUrl;
+        avatarUrlPath = NetworkManager.avatarPrefix + userListInfo.avatarUrl;
         RequestOptions options2 = new RequestOptions()
                 .placeholder(R.drawable.bg_blue)
                 .priority(Priority.HIGH)
@@ -146,7 +140,6 @@ public class SelfSpacePage extends ColorStatusPage implements SelfSpacePageContr
                 .apply(options2)
                 .into(new AvatarImageTarget(infoAvatar, infoAvatarBg));
     }
-
     @OnClick({R.id.my_subscribe_users, R.id.my_subscribe_matches, R.id.my_teams, R.id.match_logout, R.id.info_update})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -181,9 +174,8 @@ public class SelfSpacePage extends ColorStatusPage implements SelfSpacePageContr
             case R.id.info_update:
                 if (userListInfo != null) {
                     Bundle bundle = new Bundle();
-
-                    //bundle.putSerializable("userListInfo", userListInfo);
-                    //getBaseActivity().jumpTo(ModifyInformationActivity.class,true,bundle);
+                    bundle.putSerializable("user_info",userListInfo);
+                    getBaseActivity().jumpTo(ModifyInformationActivity.class,true,bundle,null);
                 }
                 break;
         }

@@ -10,7 +10,7 @@ import nullref.dlut.wematch.widgets.adapter.MatchListAdapter;
  */
 
 public interface MatchListContract {
-    interface View  {
+    interface View   extends BaseView{
 
         void onRequestMatchError(String cause);
 

@@ -87,6 +87,11 @@ public class CommitMatchActivity extends BaseActivity<CommitMatchActivityContrac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_match_step1);
         ButterKnife.bind(this);
+
+        CommitMatchPresenter commitMatchPresenter = new CommitMatchPresenter();
+        commitMatchPresenter.setView(this);
+        setPresenter(commitMatchPresenter);
+
         addMatchTimeStart.getEditText().setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {

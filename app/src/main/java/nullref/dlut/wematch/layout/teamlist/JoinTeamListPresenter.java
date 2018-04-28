@@ -1,4 +1,4 @@
-package nullref.dlut.wematch.business.subscribe;
+package nullref.dlut.wematch.layout.teamlist;
 
 import nullref.dlut.wematch.bean.Team;
 import nullref.dlut.wematch.layout.teamlist.TeamListContract;

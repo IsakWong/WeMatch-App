@@ -13,9 +13,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.BaseActivity;
-import nullref.dlut.wematch.base.BasePresenter;
-import nullref.dlut.wematch.business.LogInPresenter;
 import nullref.dlut.wematch.layout.MainpageActivity;
+import nullref.dlut.wematch.layout.register.RegisterPresenter;
 
 
 /**
@@ -48,10 +47,12 @@ public class LogInActivity extends BaseActivity<LogInActivityContract.Presenter>
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
+        LogInPresenter logInPresenter = new LogInPresenter();
+        setPresenter(logInPresenter);
+        logInPresenter.setView(this);
 
         username = (EditText) findViewById(R.id.user_edit);
         password = (EditText) findViewById(R.id.password_edit);

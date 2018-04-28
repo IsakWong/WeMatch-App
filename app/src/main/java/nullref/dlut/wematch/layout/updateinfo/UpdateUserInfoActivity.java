@@ -1,4 +1,4 @@
-package nullref.dlut.wematch.business.register.updateinfo;
+package nullref.dlut.wematch.layout.updateinfo;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;

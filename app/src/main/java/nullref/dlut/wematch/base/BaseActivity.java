@@ -14,9 +14,8 @@ import android.widget.Toast;
 import java.io.Serializable;
 
 import nullref.dlut.wematch.R;
-import nullref.dlut.wematch.business.SplashPresenter;
-import nullref.dlut.wematch.business.register.RegisterActivityContract;
 import nullref.dlut.wematch.utils.PageManager;
+import nullref.dlut.wematch.utils.WeMatchApplication;
 /* Created by IsakWong on 2017/5/15.
  */
 
@@ -74,7 +73,6 @@ public class BaseActivity<T> extends AppCompatActivity {
 
     public void jumpTo(Class<?> type, boolean canBack) {
         Intent intent = new Intent();
-
         intent.setClass(this, type);
         startActivity(intent);
         overridePendingTransition(R.animator.in_to_left, R.animator.out_to_left);
@@ -85,7 +83,8 @@ public class BaseActivity<T> extends AppCompatActivity {
     }
     public void jumpTo(Class<?> type, boolean canBack,CallBack callBack) {
         Intent intent = new Intent();
-        intent.putExtra("call_back",callBack);
+        if(callBack!=null)
+            intent.putExtra("call_back",callBack);
         intent.setClass(this, type);
         startActivity(intent);
         overridePendingTransition(R.animator.in_to_left, R.animator.out_to_left);
@@ -94,8 +93,10 @@ public class BaseActivity<T> extends AppCompatActivity {
             finishAfterTransition();
         }
     }
-    public void jumpTo(Class<?> type, boolean canBack, Bundle args) {
+    public void jumpTo(Class<?> type, boolean canBack, Bundle args,CallBack callBack) {
         Intent intent = new Intent();
+        if(callBack!=null)
+            intent.putExtra("call_back",callBack);
         intent.setClass(this, type);
         intent.putExtras(args);
         startActivity(intent);
@@ -116,12 +117,15 @@ public class BaseActivity<T> extends AppCompatActivity {
 
     }
 
+    public void onMessage(String message){
+        Toast.makeText(WeMatchApplication.getInstance(), message, Toast.LENGTH_SHORT).show();
+    }
     public void makeToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(WeMatchApplication.getInstance(), message, Toast.LENGTH_SHORT).show();
     }
 
     public void makeLongToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        Toast.makeText(WeMatchApplication.getInstance(), message, Toast.LENGTH_LONG).show();
     }
 
 }

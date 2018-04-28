@@ -8,7 +8,7 @@ import nullref.dlut.wematch.base.BaseView;
  */
 
 public interface WebsiteContract {
-    interface View {
+    interface View  extends BaseView{
 
     }
 

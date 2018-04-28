@@ -1,4 +1,4 @@
-package nullref.dlut.wematch.business.edtior;
+package nullref.dlut.wematch.layout.edtior;
 
 import android.content.Intent;
 import android.os.Bundle;

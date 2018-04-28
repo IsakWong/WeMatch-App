@@ -3,6 +3,9 @@ package nullref.dlut.wematch.layout.discovery;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayout;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,16 +34,16 @@ import nullref.dlut.wematch.base.ColorStatusPage;
 import nullref.dlut.wematch.bean.Label;
 import nullref.dlut.wematch.bean.MatchListInfo;
 import nullref.dlut.wematch.bean.UserListInfo;
-import nullref.dlut.wematch.business.CommitMatchPresenter;
-import nullref.dlut.wematch.business.MatchInfoPresenter;
-import nullref.dlut.wematch.business.UserInfoPresenter;
-import nullref.dlut.wematch.business.subscribe.JoinTeamListPresenter;
-import nullref.dlut.wematch.business.subscribe.SubscribeMatchListPresenter;
 import nullref.dlut.wematch.layout.commit.CommitMatchActivity;
+import nullref.dlut.wematch.layout.commit.CommitMatchPresenter;
 import nullref.dlut.wematch.layout.matchinfo.MatchInfoPage;
+import nullref.dlut.wematch.layout.matchinfo.MatchInfoPresenter;
 import nullref.dlut.wematch.layout.matchlist.MatchListPage;
+import nullref.dlut.wematch.layout.matchlist.SubscribeMatchListPresenter;
+import nullref.dlut.wematch.layout.teamlist.JoinTeamListPresenter;
 import nullref.dlut.wematch.layout.teamlist.TeamListPage;
 import nullref.dlut.wematch.layout.userinfo.UserInfoPage;
+import nullref.dlut.wematch.layout.userinfo.UserInfoPresenter;
 import nullref.dlut.wematch.utils.NetworkManager;
 import nullref.dlut.wematch.utils.Utils;
 import nullref.dlut.wematch.widgets.UserCardSmall;
@@ -56,7 +59,6 @@ public class DiscoveryPage extends ColorStatusPage<DiscoveryContract.Presenter> 
 
     Unbinder unbinder;
 
-    LinearLayout matchesLayout[] = new LinearLayout[4];
     @BindView(R.id.community_web)
     WebView communityWeb;
     @BindView(R.id.discovery_date)
@@ -88,6 +90,8 @@ public class DiscoveryPage extends ColorStatusPage<DiscoveryContract.Presenter> 
     };
     @BindView(R.id.menu_icon)
     ImageButton menuIcon;
+    @BindView(R.id.match_grid)
+    GridLayout matchGrid;
 
 
     @Override
@@ -106,14 +110,6 @@ public class DiscoveryPage extends ColorStatusPage<DiscoveryContract.Presenter> 
         String date = sDateFormat.format(new Date());
         discoveryDate.setText(date);
 
-        matchesLayout[0] = (LinearLayout) view.findViewById(R.id.match_1);
-
-        matchesLayout[1] = (LinearLayout) view.findViewById(R.id.match_1);
-        matchesLayout[2] = (LinearLayout) view.findViewById(R.id.match_1);
-        matchesLayout[3] = (LinearLayout) view.findViewById(R.id.match_1);
-        for (LinearLayout item : matchesLayout) {
-            item.setVisibility(View.INVISIBLE);
-        }
         presenter.getMatches();
         presenter.getUsers();
 
@@ -161,28 +157,37 @@ public class DiscoveryPage extends ColorStatusPage<DiscoveryContract.Presenter> 
 
     @Override
     public void onMatchesAdded(MatchListInfo[] matches) {
-        int size = matches.length > 4 ? 4 : matches.length;
+        int size =  matches.length;
         for (int i = 0; i < size; i++) {
             final MatchListInfo match = matches[i];
-            matchesLayout[i].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    MatchInfoPage matchInfoPage = new MatchInfoPage();
-                    MatchInfoPresenter matchInfoPresenter = new MatchInfoPresenter();
-                    matchInfoPage.setPresenter(matchInfoPresenter);
-                    matchInfoPresenter.setView(matchInfoPage);
-                    matchInfoPresenter.setMatchListInfo(match);
-                    jumpPage(matchInfoPage);
-                }
-            });
-            ImageView pic = (ImageView) matchesLayout[i].findViewById(R.id.match_pic);
-            TextView title = (TextView) matchesLayout[i].findViewById(R.id.match_title);
+            LayoutInflater inflater = LayoutInflater.from(this.getContext());
+            View matchCard = inflater.inflate(R.layout.card_match_grid, null);
+            GridLayout.Spec rowSpec = GridLayout.spec(i/2, 1f);
+            GridLayout.Spec columnSpec= GridLayout.spec(i%2,1f);
+            GridLayout.LayoutParams params=new GridLayout.LayoutParams(rowSpec,columnSpec);
+            params.width = 0;
+            try {
+                //matchGrid.addView(matchCard,params);
+                matchCard.setOnClickListener(new View.OnClickListener() {
+                                                 @Override
+                                                 public void onClick(View view) {
+                                                     MatchInfoPage matchInfoPage = new MatchInfoPage();
+                                                     MatchInfoPresenter matchInfoPresenter = new MatchInfoPresenter();
+                                                     matchInfoPage.setPresenter(matchInfoPresenter);
+                                                     matchInfoPresenter.setView(matchInfoPage);
+                                                     matchInfoPresenter.setMatchListInfo(match);
+                                                     jumpPage(matchInfoPage);
+                                                 }
+                                             }
+                );
+                matchGrid.addView(matchCard,params);
+            }catch ( Exception exp){
+                Log.e(exp.getMessage(),exp.toString());
+            }
+            ImageView pic = (ImageView) matchCard.findViewById(R.id.match_pic);
+            TextView title = (TextView) matchCard.findViewById(R.id.match_title);
             title.setText(matches[i].name);
-            matchesLayout[i].setVisibility(View.VISIBLE);
-            Glide
-                    .with(this)
-                    .load("http://60.205.218.75:8980/image/" + matches[i].imgUrl)
-                    .into(pic);
+            NetworkManager.LoadPic(pic,match.imgUrl);
         }
     }
 
@@ -220,7 +225,7 @@ public class DiscoveryPage extends ColorStatusPage<DiscoveryContract.Presenter> 
         @Override
         public void Run(BaseActivity baseActivity) {
             CommitMatchPresenter commitMatchPresenter = new CommitMatchPresenter();
-            commitMatchPresenter.setView((CommitMatchActivity)baseActivity);
+            commitMatchPresenter.setView((CommitMatchActivity) baseActivity);
             baseActivity.setPresenter(commitMatchPresenter);
         }
     };
@@ -229,9 +234,10 @@ public class DiscoveryPage extends ColorStatusPage<DiscoveryContract.Presenter> 
     View.OnClickListener commitMatchButtonOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            getBaseActivity().jumpTo(CommitMatchActivity.class, true,commitMatchActivityCallback);
+            getBaseActivity().jumpTo(CommitMatchActivity.class, true, commitMatchActivityCallback);
         }
     };
+
     @OnClick(R.id.menu_icon)
     public void onViewClicked() {
 

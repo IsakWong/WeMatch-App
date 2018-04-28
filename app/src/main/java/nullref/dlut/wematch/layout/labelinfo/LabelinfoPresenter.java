@@ -1,4 +1,4 @@
-package nullref.dlut.wematch.business;
+package nullref.dlut.wematch.layout.labelinfo;
 
 import nullref.dlut.wematch.bean.Label;
 import nullref.dlut.wematch.layout.labelinfo.LabelContract;

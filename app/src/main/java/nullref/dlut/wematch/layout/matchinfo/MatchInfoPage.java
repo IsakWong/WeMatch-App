@@ -42,8 +42,8 @@ import butterknife.Unbinder;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.TransparentStatusPage;
 import nullref.dlut.wematch.bean.Match;
-import nullref.dlut.wematch.business.MatchTeamListPresenter;
-import nullref.dlut.wematch.business.MatchUserListPresenter;
+import nullref.dlut.wematch.layout.teamlist.MatchTeamListPresenter;
+import nullref.dlut.wematch.layout.userlist.MatchUserListPresenter;
 import nullref.dlut.wematch.layout.teamlist.TeamListPage;
 import nullref.dlut.wematch.layout.userlist.UserListPage;
 import nullref.dlut.wematch.utils.NetworkManager;
@@ -162,14 +162,6 @@ public class MatchInfoPage extends TransparentStatusPage<MatchInfoContract.Prese
 
 
     }
-
-
-
-    @Override
-    public void onError(String cause) {
-
-    }
-
 
     @Override
     public void onMatchInfo(Match match) {

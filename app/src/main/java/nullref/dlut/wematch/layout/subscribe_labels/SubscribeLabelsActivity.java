@@ -16,7 +16,6 @@ import butterknife.OnClick;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.BaseActivity;
 import nullref.dlut.wematch.bean.Label;
-import nullref.dlut.wematch.business.register.SubscribeLabelsPresenter;
 import nullref.dlut.wematch.layout.MainpageActivity;
 
 /**

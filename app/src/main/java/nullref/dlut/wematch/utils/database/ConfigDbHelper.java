@@ -100,7 +100,7 @@ public class ConfigDbHelper extends BaseDbHelper {
 
             Pair avatarPrefix = new Pair();
             avatarPrefix.name = AvatarUrlPrefix;
-            avatarPrefix.value = "https://wematch.oss-cn-shanghai.aliyuncs.com/";
+            avatarPrefix.value = "http://120.79.193.18:8980/image/";
             configDao.create(avatarPrefix);
 
             Pair userURL = new Pair();
@@ -141,8 +141,8 @@ public class ConfigDbHelper extends BaseDbHelper {
             configDao = getDao(Pair.class);
             Pair imagePrefix = new Pair();
             imagePrefix.name = imageUrlPrefix;
-            imagePrefix.value = "http://60.205.218.75:8980/image/";
-            configDao.create(imagePrefix);
+            imagePrefix.value = "http://120.79.193.18:8980/image/";
+            configDao.update(imagePrefix);
 
 
         } catch (Exception exception) {

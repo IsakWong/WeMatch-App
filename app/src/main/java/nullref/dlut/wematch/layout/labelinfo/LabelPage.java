@@ -20,7 +20,6 @@ import butterknife.Unbinder;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.ColorStatusPage;
 import nullref.dlut.wematch.bean.Label;
-import nullref.dlut.wematch.business.LabelinfoPresenter;
 import nullref.dlut.wematch.utils.Utils;
 import nullref.dlut.wematch.widgets.adapter.MatchListAdapter;
 

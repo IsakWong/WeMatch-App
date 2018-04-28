@@ -1,8 +1,13 @@
-package nullref.dlut.wematch.business;
+package nullref.dlut.wematch.layout.login;
+
+import android.content.res.Resources;
 
 import nullref.dlut.wematch.base.BasePresenter;
 import nullref.dlut.wematch.layout.login.LogInActivityContract;
+import nullref.dlut.wematch.sessions.CommitMatchSession;
 import nullref.dlut.wematch.sessions.LoginSession;
+import nullref.dlut.wematch.sessions.UploadImgSession;
+import nullref.dlut.wematch.utils.LogToFile;
 import nullref.dlut.wematch.utils.Utils;
 import nullref.dlut.wematch.utils.database.UserDbHelper;
 
@@ -17,7 +22,7 @@ public class LogInPresenter extends BasePresenter<LogInActivityContract.View> im
     LoginSession loginSession = new LoginSession(new LoginSession.Listener() {
         @Override
         public void onLogin(LoginSession.Response response) {
-
+            view.onMessage("登陆成功，现在为您跳转到主界面");
             view.loginSuccess();
             UserDbHelper userDb = UserDbHelper.getInstance();
             userDb.saveUserPwd(email, pwd);

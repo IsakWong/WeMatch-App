@@ -1,4 +1,4 @@
-package nullref.dlut.wematch.business.register;
+package nullref.dlut.wematch.layout.register;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -9,9 +9,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.BaseActivity;
-import nullref.dlut.wematch.base.BasePresenter;
 import nullref.dlut.wematch.layout.login.LogInActivity;
-import nullref.dlut.wematch.business.register.updateinfo.UpdateUserInfoActivity;
+import nullref.dlut.wematch.layout.updateinfo.UpdateUserInfoActivity;
 
 /**
  * Created by IsakWong on 2017/5/18.
@@ -37,6 +36,9 @@ public class RegisterActivity extends BaseActivity<RegisterActivityContract.Pres
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg);
         ButterKnife.bind(this);
+        RegisterPresenter registerPresenter = new RegisterPresenter();
+        setPresenter(registerPresenter);
+        registerPresenter.setView(this);
     }
 
 

@@ -11,7 +11,7 @@ import nullref.dlut.wematch.bean.UserListInfo;
  */
 
 public interface DiscoveryContract {
-    interface View {
+    interface View  extends BaseView{
         void onMatchesAdded(MatchListInfo[] matches);
 
         void onUsersAdded(UserListInfo[] userListInfos);
@@ -24,11 +24,12 @@ public interface DiscoveryContract {
     }
 
     interface Presenter{
-        public abstract void getMatches();
 
-        public abstract void getSubscibedLabels();
+        void getMatches();
 
-        public abstract void getUsers();
+        void getSubscribedLabels();
+
+        void getUsers();
 
     }
 }

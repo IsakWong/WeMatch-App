@@ -10,7 +10,7 @@ import nullref.dlut.wematch.widgets.adapter.TeamListAdapter;
  */
 
 public interface TeamListContract {
-    interface View  {
+    interface View  extends BaseView {
 
         void onGetTeamListError(String cause);
 

@@ -1,4 +1,4 @@
-package nullref.dlut.wematch.business;
+package nullref.dlut.wematch.layout.splash;
 
 import nullref.dlut.wematch.base.BasePresenter;
 import nullref.dlut.wematch.layout.login.LogInActivityContract;
@@ -17,6 +17,7 @@ public class SplashPresenter extends BasePresenter<SplashActivityContract.View> 
     LoginSession loginSession = new LoginSession(new LoginSession.Listener() {
         @Override
         public void onLogin(LoginSession.Response response) {
+            view.onMessage("登录成功，现在为您跳转到主界面");
             view.loginSuccess();
         }
 

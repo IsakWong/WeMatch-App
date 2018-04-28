@@ -1,4 +1,4 @@
-package nullref.dlut.wematch.business;
+package nullref.dlut.wematch.layout.info;
 
 import nullref.dlut.wematch.base.BasePresenter;
 import nullref.dlut.wematch.bean.UserInfo;
@@ -10,9 +10,8 @@ import nullref.dlut.wematch.utils.database.ConfigDbHelper;
  * Created by IsakWong on 2017/5/25.
  */
 
-public class SelfSpavePagePresenter extends BasePresenter<SelfSpacePageContract.View> implements SelfSpacePageContract.Presenter {
+public class SelfSpacePagePresenter extends BasePresenter<SelfSpacePageContract.View> implements SelfSpacePageContract.Presenter {
 
-    SelfSpacePageContract.View view;
     GetUserInfoSession getUserInfoSession = new GetUserInfoSession(new GetUserInfoSession.Listener() {
         @Override
         public void onGetUserInfo(UserInfo userListInfo) {
@@ -28,7 +27,7 @@ public class SelfSpavePagePresenter extends BasePresenter<SelfSpacePageContract.
         }
     });
 
-    public SelfSpavePagePresenter() {
+    public SelfSpacePagePresenter() {
 
     }
 

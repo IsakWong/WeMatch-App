@@ -18,7 +18,7 @@ import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.ColorStatusPage;
 import nullref.dlut.wematch.bean.UserListInfo;
 import nullref.dlut.wematch.layout.userinfo.UserInfoPage;
-import nullref.dlut.wematch.business.UserInfoPresenter;
+import nullref.dlut.wematch.layout.userinfo.UserInfoPresenter;
 import nullref.dlut.wematch.widgets.adapter.UserListAdapter;
 
 /**

@@ -1,5 +1,6 @@
 package nullref.dlut.wematch.layout.infoset;
 
+import nullref.dlut.wematch.base.BaseView;
 import nullref.dlut.wematch.sessions.UpdateUserInfoSession;
 import nullref.dlut.wematch.sessions.UploadImgSession;
 
@@ -8,7 +9,7 @@ import nullref.dlut.wematch.sessions.UploadImgSession;
  */
 
 public interface ModifyInformationContract {
-    interface View {
+    interface View  extends BaseView {
         void onUploadImg();
 
         void onUploadImgError(String cause);

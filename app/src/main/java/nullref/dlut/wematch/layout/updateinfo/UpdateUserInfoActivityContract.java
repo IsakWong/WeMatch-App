@@ -1,7 +1,8 @@
-package nullref.dlut.wematch.business.register.updateinfo;
+package nullref.dlut.wematch.layout.updateinfo;
 
 import android.graphics.Bitmap;
 
+import nullref.dlut.wematch.base.BaseView;
 import nullref.dlut.wematch.sessions.UpdateUserInfoSession;
 import nullref.dlut.wematch.sessions.UploadImgSession;
 
@@ -10,7 +11,7 @@ import nullref.dlut.wematch.sessions.UploadImgSession;
  */
 
 public interface UpdateUserInfoActivityContract {
-    interface View {
+    interface View extends BaseView {
         void onUpdateUserInfo();
 
         void onUpdateUserInfoError(String cause);

@@ -1,4 +1,4 @@
-package nullref.dlut.wematch.business.register;
+package nullref.dlut.wematch.layout.subscribe_labels;
 
 import java.util.ArrayList;
 

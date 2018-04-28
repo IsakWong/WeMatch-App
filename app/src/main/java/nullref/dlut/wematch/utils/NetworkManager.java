@@ -9,11 +9,15 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.sessions.Session;
 import nullref.dlut.wematch.utils.database.ConfigDbHelper;
 import okhttp3.Call;
@@ -37,7 +41,7 @@ public class NetworkManager {
 
     private static String serverIp;
     private static String userAuth;
-    private static String avatarPrefix;
+    public static String avatarPrefix;
     private static String imageUrlPrefix;
 
     //NetWork 初始化代码段
@@ -69,9 +73,14 @@ public class NetworkManager {
                 .into(avatarView);
     }
     public static void LoadPic(ImageView imageView, String imageUrl) {
+        RequestOptions options2 = new RequestOptions()
+                .placeholder(R.drawable.bg_blue)
+                .priority(Priority.HIGH)
+                .diskCacheStrategy(DiskCacheStrategy.NONE);
         Glide
                 .with(imageView)
                 .load(imageUrlPrefix + imageUrl)
+                .apply(options2)
                 .into(imageView);
     }
 

@@ -8,7 +8,7 @@ import nullref.dlut.wematch.sessions.LoginSession;
  */
 
 public interface SplashActivityContract {
-    interface View{
+    interface View  extends BaseView{
 
         void firstRun();
 
