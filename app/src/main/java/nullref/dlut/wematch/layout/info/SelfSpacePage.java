@@ -20,14 +20,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import nullref.dlut.wematch.R;
-import nullref.dlut.wematch.base.BaseActivity;
 import nullref.dlut.wematch.base.ColorStatusPage;
 import nullref.dlut.wematch.bean.UserInfo;
 import nullref.dlut.wematch.layout.infoset.ModifyInformationActivity;
-import nullref.dlut.wematch.layout.infoset.ModifyInformationContract;
-import nullref.dlut.wematch.layout.infoset.ModifyInformationPresenter;
 import nullref.dlut.wematch.layout.login.LogInActivity;
-import nullref.dlut.wematch.layout.login.LogInPresenter;
 import nullref.dlut.wematch.layout.teamlist.JoinTeamListPresenter;
 import nullref.dlut.wematch.layout.matchlist.SubscribeMatchListPresenter;
 import nullref.dlut.wematch.layout.userlist.SubscribeUserListPresenter;
@@ -94,11 +90,11 @@ public class SelfSpacePage extends ColorStatusPage<SelfSpacePageContract.Present
                              Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
-        view = inflater.inflate(R.layout.page_info, container, false);
-        unbinder = ButterKnife.bind(this, view);
+        pageContent = inflater.inflate(R.layout.page_info, container, false);
+        unbinder = ButterKnife.bind(this, pageContent);
         ConfigDbHelper configDbHelper = ConfigDbHelper.getInstance();
         presenter.getUserInfo();
-        return view;
+        return pageContent;
     }
 
     @Override

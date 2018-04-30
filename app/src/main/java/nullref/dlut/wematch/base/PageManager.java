@@ -1,4 +1,4 @@
-package nullref.dlut.wematch.utils;
+package nullref.dlut.wematch.base;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.BasePage;
+import nullref.dlut.wematch.utils.DetailTransition;
 
 /**
  * Created by IsakWong on 2017/5/28.
@@ -127,12 +128,10 @@ public class PageManager {
 
     public void removeAllPage() {
 
-
         FragmentTransaction transcaction = mFragmentManager.beginTransaction();
-        for (Fragment fragment : fragments
-                ) {
+        for (Fragment fragment : fragments) {
 
-            transcaction.remove(curFragment);
+            transcaction.remove(fragment);
         }
         transcaction.commit();
     }

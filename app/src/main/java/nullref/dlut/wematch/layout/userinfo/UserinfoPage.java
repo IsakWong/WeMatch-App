@@ -111,8 +111,8 @@ public class UserInfoPage extends ColorStatusPage<UserInfoContract.Presenter> im
                              final Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
-        view = inflater.inflate(R.layout.page_user_info_test, container, false);
-        unbinder = ButterKnife.bind(this, view);
+        pageContent = inflater.inflate(R.layout.page_user_info_test, container, false);
+        unbinder = ButterKnife.bind(this, pageContent);
         mFlexibleSpaceImageHeight = getResources().getDimensionPixelSize(R.dimen.topbarSize);
         mActionBarSize = findViewById(R.id.status_bar).getLayoutParams().height + findViewById(R.id.toolbar).getLayoutParams().height;
         scroll.setScrollViewCallbacks(this);
@@ -124,7 +124,7 @@ public class UserInfoPage extends ColorStatusPage<UserInfoContract.Presenter> im
             }
         });
         presenter.getUserInfo();
-        return view;
+        return pageContent;
     }
 
 

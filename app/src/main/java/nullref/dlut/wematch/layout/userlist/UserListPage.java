@@ -60,10 +60,10 @@ public class UserListPage extends ColorStatusPage<UserListContract.Presenter> im
                              Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
-        view = inflater.inflate(R.layout.page_user_list, container, false);
-        unbinder = ButterKnife.bind(this, view);
+        pageContent = inflater.inflate(R.layout.page_user_list, container, false);
+        unbinder = ButterKnife.bind(this, pageContent);
         userList.setItemAnimator(new DefaultItemAnimator());
-        userList.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+        userList.setLayoutManager(new LinearLayoutManager(pageContent.getContext(), LinearLayoutManager.VERTICAL, false));
         userList.setAdapter(adapter);
         adapter.setListener(new UserListAdapter.CardListener() {
             @Override
@@ -88,7 +88,7 @@ public class UserListPage extends ColorStatusPage<UserListContract.Presenter> im
         if (adapter.getDatas().isEmpty()) {
             presenter.refreshUsers();
         }
-        return view;
+        return pageContent;
     }
 
 

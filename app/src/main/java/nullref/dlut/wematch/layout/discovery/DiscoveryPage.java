@@ -4,8 +4,6 @@ package nullref.dlut.wematch.layout.discovery;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayout;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +15,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -75,18 +71,12 @@ public class DiscoveryPage extends ColorStatusPage<DiscoveryContract.Presenter> 
     LinearLayout discvoeruUserLayout;
 
 
-    View.OnClickListener userCardClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            UserCardSmall item = (UserCardSmall) v;
+    View.OnClickListener userCardClickListener = v -> {
+        UserCardSmall item = (UserCardSmall) v;
 
-        }
     };
-    View.OnClickListener matchCardListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
+    View.OnClickListener matchCardListener = v -> {
 
-        }
     };
     @BindView(R.id.menu_icon)
     ImageButton menuIcon;
@@ -102,8 +92,8 @@ public class DiscoveryPage extends ColorStatusPage<DiscoveryContract.Presenter> 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        view = inflater.inflate(R.layout.page_discovery, container, false);
-        unbinder = ButterKnife.bind(this, view);
+        pageContent = inflater.inflate(R.layout.page_discovery, container, false);
+        unbinder = ButterKnife.bind(this, pageContent);
 
 
         SimpleDateFormat sDateFormat = new SimpleDateFormat("MM月dd日");
@@ -115,7 +105,7 @@ public class DiscoveryPage extends ColorStatusPage<DiscoveryContract.Presenter> 
 
         String url = "http://wematchcommunity.applinzi.com/api/label-list.php?labelname=" + Utils.toURLEncoded("人工智能") + "&labelname2=" + Utils.toURLEncoded("互联网");
         communityWeb.loadUrl(url);
-        return view;
+        return pageContent;
     }
 
     @Override
@@ -157,37 +147,28 @@ public class DiscoveryPage extends ColorStatusPage<DiscoveryContract.Presenter> 
 
     @Override
     public void onMatchesAdded(MatchListInfo[] matches) {
-        int size =  matches.length;
+        int size = matches.length;
         for (int i = 0; i < size; i++) {
             final MatchListInfo match = matches[i];
             LayoutInflater inflater = LayoutInflater.from(this.getContext());
             View matchCard = inflater.inflate(R.layout.card_match_grid, null);
-            GridLayout.Spec rowSpec = GridLayout.spec(i/2, 1f);
-            GridLayout.Spec columnSpec= GridLayout.spec(i%2,1f);
-            GridLayout.LayoutParams params=new GridLayout.LayoutParams(rowSpec,columnSpec);
+            GridLayout.Spec rowSpec = GridLayout.spec(i / 2, 1f);
+            GridLayout.Spec columnSpec = GridLayout.spec(i % 2, 1f);
+            GridLayout.LayoutParams params = new GridLayout.LayoutParams(rowSpec, columnSpec);
             params.width = 0;
-            try {
-                //matchGrid.addView(matchCard,params);
-                matchCard.setOnClickListener(new View.OnClickListener() {
-                                                 @Override
-                                                 public void onClick(View view) {
-                                                     MatchInfoPage matchInfoPage = new MatchInfoPage();
-                                                     MatchInfoPresenter matchInfoPresenter = new MatchInfoPresenter();
-                                                     matchInfoPage.setPresenter(matchInfoPresenter);
-                                                     matchInfoPresenter.setView(matchInfoPage);
-                                                     matchInfoPresenter.setMatchListInfo(match);
-                                                     jumpPage(matchInfoPage);
-                                                 }
-                                             }
-                );
-                matchGrid.addView(matchCard,params);
-            }catch ( Exception exp){
-                Log.e(exp.getMessage(),exp.toString());
-            }
+            matchCard.setOnClickListener(view -> {
+                MatchInfoPage matchInfoPage = new MatchInfoPage();
+                MatchInfoPresenter matchInfoPresenter = new MatchInfoPresenter();
+                matchInfoPage.setPresenter(matchInfoPresenter);
+                matchInfoPresenter.setView(matchInfoPage);
+                matchInfoPresenter.setMatchListInfo(match);
+                jumpPage(matchInfoPage);
+            });
+            matchGrid.addView(matchCard, params);
             ImageView pic = (ImageView) matchCard.findViewById(R.id.match_pic);
             TextView title = (TextView) matchCard.findViewById(R.id.match_title);
             title.setText(matches[i].name);
-            NetworkManager.LoadPic(pic,match.imgUrl);
+            NetworkManager.LoadPic(pic, match.imgUrl);
         }
     }
 
@@ -221,21 +202,15 @@ public class DiscoveryPage extends ColorStatusPage<DiscoveryContract.Presenter> 
         makeToast(getResources().getString(R.string.to_do));
     }
 
-    static BaseActivity.CallBack commitMatchActivityCallback = new BaseActivity.CallBack() {
-        @Override
-        public void Run(BaseActivity baseActivity) {
-            CommitMatchPresenter commitMatchPresenter = new CommitMatchPresenter();
-            commitMatchPresenter.setView((CommitMatchActivity) baseActivity);
-            baseActivity.setPresenter(commitMatchPresenter);
-        }
+    static BaseActivity.PresenterSetter commitMatchActivityCallback = (BaseActivity.PresenterSetter) baseActivity -> {
+        CommitMatchPresenter commitMatchPresenter = new CommitMatchPresenter();
+        commitMatchPresenter.setView((CommitMatchActivity) baseActivity);
+        baseActivity.setPresenter(commitMatchPresenter);
     };
 
 
-    View.OnClickListener commitMatchButtonOnClick = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            getBaseActivity().jumpTo(CommitMatchActivity.class, true, commitMatchActivityCallback);
-        }
+    View.OnClickListener commitMatchButtonOnClick = view -> {
+        getBaseActivity().jumpTo(CommitMatchActivity.class, true, commitMatchActivityCallback);
     };
 
     @OnClick(R.id.menu_icon)

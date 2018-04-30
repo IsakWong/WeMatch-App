@@ -7,5 +7,5 @@ package nullref.dlut.wematch.base;
 public interface BaseView{
 
     void onMessage(String message);
-    void authError();
+    void authError(String errorMessage);
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import nullref.dlut.wematch.base.BasePresenter;
 import nullref.dlut.wematch.bean.MatchListInfo;
-import nullref.dlut.wematch.layout.matchlist.MatchListContract;
 import nullref.dlut.wematch.sessions.GetMatchListSession;
 import nullref.dlut.wematch.widgets.adapter.MatchListAdapter;
 
@@ -28,7 +27,7 @@ public class SubscribeMatchListPresenter  extends BasePresenter<MatchListContrac
     GetMatchListSession getSubscribeMatchList = new GetMatchListSession(new GetMatchListSession.Listener() {
         @Override
         public void onGetMatchList(MatchListInfo[] matches, int matchID) {
-            view.onRereshMarch(matches);
+            view.onRefreshMatch(matches);
         }
 
         @Override

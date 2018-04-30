@@ -1,13 +1,10 @@
 package nullref.dlut.wematch.layout.website;
 
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
@@ -46,8 +43,8 @@ public class WebPage extends ColorStatusPage {
                              Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
-        view = inflater.inflate(R.layout.page_community, container, false);
-        unbinder = ButterKnife.bind(this, view);
+        pageContent = inflater.inflate(R.layout.page_community, container, false);
+        unbinder = ButterKnife.bind(this, pageContent);
 
         communityWeb.getSettings().setJavaScriptEnabled(true);
         communityWeb.setWebViewClient(new WebViewClient() {
@@ -68,7 +65,7 @@ public class WebPage extends ColorStatusPage {
             }
         });
         communityWeb.loadUrl("http://wematchcommunity.applinzi.com/main.php");
-        return view;
+        return pageContent;
     }
 
     @Override

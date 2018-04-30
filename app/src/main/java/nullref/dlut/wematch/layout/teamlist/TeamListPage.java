@@ -71,10 +71,10 @@ public class TeamListPage extends ColorStatusPage<TeamListContract.Presenter> im
                              Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
-        view = inflater.inflate(R.layout.page_team_list, container, false);
-        unbinder = ButterKnife.bind(this, view);
+        pageContent = inflater.inflate(R.layout.page_team_list, container, false);
+        unbinder = ButterKnife.bind(this, pageContent);
         userList.setItemAnimator(new DefaultItemAnimator());
-        userList.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+        userList.setLayoutManager(new LinearLayoutManager(pageContent.getContext(), LinearLayoutManager.VERTICAL, false));
         userList.setAdapter(adapter);
         ptrFrame.setResistance(1.7f);
         ptrFrame.setRatioOfHeaderHeightToRefresh(1.2f);
@@ -97,7 +97,7 @@ public class TeamListPage extends ColorStatusPage<TeamListContract.Presenter> im
         if (adapter.getDatas().isEmpty()) {
             presenter.refreshTeam();
         }
-        return view;
+        return pageContent;
     }
 
     @Override

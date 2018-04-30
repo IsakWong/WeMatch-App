@@ -1,25 +1,20 @@
 package nullref.dlut.wematch.base;
 
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import java.io.Serializable;
 
 import nullref.dlut.wematch.R;
-import nullref.dlut.wematch.utils.PageManager;
 import nullref.dlut.wematch.utils.WeMatchApplication;
 /* Created by IsakWong on 2017/5/15.
  */
 
-public class BaseActivity<T> extends AppCompatActivity {
+public class BaseActivity<T> extends AppCompatActivity implements BaseView{
 
 
     public T presenter;
@@ -34,9 +29,9 @@ public class BaseActivity<T> extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         pageManager = new PageManager(getSupportFragmentManager());
-        CallBack callBack = (CallBack) getIntent().getSerializableExtra("call_back");
-        if(callBack!=null){
-            callBack.Run(this);
+        PresenterSetter presenterSetter = (PresenterSetter) getIntent().getSerializableExtra("presenter_setter_callback");
+        if(presenterSetter !=null){
+            presenterSetter.Run(this);
         }
 
     }
@@ -47,56 +42,40 @@ public class BaseActivity<T> extends AppCompatActivity {
         super.onDestroy();
     }
 
-    public interface CallBack extends Serializable{
+    public interface PresenterSetter extends Serializable{
         void Run(BaseActivity baseActivity);
     }
     public PageManager getPageManager() {
         return pageManager;
     }
 
-    public void setToolbar(Toolbar toolbar) {
-        setSupportActionBar(toolbar);
-    }
 
-    public void popDialog(String title, String msg) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(title);
-        builder.setMessage(msg);
-        builder.setPositiveButton("好的", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        builder.create().show();
-    }
-
-    public void jumpTo(Class<?> type, boolean canBack) {
+    public void jumpTo(Class<?> activityType, boolean canGoBack) {
         Intent intent = new Intent();
-        intent.setClass(this, type);
+        intent.setClass(this, activityType);
         startActivity(intent);
         overridePendingTransition(R.animator.in_to_left, R.animator.out_to_left);
-        if (!canBack) {
+        if (!canGoBack) {
             pageManager.removeAllPage();
             finishAfterTransition();
         }
     }
-    public void jumpTo(Class<?> type, boolean canBack,CallBack callBack) {
+    public void jumpTo(Class<?> type, boolean canGoBack,PresenterSetter presenterSetter) {
         Intent intent = new Intent();
-        if(callBack!=null)
-            intent.putExtra("call_back",callBack);
+        if(null!= presenterSetter)
+            intent.putExtra("presenter_setter_callback", presenterSetter);
         intent.setClass(this, type);
         startActivity(intent);
         overridePendingTransition(R.animator.in_to_left, R.animator.out_to_left);
-        if (!canBack) {
+        if (!canGoBack) {
             pageManager.removeAllPage();
             finishAfterTransition();
         }
     }
-    public void jumpTo(Class<?> type, boolean canBack, Bundle args,CallBack callBack) {
+    public void jumpTo(Class<?> type, boolean canBack, Bundle args,PresenterSetter presenterSetter) {
         Intent intent = new Intent();
-        if(callBack!=null)
-            intent.putExtra("call_back",callBack);
+        if(presenterSetter !=null)
+            intent.putExtra("presenter_setter_callback", presenterSetter);
         intent.setClass(this, type);
         intent.putExtras(args);
         startActivity(intent);
@@ -108,18 +87,15 @@ public class BaseActivity<T> extends AppCompatActivity {
         }
     }
 
-    public Context getInstance() {
-
-        return this;
-    }
-
-    public void authError() {
-
-    }
-
     public void onMessage(String message){
-        Toast.makeText(WeMatchApplication.getInstance(), message, Toast.LENGTH_SHORT).show();
+        makeToast(message);
     }
+
+    @Override
+    public void authError(String errorMessage) {
+        makeToast(errorMessage);
+    }
+
     public void makeToast(String message) {
         Toast.makeText(WeMatchApplication.getInstance(), message, Toast.LENGTH_SHORT).show();
     }

@@ -1,7 +1,5 @@
 package nullref.dlut.wematch.layout.splash;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -10,15 +8,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import nullref.dlut.wematch.R;
 import nullref.dlut.wematch.base.BaseActivity;
-import nullref.dlut.wematch.bean.CommitMatch;
 import nullref.dlut.wematch.layout.MainpageActivity;
 import nullref.dlut.wematch.layout.login.LogInPresenter;
 import nullref.dlut.wematch.layout.register.RegisterActivity;
 import nullref.dlut.wematch.layout.login.LogInActivity;
-import nullref.dlut.wematch.sessions.CommitMatchSession;
-import nullref.dlut.wematch.sessions.UploadImgSession;
-import nullref.dlut.wematch.utils.LogToFile;
-import nullref.dlut.wematch.utils.Utils;
 
 /**
  * Created by IsakWong on 2017/6/26.
@@ -74,7 +67,7 @@ public class SplashActivity extends BaseActivity<SplashActivityContract.Presente
         super.onDestroy();
     }
 
-    static CallBack callBack = new CallBack() {
+    static PresenterSetter presenterSetter = new PresenterSetter() {
         @Override
         public void Run(BaseActivity baseActivity) {
 
@@ -86,7 +79,7 @@ public class SplashActivity extends BaseActivity<SplashActivityContract.Presente
     @OnClick(R.id.login_btn)
     public void onLoginBtnClicked() {
 
-        jumpTo(LogInActivity.class, false, callBack);
+        jumpTo(LogInActivity.class, false, presenterSetter);
     }
 
     @OnClick(R.id.register_btn)

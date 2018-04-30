@@ -76,8 +76,8 @@ public class LabelPage extends ColorStatusPage implements LabelContract.View {
                              Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
-        view = inflater.inflate(R.layout.page_label_info, container, false);
-        unbinder = ButterKnife.bind(this, view);
+        pageContent = inflater.inflate(R.layout.page_label_info, container, false);
+        unbinder = ButterKnife.bind(this, pageContent);
         try {
             String encodeurl = "http://wematchcommunity.applinzi.com/main-label.php?labelname=" + Utils.toURLEncoded(data.getName());
             //labelInfoWeb.loadUrl(encodeurl);
@@ -87,7 +87,7 @@ public class LabelPage extends ColorStatusPage implements LabelContract.View {
         labelTitle.setText(data.getName());
 
 
-        return view;
+        return pageContent;
     }
 
     @Override

@@ -104,7 +104,7 @@ public class MatchListPage extends ColorStatusPage<MatchListContract.Presenter> 
 
         }
     };
-    PtrDefaultHandler2 ptrDefaultHandler2 = new PtrDefaultHandler2() {
+    PtrDefaultHandler2 pullHandler = new PtrDefaultHandler2() {
         @Override
         public void onLoadMoreBegin(PtrFrameLayout frame) {
             presenter.getMoreMatches();
@@ -134,8 +134,8 @@ public class MatchListPage extends ColorStatusPage<MatchListContract.Presenter> 
                              Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
-        view = inflater.inflate(R.layout.page_match_list, container, false);
-        unbinder = ButterKnife.bind(this, view);
+        pageContent = inflater.inflate(R.layout.page_match_list, container, false);
+        unbinder = ButterKnife.bind(this, pageContent);
         matchList.setItemAnimator(defaultItemAnimator);
         matchList.setLayoutManager(verticalLinearLayout);
         matchList.setAdapter(mAdapter);
@@ -147,7 +147,7 @@ public class MatchListPage extends ColorStatusPage<MatchListContract.Presenter> 
         ptrFrame.setPullToRefresh(false);
         ptrFrame.setKeepHeaderWhenRefresh(true);
         ptrFrame.setMode(PtrFrameLayout.Mode.BOTH);
-        ptrFrame.setPtrHandler(ptrDefaultHandler2);
+        ptrFrame.setPtrHandler(pullHandler);
         if (NAVIGATION_BACK == navigationType) {
             menuIcon.setImageResource(R.drawable.ic_back);
         }
@@ -158,7 +158,7 @@ public class MatchListPage extends ColorStatusPage<MatchListContract.Presenter> 
             presenter.refreshMatches();
         }
         presenter.initView();
-        return view;
+        return pageContent;
     }
 
     @Override
@@ -193,7 +193,7 @@ public class MatchListPage extends ColorStatusPage<MatchListContract.Presenter> 
     }
 
     @Override
-    public void onRereshMarch(MatchListInfo[] matches) {
+    public void onRefreshMatch(MatchListInfo[] matches) {
 
         mAdapter.clearCard();
         for (MatchListInfo match : matches) {

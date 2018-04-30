@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import nullref.dlut.wematch.base.BasePresenter;
 import nullref.dlut.wematch.bean.MatchListInfo;
-import nullref.dlut.wematch.layout.matchlist.MatchListContract;
 import nullref.dlut.wematch.sessions.GetMatchListSession;
 import nullref.dlut.wematch.widgets.adapter.MatchListAdapter;
 
@@ -34,7 +33,7 @@ public class MatchListPresenter extends BasePresenter<MatchListContract.View> im
                 getNoFilterMatchList.request.filter = 0;
                 getNoFilterMatchList.send();
             } else {
-                view.onRereshMarch(matches);
+                view.onRefreshMatch(matches);
             }
 
         }

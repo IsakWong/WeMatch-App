@@ -31,7 +31,7 @@ import nullref.dlut.wematch.R;
  * <p>
  * TransparentPage 透明状态栏
  */
-public abstract class BasePage<T> extends Fragment {
+public class BasePage<T> extends Fragment implements BaseView {
 
     public T presenter;
 
@@ -41,18 +41,17 @@ public abstract class BasePage<T> extends Fragment {
 
     public BasePage nextFragment = null;
     public BasePage preFragment = null;
-    public View view;
-    long time1;
-    long time2;
 
-    public BasePage() {
+    public View pageContent = null;
 
-    }
+
+    long createTime = 0;
+    long viewCreatedTime = 0;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        time1 = SystemClock.elapsedRealtime();
+        createTime = SystemClock.elapsedRealtime();
     }
 
     @Override
@@ -75,8 +74,8 @@ public abstract class BasePage<T> extends Fragment {
             lp.height = statusBarHeight;
             statusBar.setLayoutParams(lp);
         }
-        time2 = SystemClock.elapsedRealtime();
-        Log.e(this.getClass().toString(), "CreateView:" + Long.toString(time2 - time1));
+        viewCreatedTime = SystemClock.elapsedRealtime();
+        Log.e(this.getClass().toString(), "CreateView:" + Long.toString(viewCreatedTime - createTime));
     }
 
     @Override
@@ -130,14 +129,12 @@ public abstract class BasePage<T> extends Fragment {
     }
 
     public View findViewById(int id) {
-        return view.findViewById(id);
+        return pageContent.findViewById(id);
     }
 
 
     @CallSuper
     public FragmentTransaction preEnterPage(FragmentTransaction transaction, BasePage targetFragment) {
-
-        getView();
         return transaction;
 
     }
@@ -158,20 +155,11 @@ public abstract class BasePage<T> extends Fragment {
     public PopupWindow showPopupWindow(View view, int resource) {
 
         // 一个自定义的布局，作为显示的内容
-        View contentView = LayoutInflater.from(getContext()).inflate(
-                R.layout.menu_match_list, null);
-        final PopupWindow popupWindow = new PopupWindow(contentView,
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
-
+        View contentView = LayoutInflater.from(getContext()).inflate(R.layout.menu_match_list, null);
+        final PopupWindow popupWindow = new PopupWindow(contentView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
 
         popupWindow.setTouchable(true);
-        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return false;
-            }
-        });
+        popupWindow.setTouchInterceptor((v, event) -> false);
         popupWindow.setElevation(getResources().getDimension(R.dimen.textSubhead));
         popupWindow.setBackgroundDrawable(getResources().getDrawable(R.color.colorWhiteBackgournd));
         popupWindow.showAsDropDown(view);
@@ -186,16 +174,20 @@ public abstract class BasePage<T> extends Fragment {
         }
     }
 
-    public void authError() {
-    }
 
     public Context getInstance() {
         return this.getContext();
     }
 
-    public void onMessage(String message){
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    public void onMessage(String message) {
+        makeToast(message);
     }
+
+    @Override
+    public void authError(String errorMessage) {
+        makeToast(errorMessage);
+    }
+
     public void makeToast(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }

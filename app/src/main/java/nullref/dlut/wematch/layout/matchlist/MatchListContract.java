@@ -10,13 +10,13 @@ import nullref.dlut.wematch.widgets.adapter.MatchListAdapter;
  */
 
 public interface MatchListContract {
-    interface View   extends BaseView{
+    interface View extends BaseView {
 
         void onRequestMatchError(String cause);
 
         void onMatchAdded(MatchListInfo[] matches);
 
-        void onRereshMarch(MatchListInfo[] matches);
+        void onRefreshMatch(MatchListInfo[] matches);
 
         void onFollowMatch(int position);
 

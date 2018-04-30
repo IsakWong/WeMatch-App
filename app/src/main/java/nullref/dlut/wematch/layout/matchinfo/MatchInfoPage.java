@@ -134,8 +134,8 @@ public class MatchInfoPage extends TransparentStatusPage<MatchInfoContract.Prese
                              final Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
-        view = inflater.inflate(R.layout.page_match_info, container, false);
-        unbinder = ButterKnife.bind(this, view);
+        pageContent = inflater.inflate(R.layout.page_match_info, container, false);
+        unbinder = ButterKnife.bind(this, pageContent);
         mFlexibleSpaceImageHeight = getResources().getDimensionPixelSize(R.dimen.topbarSize);
         mActionBarSize = findViewById(R.id.status_bar).getLayoutParams().height + findViewById(R.id.toolbar).getLayoutParams().height;
         if (match == null) {
@@ -153,7 +153,7 @@ public class MatchInfoPage extends TransparentStatusPage<MatchInfoContract.Prese
 
             }
         });
-        return view;
+        return pageContent;
     }
 
     @Override
